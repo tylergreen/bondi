@@ -1,0 +1,573 @@
+(*
+%open "pc_book/pcb_object-oriented.bon";;
+*)
+
+
+class Name { 
+name : String;
+get_name = { | () -> !this.name }
+set_name = { fun n -> this.name = n }
+with
+toString += | (x:Name) -> x.get_name()
+}
+
+(* attributes are not programs 
+
+name;;
+*)
+
+Name;;
+
+let nameName (x:Name) = x.name;;
+let nNameUnit (x:Name[Unit]) = x.name;;
+let nNaneTop (x: Name) = x.name;;
+
+
+let fred = 
+let fd = new Name in 
+fd.set_name("Fred");
+fd;;
+
+let fred = new Name in 
+fred.set_name "Fred";
+fred.get_name();;
+
+
+class Person {
+name : String;
+position : Int;
+friends : List Person;
+get_name = { | () -> !this.name }
+set_name  = { fun n -> this.name = n }
+get_position = { | () -> !this.position }
+set_position = { fun p -> this.position = p }
+get_friends = { | () -> !this.friends }
+set_friends = { fun p -> this.friends = p }
+move = { fun d -> this.set_position (this.get_position() + d) }
+moveClone = { fun d -> 
+        let res = clone this in
+        res.set_position (this.get_position() + d);
+        res }
+closer  = { | (x:Person) -> 
+if this.get_position() <=  x.get_position()
+then (this : Person)
+else (x : Person)
+}
+with 
+toString += | (x:Person) -> x.get_name ()
+}
+
+
+let personName (x: Person) = x.name;;
+
+
+let nName (x:Name) = x.name;;
+
+
+let homer = new Person;;
+homer.set_name("Homer"); 
+homer.set_position(5);
+homer.set_friends([]);
+homer.move 3;
+(homer,homer.get_position())
+;;
+
+
+
+(* sub-classes *) 
+
+class ProperPerson extends Person { 
+proper : String;
+get_proper = { | () -> !this.proper }
+set_proper  = { fun n -> this.proper = n }
+get_name = { | () -> super.get_name() ^ " " ^ (this.get_proper()) }
+}
+
+let harry = 
+let h = new ProperPerson in 
+h.set_name("Harry") ;
+h.set_position(0);
+h.set_proper("Joy");
+h;;
+
+(* dynamic dispatch *) 
+
+
+let  honey = 
+let hon = new Person in 
+hon.set_name ("Honey") ;
+hon.set_position 1;
+hon.set_friends [(homer:Person),(harry:Person)];
+hon;;
+
+let f x (y: Person) = x ^ y.get_name() ^ ", " in 
+honey.get_name() ^ " knows " ^(foldleft f "" (honey.get_friends()));;
+
+(* iterated sub-classes *) 
+
+class Employee extends ProperPerson {
+salary : Float ;
+get_salary = { |() -> !this.salary} 
+set_salary = { fun s -> this.salary = s} 
+update_salary = { fun p -> this.salary = !this.salary * (1.0 + p) } 
+}
+
+| (x:Employee) -> x.get_salary();;
+
+
+let busy = 
+let b = new Employee in 
+b.set_name("busy");
+b.set_proper("beaver");
+b.set_salary(2.00);
+b.set_position(7);
+b;;
+
+
+class Manager extends Employee {
+department : String;
+bonus : Float ;
+get_department = { | () -> !this.department }
+set_department  = { fun n -> this.department = n }
+get_bonus = { | () -> !this.bonus }
+set_bonus  = { fun n -> this.bonus = n }
+update_salary = { fun p -> 
+	super.update_salary(p);
+	this.bonus = !this.bonus * (1.0 + p) }
+}
+
+
+let lazy =
+let lz =  new Manager in 
+lz.set_name("Lazy");
+lz.set_proper("B");
+lz.set_salary(4.00);
+lz.set_department("dep1");
+lz.set_bonus(1.00);
+lz.update_salary(0.05);
+lz;;
+
+(lazy,lazy.get_salary(),lazy.get_bonus());;
+
+
+
+class Department {
+name : String ;
+manager : Manager ;
+employees : List Employee;
+get_name = { |() -> !this.name} 
+set_name = { fun s -> this.name = s} 
+get_manager = { |() -> !this.manager} 
+set_manager = { fun s -> this.manager = s} 
+get_employees = { |() -> !this.employees} 
+set_employees = { fun s -> this.employees = s} 
+with
+toString += | (x:Department) -> x.get_name()
+}
+
+let dep1 = 
+let d1 = new Department in 
+d1.set_name("dep1") ;
+d1.set_manager(lazy );
+d1.set_employees([(busy:Employee)]);
+d1;;
+
+(* this acts on both the manager and the employees *) 
+
+let (update_any_salary: Float -> a -> Unit) p = 
+| (x:Employee) -> x.update_salary(p)
+| x -> () 
+;;
+
+
+map (fun (x:Employee) -> (x,x.get_salary())) (dep1.get_employees());;
+ (dep1.get_manager()).get_bonus();;
+iter (update_any_salary 0.5) dep1;
+map (fun (x:Employee) -> (x,x.get_salary())) (dep1.get_employees());;
+ (dep1.get_manager()).get_bonus();;
+
+
+
+
+
+
+(*** sub-typing in type specialisation  *) 
+
+
+class Point {
+x_coord : Float;
+y_coord : Float;
+get_x_coord = { |() -> !this.x_coord }
+set_x_coord = { fun d -> this.x_coord =  d }
+get_y_coord = { |() -> !this.y_coord }
+set_y_coord  = { fun d -> this.y_coord =  d }
+is_good = { this.get_x_coord() >= 0.0 }
+with 
+toString += | (z:Point) ->
+   "Point(" ^ 
+	(toString (z.get_x_coord())) ^ 
+	"," 
+	^(toString (z.get_y_coord())) ^ 
+	")" 
+ }
+
+
+datatype Colour = Colour of Int  
+with toString += | (Colour x) -> 
+(| 1 -> "red"
+| 2 -> "green"
+| 3 -> "blue"
+| y -> "Colour "^(toString y))
+x
+;;
+let red = Colour 1;;
+let green = Colour 2 ;;
+let blue = Colour 3;;
+
+class ColourPoint  extends Point {
+colour : Colour;
+get_colour = { |() -> !this.colour }
+set_colour = { fun x -> this.colour = x }
+with
+toString += | (x:ColourPoint) -> 
+"CPoint("^ (toString (x.get_x_coord())) ^ "," ^ (toString (x.get_y_coord())) ^ "," ^ (toString (x.get_colour())) ^")"
+}
+
+class Circle {
+centre : Point;
+radius :Float;
+get_centre  = { |() -> !this.centre }
+set_centre = { fun x -> this.centre = x }
+get_radius = { |() -> !this.radius }
+set_radius  = { fun x -> this.radius = x }
+}
+
+
+
+class ColourCircle  extends Circle {
+col : Colour ;
+get_col = { |() -> !this.col }
+set_col  = { fun x -> this.col = x }
+get_centre = { |() -> 
+let res = new ColourPoint in 
+res.set_x_coord ((super.get_centre()).get_x_coord());
+res.set_y_coord ((super.get_centre()).get_y_coord());
+res.set_colour (this.get_col());
+res }
+}
+
+
+
+let x = new ColourCircle in 
+let p = new Point in 
+p.x_coord = -1.1;
+p.y_coord = 2.2;
+x.centre = p;
+x.col = blue;
+(!x.centre,x.get_centre());;
+
+
+
+(* parametrised classes *) 
+
+(* singly-linked lists *) 
+
+class NodeInt   {
+value : Int ;
+next : NodeInt;
+getValue  = { |() -> !this.value }
+setValue = { fun v -> this.value = v }
+getNext = { |() -> !this.next }
+setNext = { fun (n: NodeInt) -> this.next = n }
+insert = { fun (n: NodeInt) -> n.setNext (this.getNext()); this.setNext n }
+with 
+toString += | (x: NodeInt) ->
+ let rec (aux: c -> String) = 
+ | NodeInt _ (v,Ref (Exception _)) -> toString !v  
+ | NodeInt _ (v,n) -> (toString !v) ^ "," ^ (aux !n) 
+ | _ -> ""
+ in 
+ "[" ^ (aux x) ^"]" 
+}
+
+
+
+class Node <a>   {
+value : a ;
+next : Node <a>;
+getValue  = { |() -> !this.value }
+setValue = { fun v -> this.value = v }
+getNext = { |() -> !this.next }
+setNext = { fun (n: Node <a>) -> this.next = n }
+insert = { fun (n: Node<a>) -> n.setNext (this.getNext()); this.setNext n }
+with 
+toString += | (x: Node<a>) ->
+ let rec (aux: c -> String) = 
+ | Node _ (v,Ref (Exception _)) -> toString !v  
+ | Node _ (v,n) -> (toString !v) ^ "," ^ (aux !n) 
+ | _ -> ""
+ in 
+ "[" ^ (aux x) ^"]" 
+}
+
+
+
+let x0 = new Node <Int>  ;;
+let x1 = new Node<Int>  ;;
+let x2 = new Node<Int>  ;;
+x0.setValue 0;
+x1.setValue 1;
+x2.setValue 2;
+x0.setNext x2;
+x0;;
+x0.insert x1;
+x0;;
+let r4 = new Node <Float>;; 
+r4.setValue 4.4;
+r4;;
+
+
+let anyNode = 
+| (x:Node) -> print (x.getValue())
+| _ -> ()
+;;
+
+iter anyNode x0;;
+iter anyNode r4;;
+
+
+class DNode <a> extends Node {
+previous : ref (DNode <a>); 
+getPrev = { |()-> !(!this.previous) }
+setPrev  = { fun (p: DNode <a>) -> this.previous = Ref p }
+setNext = { 
+let (aux: Node<a>[b] -> Unit) = 
+ | (n:DNode<a>[c]) ->
+                super.setNext n;
+		n.setPrev this
+ | n -> super.setNext n
+ in fun (x: Node<a>) -> aux x
+}        
+}
+
+let d0 = new DNode <Int>  ;;
+let d1 = new DNode<Int>  ;;
+let d2 = new DNode<Int>  ;;
+d0.setValue 0;
+d1.setValue 1;
+d2.setValue 2;
+d0.setNext d2;
+d0;;
+d2.getPrev();;
+d0.insert d1;
+d0;;
+d2.getPrev();;
+d1.getPrev();;
+
+
+
+(*** dynamic patterns *) 
+
+
+let rec (update: lin (ref a -> b) -> (a -> a) -> c -> Unit) = fun (x: lin (ref a -> b))-> fun f -> 
+  | {y} x y ->  y = f !y 
+  | z y -> update x f z; update x f y
+  | Ref y -> update x f y
+  | y -> ()
+;;
+
+let twopercent x = x* 1.02;;
+ 
+datatype Salary = Salary of ref Float;;
+
+lin salary1 = Salary ;;
+
+let s1 = Salary (Ref 2.0);;
+
+update  salary1 (fun x -> x * 1.02) s1;;
+
+datatype Worker = Worker of ref String * ref Float
+with 
+toString += | (Worker (x,y)) -> !x;;
+
+lin salary2 x = Worker (_,x);;
+
+let w1 = Worker (Ref "Fred",Ref 2.0);;
+
+update  salary2 (fun x -> x * 1.02) w1;;
+
+datatype WorkUnit = WorkUnit of List Worker;;
+
+let w1 = Worker (Ref "Fred",Ref 2.0);;
+let w2 = Worker (Ref "Mary",Ref 3.0);;
+
+let ws = WorkUnit [w1,w2];;
+
+(| WorkUnit z -> map (|{y} salary2 y -> !y) z) ws;;
+update salary2 twopercent ws;;
+(| WorkUnit z -> map (|{y} salary2 y -> !y) z) ws;;
+
+lin salary3 x = Person (ProperPerson (Employee _ x) _) _;;
+ map (fun (x:Employee) -> (x,x.get_salary())) (dep1.get_employees());;
+
+update salary3 twopercent dep1;;
+map (fun (x:Employee) -> (x,x.get_salary())) (dep1.get_employees());;
+
+
+let company = (dep1,ws);;
+
+
+
+let rec (update_sal : (Float -> Float) -> a -> Unit) f = 
+| (x:Department)  -> update salary3 f x
+| (WorkUnit _) as x -> update salary2 f x
+| z y -> update_sal f z; update_sal f y 
+| y -> () 
+;;
+
+update_sal twopercent (dep1,ws);;
+
+
+(*** Customers *)
+
+
+datatype Maybe a = None | Some of a;;
+
+
+
+let rec (findOne: (all a. a -> Maybe b) -> c -> Maybe b) f x = 
+  match f x with 
+  | Some r -> Some r 
+  | None -> 
+     match x with 
+    |  y z -> 
+	begin 
+	match findOne f y with 
+	| None -> findOne f z 
+	| r -> r  
+	end 
+    | Ref z -> findOne f z 
+    | _ -> None 
+;;
+
+
+
+let (isNegFloat: a -> Maybe Float) = 
+| (x : Float) -> if  x<0.0 then Some x else None 
+| _ -> None 
+;;
+
+
+findOne isNegFloat [1.,2.,-3.,-4.];;
+
+
+
+class Customer extends ProperPerson {
+balance : Float;
+get_balance = { | () -> !this.balance}
+set_balance  = { fun n -> this.balance = n }
+}
+
+
+let john = 
+let j = new Customer in 
+j.set_name "John";
+j.set_proper "Smith";
+j.set_balance (120.);
+j;;
+john.get_balance();;
+
+
+let jane = 
+let j = new Customer in 
+j.set_name "Jane";
+j.set_proper "Doe";
+j.set_balance (-75.);
+j;;
+jane.get_balance();;
+
+findOne isNegFloat [john,jane];;
+
+let (isNegCustomer: a -> Maybe Customer) = 
+| (x : Customer) -> if  x.get_balance()<0.0 then Some x else None 
+| _ -> None 
+;;
+
+findOne isNegCustomer [john,jane];;
+
+
+class Bank {
+name : String;
+customers : List Customer;
+get_name = { | () -> !this.name}
+set_name  = { fun n -> this.name = n }
+get_customers = { | () -> !this.customers}
+set_customers = { fun x -> this.customers = x }
+}
+
+let abc = new Bank;;
+abc.set_name "Australian Banking Company" ;
+abc.set_customers [john,jane];
+abc;;
+
+findOne isNegCustomer abc;;
+
+
+class Division {
+name: String;
+customers: List Customer;
+get_name = { | () -> !this.name}
+set_name  = { fun n -> this.name = n }
+get_customers = { | () -> !this.customers}
+set_customers  = { fun x -> this.customers = x }
+}
+
+
+class Corporation {
+name : String;
+divisions: List Division ;
+get_name = { | () -> !this.name}
+set_name  = { fun n -> this.name = n }
+get_divisions = { | () -> !this.divisions}
+set_divisions  = { fun x -> this.divisions = x }
+}
+
+
+
+
+let div1 = new Division;;
+div1.set_customers [john];
+div1.get_customers();;
+
+let div2 = new Division;;
+div2.set_customers [jane];
+div2.get_customers();;
+
+let corp = new Corporation;;
+corp.set_divisions [div1,div2];;
+
+findOne isNegCustomer corp;;
+
+
+class Valued extends Customer {
+high_interest : Float;
+get_high_interest = { | () -> !this.high_interest}
+set_high_interest  = { fun n -> this.high_interest = n }
+get_balance = { | () -> super.get_balance() + this.get_high_interest() }
+}
+
+
+let alan = 
+let a = new Valued in 
+a.set_name "Alan";
+a.set_proper "Key";
+a.set_balance (-40.0);
+a.set_high_interest 50.0;
+a;;
+alan.get_balance();;
+
+abc.set_customers (Cons (alan: Customer) (abc.get_customers()));;
+
+findOne isNegCustomer abc;;
+
+

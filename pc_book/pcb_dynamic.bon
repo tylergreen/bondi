@@ -1,0 +1,68 @@
+(*
+%open "pcb_dynamic.bon";;
+*)
+
+let linequal = fun x -> | {} x -> True | y -> False;;
+
+linequal [1,2,3] [1,2,3];;
+
+linequal 4 (2+2);;
+(*
+linequal (2+2) 4;;
+*)
+
+
+let elim = fun (x: lin (a -> b)) -> |{y} x y -> y;;
+elim Cons;;
+elim Cons (Cons 3);;
+
+lin singleton x = [x];;
+lin singleton_test = singleton 3;;
+
+
+elim singleton [3];;
+elim (Cons _) [1,2,3];;
+elim (Pair _) (3,4);;
+
+(* 
+
+lin null x = [];;
+lin two x = (x,x);;
+lin idBool x = if True then x else True ;;
+lin idBool2 x = if True then x else x ;;
+
+
+
+elim _;;
+*)
+
+(*
+let f = fun x --> fst x;;
+f _;;
+*)
+
+let pathology = fun (x:lin a) ->  | {} (fun x -> x) x -> True ;;
+pathology [] [];;
+
+
+(* Salaries or wages *)
+
+let twopercent x = x * 1.02;;
+
+
+datatype Salary2 = Salary2 of Float;;
+
+
+datatype Currency =  AUSD | EURO | USD | YUAN;;
+datatype Wage = Wage of Currency and Float ;;
+
+
+
+let (incrWage: (Float -> Float) -> a -> a) f = | Wage c s -> Wage c (f s);;
+let (incr_salary: lin (Float -> a) -> (Float -> Float) -> a -> a)  = fun (salary: lin (Float -> a)) -> fun f ->  | {s} salary s -> salary (f s);;
+
+incr_salary Salary2 twopercent (Salary2 1.0);;
+incr_salary (Wage EURO) twopercent (Wage EURO 1.0);;
+
+
+

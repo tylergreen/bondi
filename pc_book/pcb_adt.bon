@@ -1,0 +1,285 @@
+(*
+%open "pc_book/pcb_adt.bon";;
+*)
+
+
+(*** Chapter Abstract data types *) 
+
+(*** Type declarations *) 
+
+(*
+datatype Binprod a b  = Pair of a and b;;
+*)
+
+Pair 2 3;;
+
+(3,4);;
+
+Pair eqcons Pair;;
+
+
+type Cmplex = Float * Float ;;
+
+let (z: Cmplex) = (3.3,4.4);;
+
+datatype Complex = Cartesian of Float and Float;;
+
+let z = Cartesian 1.1 2.2;;
+
+(*
+datatype List a = Nil  | Cons of a and List a ;;
+*)
+[1,2,3];;
+
+datatype Tree a = Leaf of a | Node of Tree a and Tree a ;;
+let tr1 = Node (Leaf 3) (Leaf 4);;
+
+
+datatype Coproduct a b = Inl of a | Inr of b ;;
+Inl 3;;
+
+
+
+(*** Pattern-matching functions *) 
+
+
+let fst = | (x,y) -> x;;
+let snd = | (x,y) -> y;;
+fst (2,3);;
+
+
+
+
+let (safeDivideInt: Int -> Int -> Int) n = 
+| 0 -> Exception "divide by 0"
+| m -> n divideint m
+;;
+safeDivideInt 4 2 ;;
+safeDivideInt 4 0  == Exception "divide by 0";;
+
+(*
+Exception;;
+
+Exception "example of an exception";;
+*)
+
+
+
+let ext (isZero: a -> Bool) =
+| 0 -> True
+| 0.0 -> True 
+| _ -> False;;
+
+isZero 0;;
+isZero 0.0;;
+not (isZero Pair);;
+
+
+let (f : a -> Bool) = 
+| 0 -> True
+| 0.0 -> True  ;;
+
+let isPair = 
+| Pair _ _ -> True 
+| _ -> False ;;
+
+_Int;;
+
+let isInt = 
+| _Int -> True 
+| _ -> False ;;
+
+isInt 3;;
+not (isInt True);;
+
+(| _Char -> True) 'a';;
+(| _String -> True) "abc";;
+
+
+fun (x:Int) -> (| _Int -> x +1) x;;
+
+| _Int as x -> x +1;;
+
+
+let incrInt = 
+| (x :Int) -> x+1 
+| x -> x
+;;
+
+
+
+(*** Polymorphism in data *) 
+
+
+let (coproduct_analysis: (a -> c) -> (b -> c) -> Coproduct a b -> c) f g = 
+| Inl x -> f x
+| Inr y -> g y 
+;;
+
+ coproduct_analysis (fun x -> x+1) (fun y -> 0) (Inl 3);;
+ coproduct_analysis (fun x -> x+1) (fun y -> 0) (Inr True);;
+
+
+let rec (append: List a -> List a ->List a) =
+| Nil -> fun y -> y
+| Cons x xs -> fun y -> Cons x (append xs y)
+;;
+append [1,2,3] [4,5];;
+
+let rec (mapList : (a -> b) -> List a -> List b) f = 
+| Nil -> Nil
+| Cons x xs -> Cons (f x) (mapList f xs)
+;;
+
+let plusOne x = x+1;;
+
+mapList plusOne [1,2,3];;
+
+let rec (mapTree: (a -> b) -> Tree a -> Tree b) f = 
+| Leaf x -> Leaf (f x)
+| Node x y -> Node (mapTree f x) (mapTree f y)
+;;
+mapTree plusOne tr1;;
+
+let rec (foldleftList: (a -> b -> a) -> a -> List b -> a) f x = 
+| Cons y ys -> foldleftList f (f x y) ys 
+| [] -> x
+;;
+
+
+
+
+(*** Generic functional programming  *) 
+
+(*
+datatype Konstant a b = Evr of a ;;
+datatype Identity a = Ths of a ;;
+datatype ParamProduct f g a = ParamPair of f a and g a ;; 
+datatype Okay f a = Ok of f a ;;
+datatype Nested g f a = Nest of g (f a);;
+datatype Represent a b c = Tag of a -> b and a c ;;
+*)
+
+deconstruct Nil print;;
+
+reconstruct(Tag Nil_name (Evr Un));;
+
+deconstruct [2] print;;
+reconstruct (Tag Cons_name (ParamPair (Ths 2) (Ok [])));;
+
+deconstruct (Leaf 3) print;;
+deconstruct tr1 print;;
+
+
+
+
+(*** Adding cases to existing functions *) 
+
+
+
+datatype Complex = Cartesian of Float and Float
+with 
+isZero += | Cartesian 0.0 0.0 ->  True
+;;
+
+toString;;
+
+let (print: a -> Unit) x = printstring (toString x);;
+print (Cartesian 1.1 2.2);;
+
+let z = Cartesian 1.1 2.2;;
+z+z;;
+z*z;;
+
+datatype Complex = Cartesian of Float and Float
+with isZero += | Cartesian 0.0 0.0 ->  True
+and toString += | Cartesian x y -> (toString x) ^ "+" ^ (toString y) ^ "i"
+;;
+
+
+
+(* this does not type check since the new case does not use any new consturctors 
+
+datatype Gotcha = Gotcha 
+with toString += | (x,y) -> "Gotcha!"   (* illegal addition *) 
+;;
+Gotcha;;
+(3,4);;
+
+*) 
+
+datatype Gotcha a = Gotcha of a
+with 
+toString += | Gotcha x ->  "Gotcha!"
+;;
+
+
+
+let (apply2both : (all a. (a -> Bool)) -> b -> Bool) test = 
+| (x,y) -> test x && test y 
+| x -> test x 
+;;
+apply2both isZero (0,0.0);;
+not (apply2both isZero 3);;
+
+let (self_apply : (all a. (a -> a)) -> b -> b) f x = f f x;;
+
+self_apply (fun x -> x) 3;;
+
+
+map plusOne [1,2,3];;
+map plusOne tr1;;
+
+reconstruct;;
+deconstruct;;
+
+
+let rec (foldleft : (a -> b -> a) -> a -> c b -> a) = 
+let rec (foldleft0: (a -> b -> a) -> a -> c b -> a) f z = 
+| Evr x -> z 
+| Ths x -> f z x  
+| Ok x -> foldleft f z x
+| ParamPair x y -> foldleft0 f (foldleft0 f z x) y 
+| Nest x -> foldleft (foldleft f) z x 
+| Tag n x -> foldleft0 f z x 
+in 
+fun f z x -> deconstruct x (foldleft0 f z)
+;;
+foldleft (+) 0 [1,2,3];;
+
+
+let rec (foldright : (a -> b -> b) -> c a -> b -> b) = 
+let rec (foldright0: (a -> b -> b) -> c a -> b -> b) f = 
+| Evr x -> fun z -> z
+| Ths x -> f x
+| Ok x -> foldright f x
+| ParamPair x y -> fun z -> foldright0 f x (foldright0 f y z) 
+| Nest x -> foldright (foldright f) x 
+| Tag n x -> foldright0 f x 
+in 
+fun f x z -> deconstruct x (foldright0 f) z
+;;
+foldright (+) [1,2,3] 0;;
+
+
+
+
+let rec (zipwith: (a * b -> c) -> d a * e b -> d c) = 
+let rec (zipwith0: (a * b -> c) -> d a * e b -> d c) f = 
+| (Evr x,_) -> Evr x 
+| (Ths x,Ths y) -> Ths (f(x,y))
+| (Ok x,Ok y) -> Ok(zipwith f (x,y))
+| (ParamPair x1 x2, ParamPair y1 y2) -> 
+	ParamPair (zipwith0 f (x1,y1)) (zipwith0 f (x2,y2))
+| (Nest x,Nest y) -> Nest (zipwith (zipwith f) (x,y)) 
+| (Tag m x, Tag n y) -> Tag m (zipwith0 f (x,y)) 
+in 
+fun f -> | (x,y) -> 
+	deconstruct x (fun x1 -> 
+	deconstruct y (fun y1 ->  (reconstruct (zipwith0 f (x1,y1)))
+))
+;;
+
+
+
+

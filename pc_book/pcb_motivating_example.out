@@ -1,0 +1,252 @@
+(* Begin sourcing "./prelude/standard_prelude.bon"... *)
+(* Begin sourcing "./prelude/printing.bon"... *)
+^: String -> String -> String
+toString: a -> String
+print: a -> Unit
+println: a -> Unit
+(* Finished sourcing "./prelude/printing.bon" *)
+(* Begin sourcing "./prelude/imperatives_core.bon"... *)
+forall: Int -> Int -> (Int -> a) -> Unit
+iter: (all a.a -> Unit) -> b -> Unit
+clone: a -> a
+(* Finished sourcing "./prelude/imperatives_core.bon" *)
+(* Begin sourcing "./prelude/structure_poly.bon"... *)
+Pair: a -> b -> a * b
+fromTuple: a -> String
+it: Unit
+fst: a * b -> a
+snd: a * b -> b
+Inl: a -> a + b
+Inr: b -> a + b
+Evr: a -> Konstant a b
+Ths: a -> Identity a
+ParamPair: a b -> c b -> ParamProduct a c b
+Ok: a b -> Okay a b
+Nest: a (b c) -> Nested a b c
+Tag: (a -> b) -> a c -> Represent a b c
+deconstruct: a b -> (all c.Represent c a b -> d) -> d
+reconstruct: Represent a b c -> b c
+map: (a -> b) -> c a -> c b
+Nil: List a
+Cons: a -> List a -> List a
+toString: b -> String
+toString: c -> String
+Some: a -> Maybe a
+None: Maybe a
+foldleft: (a -> b -> a) -> a -> c b -> a
+foldright: (a -> b -> b) -> c a -> b -> b
+zipwith: (a * b -> c) -> d a * e b -> d c
+(* Finished sourcing "./prelude/structure_poly.bon" *)
+(* Begin sourcing "./prelude/datum2generic.bon"... *)
+&&: Bool -> Bool -> Bool
+not: Bool -> Bool
+||: Bool -> Bool -> Bool
+equal: a * b -> Bool
+==: a -> a -> Bool
+!=: a -> a -> Bool
+plus: a * b -> a
++: a -> a -> a
+shortplus: a * b -> a
+minus: a * b -> a
+-: a -> a -> a
+times: a * b -> a
+*: a -> a -> a
+divide: a * b -> a
+/: a -> a -> a
+negate: a -> a
+lessthan: a * b -> Bool
+<: a -> a -> Bool
+lessthanorequal: a * b -> Bool
+<=: a -> a -> Bool
+greaterthan: a * b -> Bool
+>: a -> a -> Bool
+greaterthanorequal: a * b -> Bool
+>=: a -> a -> Bool
+(* Finished sourcing "./prelude/datum2generic.bon" *)
+(* Begin sourcing "./prelude/dynamic2static.bon"... *)
+dynamic_case_for_internal_use_only = ...
+(* Finished sourcing "./prelude/dynamic2static.bon" *)
+(* Begin sourcing "./prelude/queries.bon"... *)
+apply2all: (all a.a -> a) -> b -> b
+append: List a -> List a -> List a
+some_append: Maybe a -> List a -> List a
+select: (all a.a -> Maybe b) -> c -> List b
+is: lin a -> b -> Maybe a
+(* Finished sourcing "./prelude/queries.bon" *)
+(* Finished sourcing "./prelude/standard_prelude.bon" *)
+(* Begin sourcing "./pc_book/pcb_motivating_example.bon"... *)
+Salary2: Float -> Salary2
+incrSalary2: (Float -> Float) -> Salary2 -> Salary2
+Employee1: String -> Salary2 -> Employee1
+incrEmpSalary2: (Float -> Float) -> Employee1 -> Employee1
+mapList: (a -> b) -> List a -> List b
+incrEmpSalaryList: (Float -> Float) -> List Employee1 -> List Employee1
+it: (a -> b) -> c a -> c b
+mapIncrEmpSalary2: (Float -> Float) -> a Employee1 -> a Employee1
+apply2all: (all a.a -> a) -> b -> b
+incrAnyEmpSalary2: (Float -> Float) -> a -> a
+incrAllEmpSalary2: (Float -> Float) -> a -> a
+Department1: String -> List Employee1 -> Department1
+Company: String -> List Department1 -> Company
+e1: Employee1
+e1 = Employee1 "b1" (Salary2 2.)
+e2: Employee1
+e2 = Employee1 "b2" (Salary2 4.)
+es: List Employee1
+es = [Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)]
+dept1: Department1
+dept1 = Department1 "dept1" ([Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)])
+dept2: Department1
+dept2 = Department1 "dept2" []
+mydepts: List Department1
+mydepts = [Department1 "dept1" ([Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)]),Department1 "dept2" []]
+mycorp: Company
+mycorp = Company "mycorp" ([Department1 "dept1" ([Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)]),Department1 "dept2" []])
+incrDepSalary2: (Float -> Float) -> Department1 -> Department1
+increaseCompSalary2: (Float -> Float) -> Company -> Company
+twopercent: Float -> Float
+it: Company
+it = Company "mycorp" ([Department1 "dept1" ([Employee1 "b1" (Salary2 2.04),Employee1 "b2" (Salary2 4.08)]),Department1 "dept2" []])
+it: Company
+it = Company "mycorp" ([Department1 "dept1" ([Employee1 "b1" (Salary2 2.04),Employee1 "b2" (Salary2 4.08)]),Department1 "dept2" []])
+it: Bool
+it = True
+Salary2: Float -> Salary2
+incrSalary2: (Float -> Float) -> Salary2 -> Salary2
+class Name2 {
+name: Name2[a] -> ref String
+get_name: Name2[a] -> Unit -> String
+set_name: Name2[a] -> String -> Unit
+}
+class Employee2 {
+salary: Employee2[a] -> ref Salary2
+get_salary: Employee2[a] -> Unit -> Salary2
+set_salary: Employee2[a] -> Salary2 -> Unit
+incrSalary: Employee2[a] -> (Float -> Float) -> Unit
+}
+incrAnyEmpSalary2: (Float -> Float) -> a -> Unit
+it: (all a.a -> Unit) -> b -> Unit
+incrAllEmpSalary2: (Float -> Float) -> a -> Unit
+class Manager2 {
+bonus: Manager2[a] -> ref Salary2
+get_bonus: Manager2[a] -> Unit -> Salary2
+set_bonus: Manager2[a] -> Salary2 -> Unit
+get_salary: Manager2[a] -> Unit -> Salary2
+incrSalary: Manager2[a] -> (Float -> Float) -> Unit
+}
+class Department2 {
+employees: Department2[a] -> ref List Employee2
+manager: Department2[a] -> ref Manager2
+get_employees: Department2[a] -> Unit -> List Employee2
+set_employees: Department2[a] -> List Employee2[b] -> Unit
+get_manager: Department2[a] -> Unit -> Manager2
+set_manager: Department2[a] -> Manager2[b] -> Unit
+deptSalary: Department2[a] -> Unit -> Salary2
+}
+class Company2 {
+departments: Company2[a] -> ref List Department2
+get_departments: Company2[a] -> Unit -> List Department2
+set_departments: Company2[a] -> List Department2[b] -> Unit
+compSalary: Company2[a] -> Unit -> Salary2
+}
+e3: Employee2[]
+e3 = Name2 (Employee2 Un ...) ...
+it: Unit
+e4: Employee2[]
+e4 = Name2 (Employee2 Un ...) ...
+it: Unit
+m1: Manager2[]
+m1 = Name2 (Employee2 (Manager2 Un ...) ...) ...
+it: Manager2[]
+it = Name2 (Employee2 (Manager2 Un ...) ...) ...
+m2: Manager2[]
+m2 = Name2 (Employee2 (Manager2 Un ...) ...) ...
+it: Manager2[]
+it = Name2 (Employee2 (Manager2 Un ...) ...) ...
+dept1: Department2[]
+dept1 = Name2 (Department2 Un ((...,...))) ...
+it: Department2[]
+it = Name2 (Department2 Un ((...,...))) ...
+dept2: Department2[]
+dept2 = Name2 (Department2 Un ((...,...))) ...
+it: Department2[]
+it = Name2 (Department2 Un ((...,...))) ...
+mycorp: Company2[]
+mycorp = Name2 (Company2 Un ...) ...
+it: Company2[]
+it = Name2 (Company2 Un ...) ...
+it: Salary2
+it = Salary2 22.
+it: Unit
+it: Salary2
+it = Salary2 22.44
+it: Bool
+it = True
+AUSD: Currency
+EURO: Currency
+USD: Currency
+Salary3: Currency -> Float -> Salary3
+incrSalary3: (Float -> Float) -> Salary3 -> Salary3
+class Employee3 {
+salary: Employee3[a] -> ref Salary3
+get_salary: Employee3[a] -> Unit -> Salary3
+set_salary: Employee3[a] -> Salary3 -> Unit
+incrSalary: Employee3[a] -> (Float -> Float) -> Unit
+}
+incrAnyEmpSalary3: (Float -> Float) -> a -> Unit
+incrAllEmpSalary3: (Float -> Float) -> a -> Unit
+class Manager3 {
+bonus: Manager3[a] -> ref Salary3
+get_bonus: Manager3[a] -> Unit -> Salary3
+set_bonus: Manager3[a] -> Salary3 -> Unit
+incrSalary: Manager3[a] -> (Float -> Float) -> Unit
+}
+class Department3 {
+employees: Department3[a] -> ref List Employee3
+manager: Department3[a] -> ref Manager3
+get_employees: Department3[a] -> Unit -> List Employee3
+set_employees: Department3[a] -> List Employee3[b] -> Unit
+get_manager: Department3[a] -> Unit -> Manager3
+set_manager: Department3[a] -> Manager3[b] -> Unit
+deptSalary: Department3[a] -> Unit -> Salary3
+}
+class Company3 {
+departments: Company3[a] -> ref List Department3
+get_departments: Company3[a] -> Unit -> List Department3
+set_departments: Company3[a] -> List Department3[b] -> Unit
+compSalary: Company3[a] -> Unit -> Salary3
+}
+mycorp3: Company3[]
+mycorp3 = Name2 (Company3 Un ...) ...
+it: Salary3
+it = Salary3 EURO 18.
+it: Unit
+it: Salary3
+it = Salary3 EURO 18.36
+it: Bool
+it = True
+incr_salary: a -> (b -> b) -> c -> c
+it: Salary2
+it = Salary2 1.02
+it: Salary3
+it = Salary3 EURO 1.02
+incrAnyEmpSalary4: (Float -> Float) -> a -> Unit
+incrAllEmpSalary4: (Float -> Float) -> a -> Unit
+it: Salary2
+it = Salary2 22.8888
+it: Unit
+it: Salary2
+it = Salary2 23.346576
+it: Salary3
+it = Salary3 EURO 18.7272
+it: Unit
+it: Salary3
+it = Salary3 EURO 19.101744
+Worker: String * Float * Float -> Worker
+update_salary: lin (Float -> a) -> (Float -> Float) -> b -> Unit
+y1: ref Salary2
+y2: ref Salary2
+it: Unit
+it: List Salary2
+it = [Salary2 1.5,Salary2 4.5]
+(* Finished sourcing "./pc_book/pcb_motivating_example.bon" *)

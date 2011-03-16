@@ -1,0 +1,154 @@
+(*
+%open "pcb_adt.bon";;
+%open "pcb_query.bon" ;;
+*)
+
+%open "./pc_book/pcb_adt.bon";;
+
+(* Making datum operations generic *) 
+
+let ext (append: List a -> List a -> List a) = 
+| Nil -> fun y -> y 
+| Cons x xs -> fun y -> Cons x (append xs y) 
+;;
+
+let ext (select: (all a . a -> List b) -> c -> List b) =  fun f -> 
+	| Ref (Ref _) -> [] 
+	| Ref z -> select f z 
+	| z y -> append (f (z y)) (append (select f z) (select f y))
+        | x as _array -> 
+	   let res = Ref (f x) in 
+	   forall 0 ((lengthv x) minusint 1) (fun i -> res = append (select f !(entry(x,i))) !res);
+	           !res
+	| y -> f y
+;;
+
+
+
+let rec (negate : a -> a) = 
+    | (x:Int) -> negateint x
+    | _Float as x -> negatefloat x
+    | x y -> (negate x) (negate y)
+    | x -> x 
+;;
+negate 3;;
+negate (Cartesian 1.1 2.2);;
+
+%show specialise;;
+
+let rec (negate : a -> a) = 
+    | (x:Int) -> negateint x
+    | _Float as x -> negatefloat x
+    | x y -> (negate x) (negate y)
+    | x -> x 
+;;
+
+
+(* this example doesn't type check!
+
+let (either0 :  Coproduct a b -> b) = 
+| Inl x -> x 
+| Inr y -> y
+;;
+*)
+
+
+let (either :  Coproduct a a -> a) = 
+| Inl x -> x 
+| Inr y -> y
+;;
+
+
+%hide specialise;;
+let (either :  Coproduct a a -> a) = 
+| Inl x -> x 
+| Inr y -> y
+;;
+
+
+let rec (plus : a * b -> a) = 
+| ((x:Int),(y:Int)) -> x plusint y
+| (_Float as x,_Float as y) -> x plusfloat y
+| (x1 x2,y1 y2) -> plus (x1,y1) (plus(x2,y2)) 
+| (x,y) -> if x eqcons y then x else Exception "plus" 
+;;
+let ((+): a -> a -> a) x y = plus(x,y);;
+[1,2,3] + [4,5,6];;
+z + z;;
+
+[1,2,3] * [4,5,6];;
+(1.1,2.2) * (1.1,2.2);;
+z * z;; 
+[z,z] * [z,z] == [z*z,z*z];;
+ 
+
+datatype Complex = Cartesian of Float and Float
+with 
+toString += | Cartesian x y -> 
+  (toString x) ^ " + " ^ (toString y) ^ "i"
+and times += | (Cartesian x1 y1,Cartesian x2 y2) -> 
+  Cartesian (x1 * x2 - y1 * y2) (x1 * y2 + x2 * y1) 
+;;
+
+let z = Cartesian 1.1 2.2;;
+z+z;;
+z*z;;
+
+
+let (isInt: a -> List Int) = 
+| (x:Int) -> [x] 
+| _ -> []
+;;
+select isInt;;
+select isInt tr1;;
+select isInt [(1,2.2),(3,4.4)];;
+
+
+let (isLeaf : a -> List Top) = 
+| Leaf x -> [(x:Top)] 
+| _ -> [];;
+isLeaf (Leaf 3);;
+isLeaf (Leaf 4.4);;
+
+ 
+select isLeaf (Leaf 3,Leaf 4.4);;
+
+select isInt (select isLeaf (1, Leaf (2,3.3), Leaf (4,5.5)));;
+
+
+let selectIsIntInLeaf x = select isInt (select isLeaf x);;
+
+
+let rec (select_high : (all a . (a -> List b)) -> (c -> List b)) f = 
+	| z y -> 
+              let xs = f (z y) in 
+              if xs == [] 
+              then append (select_high f z) (select_high f y) 
+              else xs 
+	| y -> f y
+;;
+select isLeaf (Leaf (Leaf 3), Leaf 4.4);;
+select_high isLeaf (Leaf (Leaf 3), Leaf 4.4);;
+
+let rec (select_low : (all a . (a -> List b)) -> (c -> List b)) f = 
+	| z y -> 
+              let xs = append (select_low f z) (select_low f y) in 
+              if xs == [] 
+              then f (z y) 
+              else xs 
+	| y -> f y
+;;
+select_low isLeaf (Leaf (Leaf 3), Leaf 4.4);;
+
+
+
+
+let rec (apply2all : (all a. (a -> a)) -> b -> b) f = 
+| x y -> f (apply2all f x (apply2all f y))
+| x -> f x;;
+
+let (anyPlusOne : a -> a) = 
+| (x:Int) -> x + 1
+| x ->x
+;;
+apply2all anyPlusOne [(1,2.2),(3,4.4),(5,6.6)];;

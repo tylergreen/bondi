@@ -1,0 +1,972 @@
+(* Begin sourcing "./prelude/standard_prelude.bon"... *)
+(* Begin sourcing "./prelude/printing.bon"... *)
+^: String -> String -> String
+toString: a -> String
+print: a -> Unit
+println: a -> Unit
+(* Finished sourcing "./prelude/printing.bon" *)
+(* Begin sourcing "./prelude/imperatives_core.bon"... *)
+forall: Int -> Int -> (Int -> a) -> Unit
+iter: (all a.a -> Unit) -> b -> Unit
+clone: a -> a
+(* Finished sourcing "./prelude/imperatives_core.bon" *)
+(* Begin sourcing "./prelude/structure_poly.bon"... *)
+Pair: a -> b -> a * b
+fromTuple: a -> String
+it: Unit
+fst: a * b -> a
+snd: a * b -> b
+Inl: a -> a + b
+Inr: b -> a + b
+Evr: a -> Konstant a b
+Ths: a -> Identity a
+ParamPair: a b -> c b -> ParamProduct a c b
+Ok: a b -> Okay a b
+Nest: a (b c) -> Nested a b c
+Tag: (a -> b) -> a c -> Represent a b c
+deconstruct: a b -> (all c.Represent c a b -> d) -> d
+reconstruct: Represent a b c -> b c
+map: (a -> b) -> c a -> c b
+Nil: List a
+Cons: a -> List a -> List a
+toString: b -> String
+toString: c -> String
+Some: a -> Maybe a
+None: Maybe a
+foldleft: (a -> b -> a) -> a -> c b -> a
+foldright: (a -> b -> b) -> c a -> b -> b
+zipwith: (a * b -> c) -> d a * e b -> d c
+(* Finished sourcing "./prelude/structure_poly.bon" *)
+(* Begin sourcing "./prelude/datum2generic.bon"... *)
+&&: Bool -> Bool -> Bool
+not: Bool -> Bool
+||: Bool -> Bool -> Bool
+equal: a * b -> Bool
+==: a -> a -> Bool
+!=: a -> a -> Bool
+plus: a * b -> a
++: a -> a -> a
+shortplus: a * b -> a
+minus: a * b -> a
+-: a -> a -> a
+times: a * b -> a
+*: a -> a -> a
+divide: a * b -> a
+/: a -> a -> a
+negate: a -> a
+lessthan: a * b -> Bool
+<: a -> a -> Bool
+lessthanorequal: a * b -> Bool
+<=: a -> a -> Bool
+greaterthan: a * b -> Bool
+>: a -> a -> Bool
+greaterthanorequal: a * b -> Bool
+>=: a -> a -> Bool
+(* Finished sourcing "./prelude/datum2generic.bon" *)
+(* Begin sourcing "./prelude/dynamic2static.bon"... *)
+dynamic_case_for_internal_use_only = ...
+(* Finished sourcing "./prelude/dynamic2static.bon" *)
+(* Begin sourcing "./prelude/queries.bon"... *)
+apply2all: (all a.a -> a) -> b -> b
+append: List a -> List a -> List a
+some_append: Maybe a -> List a -> List a
+select: (all a.a -> Maybe b) -> c -> List b
+is: lin a -> b -> Maybe a
+(* Finished sourcing "./prelude/queries.bon" *)
+(* Finished sourcing "./prelude/standard_prelude.bon" *)
+(* Begin sourcing "./pc_book/pc_book.bon"... *)
+(* Begin sourcing "./pc_book/pcb_functional.bon"... *)
+it: Int
+it = 3
+it: Int -> Int
+plusOne: Int -> Int
+it: Int
+it = 3
+twice: (a -> a) -> a -> a
+it: Int
+it = 5
+factorial: Int -> Int
+it: Int
+it = 120
+it: Int
+it = 3
+(* Finished sourcing "./pc_book/pcb_functional.bon" *)
+(* Begin sourcing "./pc_book/pcb_adt.bon"... *)
+it: Int * Int
+it = (2,3)
+it: Int * Int
+it = (3,4)
+it: Bool
+it = True
+type Cmplex = Float * Float
+z: Float * Float
+z = (3.3,4.4)
+Cartesian: Float -> Float -> Complex
+z: Complex
+z = Cartesian 1.1 2.2
+it: List Int
+it = [1,2,3]
+Leaf: a -> Tree a
+Node: Tree a -> Tree a -> Tree a
+tr1: Tree Int
+tr1 = Node (Leaf 3) (Leaf 4)
+Inl: a -> Coproduct a b
+Inr: b -> Coproduct a b
+it: Coproduct Int a
+it = Inl 3
+fst: a * b -> a
+snd: a * b -> b
+it: Int
+it = 2
+safeDivideInt: Int -> Int -> Int
+it: Int
+it = 2
+it: Bool
+it = True
+isZero: a -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+f: a -> Bool
+isPair: a -> Bool
+it: Int
+it = _Int
+isInt: a -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+it: Int -> Int
+it: Int -> Int
+incrInt: a -> a
+coproduct_analysis: (a -> b) -> (c -> b) -> Coproduct a c -> b
+it: Int
+it = 4
+it: Int
+it = 0
+append: List a -> List a -> List a
+it: List Int
+it = [1,2,3,4,5]
+mapList: (a -> b) -> List a -> List b
+plusOne: Int -> Int
+it: List Int
+it = [2,3,4]
+mapTree: (a -> b) -> Tree a -> Tree b
+it: Tree Int
+it = Node (Leaf 4) (Leaf 5)
+foldleftList: (a -> b -> a) -> a -> List b -> a
+it: Unit
+Tag Nil_name (Evr Un)it: List a
+it = []
+it: Unit
+Tag Cons_name (ParamPair (Ths 2) (Ok []))it: List Int
+it = [2]
+it: Unit
+Tag Leaf_name (Ths 3)it: Unit
+Tag Node_name (ParamPair (Ok (Leaf 3)) (Ok (Leaf 4)))Cartesian: Float -> Float -> Complex
+isZero: a -> Bool
+it: a -> String
+print: a -> Unit
+it: Unit
+Cartesian 1.1 2.2z: Complex
+z = Cartesian 1.1 2.2
+it: Complex
+it = Cartesian 2.2 4.4
+it: Complex
+it = Cartesian 1.21 4.84
+Cartesian: Float -> Float -> Complex
+isZero: a -> Bool
+toString: b -> String
+Gotcha: a -> Gotcha a
+toString: b -> String
+apply2both: (all a.a -> Bool) -> b -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+self_apply: (all a.a -> a) -> b -> b
+it: Int
+it = 3
+it: List Int
+it = [2,3,4]
+it: Tree Int
+it = Node (Leaf 4) (Leaf 5)
+it: Represent a b c -> b c
+it: a b -> (all c.Represent c a b -> d) -> d
+foldleft: (a -> b -> a) -> a -> c b -> a
+it: Int
+it = 6
+foldright: (a -> b -> b) -> c a -> b -> b
+it: Int
+it = 6
+zipwith: (a * b -> c) -> d a * e b -> d c
+(* Finished sourcing "./pc_book/pcb_adt.bon" *)
+(* Begin sourcing "./pc_book/pcb_query.bon"... *)
+(* Begin sourcing "././pc_book/pcb_adt.bon"... *)
+it: Int * Int
+it = (2,3)
+it: Int * Int
+it = (3,4)
+it: Bool
+it = True
+type Cmplex = Float * Float
+z: Float * Float
+z = (3.3,4.4)
+Cartesian: Float -> Float -> Complex
+z: Complex
+z = Cartesian 1.1 2.2
+it: List Int
+it = [1,2,3]
+Leaf: a -> Tree a
+Node: Tree a -> Tree a -> Tree a
+tr1: Tree Int
+tr1 = Node (Leaf 3) (Leaf 4)
+Inl: a -> Coproduct a b
+Inr: b -> Coproduct a b
+it: Coproduct Int a
+it = Inl 3
+fst: a * b -> a
+snd: a * b -> b
+it: Int
+it = 2
+safeDivideInt: Int -> Int -> Int
+it: Int
+it = 2
+it: Bool
+it = True
+isZero: a -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+f: a -> Bool
+isPair: a -> Bool
+it: Int
+it = _Int
+isInt: a -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+it: Int -> Int
+it: Int -> Int
+incrInt: a -> a
+coproduct_analysis: (a -> b) -> (c -> b) -> Coproduct a c -> b
+it: Int
+it = 4
+it: Int
+it = 0
+append: List a -> List a -> List a
+it: List Int
+it = [1,2,3,4,5]
+mapList: (a -> b) -> List a -> List b
+plusOne: Int -> Int
+it: List Int
+it = [2,3,4]
+mapTree: (a -> b) -> Tree a -> Tree b
+it: Tree Int
+it = Node (Leaf 4) (Leaf 5)
+foldleftList: (a -> b -> a) -> a -> List b -> a
+it: Unit
+Tag Nil_name (Evr Un)it: List a
+it = []
+it: Unit
+Tag Cons_name (ParamPair (Ths 2) (Ok []))it: List Int
+it = [2]
+it: Unit
+Tag Leaf_name (Ths 3)it: Unit
+Tag Node_name (ParamPair (Ok (Leaf 3)) (Ok (Leaf 4)))Cartesian: Float -> Float -> Complex
+isZero: a -> Bool
+it: a -> String
+print: a -> Unit
+it: Unit
+Cartesian 1.1 2.2z: Complex
+z = Cartesian 1.1 2.2
+it: Complex
+it = Cartesian 2.2 4.4
+it: Complex
+it = Cartesian 1.21 4.84
+Cartesian: Float -> Float -> Complex
+isZero: a -> Bool
+toString: b -> String
+Gotcha: a -> Gotcha a
+toString: b -> String
+apply2both: (all a.a -> Bool) -> b -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+self_apply: (all a.a -> a) -> b -> b
+it: Int
+it = 3
+it: List Int
+it = [2,3,4]
+it: Tree Int
+it = Node (Leaf 4) (Leaf 5)
+it: Represent a b c -> b c
+it: a b -> (all c.Represent c a b -> d) -> d
+foldleft: (a -> b -> a) -> a -> c b -> a
+it: Int
+it = 6
+foldright: (a -> b -> b) -> c a -> b -> b
+it: Int
+it = 6
+zipwith: (a * b -> c) -> d a * e b -> d c
+(* Finished sourcing "././pc_book/pcb_adt.bon" *)
+append: List a -> List a -> List a
+select: (all a.a -> List b) -> c -> List b
+negate: a -> a
+it: Int
+it = -3
+it: Complex
+it = -1.1+-2.2i
+specialising at a ...
+specialising at a ...
+specialising at Float ...
+specialising at Int ...
+negate: b -> b
+specialising at Coproduct a a ...
+specialising at Coproduct b b ...
+either: Coproduct c c -> c
+either: Coproduct a a -> a
+plus: a * b -> a
++: a -> a -> a
+it: List Int
+it = [5,7,9]
+it: Complex
+it = Cartesian 2.2 4.4
+it: List Int
+it = [4,10,18]
+it: Float * Float
+it = (1.21,4.84)
+it: Complex
+it = Cartesian 1.21 4.84
+it: Bool
+it = True
+Cartesian: Float -> Float -> Complex
+toString: a -> String
+times: b * c -> b
+z: Complex
+z = 1.1 + 2.2i
+it: Complex
+it = 2.2 + 4.4i
+it: Complex
+it = -3.63 + 4.84i
+isInt: a -> List Int
+it: a -> List Int
+it: List Int
+it = [3,4]
+it: List Int
+it = [1,3]
+isLeaf: a -> List Top
+it: List Top
+it = [3]
+it: List Top
+it = [4.4]
+it: List Top
+it = [3,4.4]
+it: List Int
+it = [2,4]
+selectIsIntInLeaf: a -> List Int
+select_high: (all a.a -> List b) -> c -> List b
+it: List Top
+it = [Leaf 3,3,4.4]
+it: List Top
+it = [Leaf 3,4.4]
+select_low: (all a.a -> List b) -> c -> List b
+it: List Top
+it = [3,4.4]
+apply2all: (all a.a -> a) -> b -> b
+anyPlusOne: a -> a
+it: List (Int * Float)
+it = [(2,2.2),(4,4.4),(6,6.6)]
+(* Finished sourcing "./pc_book/pcb_query.bon" *)
+(* Begin sourcing "./pc_book/pcb_dynamic.bon"... *)
+linequal: a -> b -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+elim: lin (a -> b) -> b -> a
+it: (List a -> List a) -> a
+it: Int
+it = 3
+singleton: a -> List a
+singleton_test: List Int
+singleton_test = [3]
+it: Int
+it = 3
+it: List Int
+it = [2,3]
+it: Int
+it = 4
+pathology: lin a -> a -> Bool
+it: Bool
+it = True
+twopercent: Float -> Float
+Salary2: Float -> Salary2
+AUSD: Currency
+EURO: Currency
+USD: Currency
+YUAN: Currency
+Wage: Currency -> Float -> Wage
+incrWage: (Float -> Float) -> a -> a
+incr_salary: lin (Float -> a) -> (Float -> Float) -> a -> a
+it: Salary2
+it = Salary2 1.02
+it: Wage
+it = Wage EURO 1.02
+(* Finished sourcing "./pc_book/pcb_dynamic.bon" *)
+(* Begin sourcing "./pc_book/pcb_imperative.bon"... *)
+it: Int
+it = 4
+it: a -> ref a
+it: Unit
+abcprint: a -> Unit
+factorial: Int -> Int
+it: Int
+it = 120
+factorial2: Int -> Int
+it: Int
+it = 120
+it: Int
+it = 1
+LLnode: ref a -> ref LinkedList a -> LinkedList a
+toString: b -> String
+llnil: Unit -> ref a
+n0: LinkedList Int
+n0 = [0]
+n1: LinkedList Int
+n1 = [1,0]
+n2: LinkedList Int
+n2 = [2]
+n3: LinkedList Int
+n3 = [3,1,0]
+l_insert: LinkedList a -> LinkedList a -> Unit
+it: Unit
+it: LinkedList Int
+it = [3,2,1,0]
+iter0: (all a.a -> Unit) -> b -> Unit
+anyIncr: a -> Unit
+it: LinkedList Int
+it = [4,3,2,1]
+DLnode: ref a -> ref DLinkedList a -> ref ref DLinkedList a -> DLinkedList a
+toString: b -> String
+makeDLnode: ref a -> DLinkedList a
+n0: DLinkedList Int
+n0 = [0]
+n1: DLinkedList Int
+n1 = [1]
+n2: DLinkedList Int
+n2 = [2]
+n3: DLinkedList Int
+n3 = [3]
+d_insert: DLinkedList a -> DLinkedList a -> Unit
+it: Unit
+it: Unit
+it: Unit
+it: DLinkedList Int
+it = [0,1,2,3]
+iter: (all a.a -> Unit) -> b -> Unit
+it: Unit
+it: DLinkedList Int
+it = [1,2,3,4]
+(* Finished sourcing "./pc_book/pcb_imperative.bon" *)
+(* Begin sourcing "./pc_book/pcb_object-oriented.bon"... *)
+class Name {
+name: Name[a] -> ref String
+get_name: Name[a] -> Unit -> String
+set_name: Name[a] -> String -> Unit
+toString: a -> String
+}
+it: a -> ref String -> Name[a]
+nameName: Name -> ref String
+nNameUnit: Name[] -> ref String
+nNaneTop: Name -> ref String
+fred: Name[]
+fred = Fred
+it: String
+it = "Fred"
+class Person {
+name: Person[a] -> ref String
+position: Person[a] -> ref Int
+friends: Person[a] -> ref List Person
+get_name: Person[a] -> Unit -> String
+set_name: Person[a] -> String -> Unit
+get_position: Person[a] -> Unit -> Int
+set_position: Person[a] -> Int -> Unit
+get_friends: Person[a] -> Unit -> List Person
+set_friends: Person[a] -> List Person[b] -> Unit
+move: Person[a] -> Int -> Unit
+moveClone: Person[a] -> Int -> Person[a]
+closer: Person[a] -> Person[b] -> Person
+toString: a -> String
+}
+personName: Person -> ref String
+nName: Name -> ref String
+homer: Person[]
+homer = ...
+it: Person[] * Int
+it = (Homer,8)
+class ProperPerson {
+proper: ProperPerson[a] -> ref String
+get_proper: ProperPerson[a] -> Unit -> String
+set_proper: ProperPerson[a] -> String -> Unit
+get_name: ProperPerson[a] -> Unit -> String
+}
+harry: ProperPerson[]
+harry = Harry Joy
+honey: Person[]
+honey = Honey
+it: String
+it = "Honey knows Homer, Harry Joy, "
+class Employee {
+salary: Employee[a] -> ref Float
+get_salary: Employee[a] -> Unit -> Float
+set_salary: Employee[a] -> Float -> Unit
+update_salary: Employee[a] -> Float -> Unit
+}
+it: Employee[a] -> Float
+busy: Employee[]
+busy = busy beaver
+class Manager {
+department: Manager[a] -> ref String
+bonus: Manager[a] -> ref Float
+get_department: Manager[a] -> Unit -> String
+set_department: Manager[a] -> String -> Unit
+get_bonus: Manager[a] -> Unit -> Float
+set_bonus: Manager[a] -> Float -> Unit
+update_salary: Manager[a] -> Float -> Unit
+}
+lazy: Manager[]
+lazy = Lazy B
+it: Manager[] * Float * Float
+it = (Lazy B,4.2,1.05)
+class Department {
+name: Department[a] -> ref String
+manager: Department[a] -> ref Manager
+employees: Department[a] -> ref List Employee
+get_name: Department[a] -> Unit -> String
+set_name: Department[a] -> String -> Unit
+get_manager: Department[a] -> Unit -> Manager
+set_manager: Department[a] -> Manager[b] -> Unit
+get_employees: Department[a] -> Unit -> List Employee
+set_employees: Department[a] -> List Employee[b] -> Unit
+toString: a -> String
+}
+dep1: Department[]
+dep1 = dep1
+update_any_salary: Float -> a -> Unit
+it: List (Employee * Float)
+it = [(busy beaver,2.)]
+it: Float
+it = 1.05
+it: List (Employee * Float)
+it = [(busy beaver,3.)]
+it: Float
+it = 1.575
+class Point {
+x_coord: Point[a] -> ref Float
+y_coord: Point[a] -> ref Float
+get_x_coord: Point[a] -> Unit -> Float
+set_x_coord: Point[a] -> Float -> Unit
+get_y_coord: Point[a] -> Unit -> Float
+set_y_coord: Point[a] -> Float -> Unit
+is_good: Point[a] -> Bool
+toString: a -> String
+}
+Colour: Int -> Colour
+toString: a -> String
+red: Colour
+red = red
+green: Colour
+green = green
+blue: Colour
+blue = blue
+class ColourPoint {
+colour: ColourPoint[a] -> ref Colour
+get_colour: ColourPoint[a] -> Unit -> Colour
+set_colour: ColourPoint[a] -> Colour -> Unit
+toString: a -> String
+}
+class Circle {
+centre: Circle[a] -> ref Point
+radius: Circle[a] -> ref Float
+get_centre: Circle[a] -> Unit -> Point
+set_centre: Circle[a] -> Point[b] -> Unit
+get_radius: Circle[a] -> Unit -> Float
+set_radius: Circle[a] -> Float -> Unit
+}
+class ColourCircle {
+col: ColourCircle[a] -> ref Colour
+get_col: ColourCircle[a] -> Unit -> Colour
+set_col: ColourCircle[a] -> Colour -> Unit
+get_centre: ColourCircle[a] -> Unit -> ColourPoint[]
+}
+it: Point * ColourPoint[]
+it = (Point(-1.1,2.2),CPoint(-1.1,2.2,blue))
+class NodeInt {
+value: NodeInt[a] -> ref Int
+next: NodeInt[a] -> ref NodeInt
+getValue: NodeInt[a] -> Unit -> Int
+setValue: NodeInt[a] -> Int -> Unit
+getNext: NodeInt[a] -> Unit -> NodeInt
+setNext: NodeInt[a] -> NodeInt -> Unit
+insert: NodeInt[a] -> NodeInt -> Unit
+toString: a -> String
+}
+class Node {
+value: Node<a>[b] -> ref a
+next: Node<a>[b] -> ref Node<a>
+getValue: Node<a>[b] -> Unit -> a
+setValue: Node<a>[b] -> a -> Unit
+getNext: Node<a>[b] -> Unit -> Node<a>
+setNext: Node<a>[b] -> Node<a> -> Unit
+insert: Node<a>[b] -> Node<a> -> Unit
+toString: a -> String
+}
+x0: Node<Int>[]
+x0 = [_void,]
+x1: Node<Int>[]
+x1 = [_void,]
+x2: Node<Int>[]
+x2 = [_void,]
+it: Node<Int>[]
+it = [0,2,]
+it: Node<Int>[]
+it = [0,1,2,]
+r4: Node<Float>[]
+r4 = [_void,]
+it: Node<Float>[]
+it = [4.4,]
+anyNode: a -> Unit
+it: Unit
+012it: Unit
+4.4class DNode {
+previous: DNode<a>[b] -> ref ref DNode<a>
+getPrev: DNode<a>[b] -> Unit -> DNode<a>
+setPrev: DNode<a>[b] -> DNode<a> -> Unit
+setNext: DNode<a>[b] -> Node<a> -> Unit
+}
+d0: DNode<Int>[]
+d0 = [_void,]
+d1: DNode<Int>[]
+d1 = [_void,]
+d2: DNode<Int>[]
+d2 = [_void,]
+it: DNode<Int>[]
+it = [0,2,]
+it: DNode<Int>
+it = [0,2,]
+it: DNode<Int>[]
+it = [0,1,2,]
+it: DNode<Int>
+it = [1,2,]
+it: DNode<Int>
+it = [0,1,2,]
+update: lin (ref a -> b) -> (a -> a) -> c -> Unit
+twopercent: Float -> Float
+Salary: ref Float -> Salary
+salary1: ref Float -> Salary
+s1: Salary
+s1 = Salary ...
+it: Unit
+Worker: ref String * ref Float -> Worker
+toString: a -> String
+salary2: ref Float -> Worker
+w1: Worker
+w1 = Fred
+it: Unit
+WorkUnit: List Worker -> WorkUnit
+w1: Worker
+w1 = Fred
+w2: Worker
+w2 = Mary
+ws: WorkUnit
+ws = WorkUnit ([Fred,Mary])
+it: List Float
+it = [2.,3.]
+it: Unit
+it: List Float
+it = [2.04,3.06]
+salary3: ref Float -> Employee[a]
+it: List (Employee * Float)
+it = [(busy beaver,3.)]
+it: Unit
+it: List (Employee * Float)
+it = [(busy beaver,3.06)]
+company: Department[] * WorkUnit
+company = (dep1,WorkUnit ([Fred,Mary]))
+update_sal: (Float -> Float) -> a -> Unit
+it: Unit
+None: Maybe a
+Some: a -> Maybe a
+findOne: (all a.a -> Maybe b) -> c -> Maybe b
+isNegFloat: a -> Maybe Float
+it: Maybe Float
+it = Some -3.
+class Customer {
+balance: Customer[a] -> ref Float
+get_balance: Customer[a] -> Unit -> Float
+set_balance: Customer[a] -> Float -> Unit
+}
+john: Customer[]
+john = John Smith
+it: Float
+it = 120.
+jane: Customer[]
+jane = Jane Doe
+it: Float
+it = -75.
+it: Maybe Float
+it = Some -75.
+isNegCustomer: a -> Maybe Customer
+it: Maybe Customer
+it = Some (Jane Doe)
+class Bank {
+name: Bank[a] -> ref String
+customers: Bank[a] -> ref List Customer
+get_name: Bank[a] -> Unit -> String
+set_name: Bank[a] -> String -> Unit
+get_customers: Bank[a] -> Unit -> List Customer
+set_customers: Bank[a] -> List Customer[b] -> Unit
+}
+abc: Bank[]
+abc = Bank Un ((...,...))
+it: Bank[]
+it = Bank Un ((...,...))
+it: Maybe Customer
+it = Some (Jane Doe)
+class Division {
+name: Division[a] -> ref String
+customers: Division[a] -> ref List Customer
+get_name: Division[a] -> Unit -> String
+set_name: Division[a] -> String -> Unit
+get_customers: Division[a] -> Unit -> List Customer
+set_customers: Division[a] -> List Customer[b] -> Unit
+}
+class Corporation {
+name: Corporation[a] -> ref String
+divisions: Corporation[a] -> ref List Division
+get_name: Corporation[a] -> Unit -> String
+set_name: Corporation[a] -> String -> Unit
+get_divisions: Corporation[a] -> Unit -> List Division
+set_divisions: Corporation[a] -> List Division[b] -> Unit
+}
+div1: Division[]
+div1 = Division Un ((...,...))
+it: List Customer
+it = [John Smith]
+div2: Division[]
+div2 = Division Un ((...,...))
+it: List Customer
+it = [Jane Doe]
+corp: Corporation[]
+corp = Corporation Un ((...,...))
+it: Unit
+it: Maybe Customer
+it = Some (Jane Doe)
+class Valued {
+high_interest: Valued[a] -> ref Float
+get_high_interest: Valued[a] -> Unit -> Float
+set_high_interest: Valued[a] -> Float -> Unit
+get_balance: Valued[a] -> Unit -> Float
+}
+alan: Valued[]
+alan = Alan Key
+it: Float
+it = 10.
+it: Unit
+it: Maybe Customer
+it = Some (Jane Doe)
+(* Finished sourcing "./pc_book/pcb_object-oriented.bon" *)
+(* Begin sourcing "./pc_book/pcb_motivating_example.bon"... *)
+Salary2: Float -> Salary2
+incrSalary2: (Float -> Float) -> Salary2 -> Salary2
+Employee1: String -> Salary2 -> Employee1
+incrEmpSalary2: (Float -> Float) -> Employee1 -> Employee1
+mapList: (a -> b) -> List a -> List b
+incrEmpSalaryList: (Float -> Float) -> List Employee1 -> List Employee1
+it: (a -> b) -> c a -> c b
+mapIncrEmpSalary2: (Float -> Float) -> a Employee1 -> a Employee1
+apply2all: (all a.a -> a) -> b -> b
+incrAnyEmpSalary2: (Float -> Float) -> a -> a
+incrAllEmpSalary2: (Float -> Float) -> a -> a
+Department1: String -> List Employee1 -> Department1
+Company: String -> List Department1 -> Company
+e1: Employee1
+e1 = Employee1 "b1" (Salary2 2.)
+e2: Employee1
+e2 = Employee1 "b2" (Salary2 4.)
+es: List Employee1
+es = [Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)]
+dept1: Department1
+dept1 = Department1 "dept1" ([Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)])
+dept2: Department1
+dept2 = Department1 "dept2" []
+mydepts: List Department1
+mydepts = [Department1 "dept1" ([Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)]),Department1 "dept2" []]
+mycorp: Company
+mycorp = Company "mycorp" ([Department1 "dept1" ([Employee1 "b1" (Salary2 2.),Employee1 "b2" (Salary2 4.)]),Department1 "dept2" []])
+incrDepSalary2: (Float -> Float) -> Department1 -> Department1
+increaseCompSalary2: (Float -> Float) -> Company -> Company
+twopercent: Float -> Float
+it: Company
+it = Company "mycorp" ([Department1 "dept1" ([Employee1 "b1" (Salary2 2.04),Employee1 "b2" (Salary2 4.08)]),Department1 "dept2" []])
+it: Company
+it = Company "mycorp" ([Department1 "dept1" ([Employee1 "b1" (Salary2 2.04),Employee1 "b2" (Salary2 4.08)]),Department1 "dept2" []])
+it: Bool
+it = True
+Salary2: Float -> Salary2
+incrSalary2: (Float -> Float) -> Salary2 -> Salary2
+class Name2 {
+name: Name2[a] -> ref String
+get_name: Name2[a] -> Unit -> String
+set_name: Name2[a] -> String -> Unit
+}
+class Employee2 {
+salary: Employee2[a] -> ref Salary2
+get_salary: Employee2[a] -> Unit -> Salary2
+set_salary: Employee2[a] -> Salary2 -> Unit
+incrSalary: Employee2[a] -> (Float -> Float) -> Unit
+}
+incrAnyEmpSalary2: (Float -> Float) -> a -> Unit
+it: (all a.a -> Unit) -> b -> Unit
+incrAllEmpSalary2: (Float -> Float) -> a -> Unit
+class Manager2 {
+bonus: Manager2[a] -> ref Salary2
+get_bonus: Manager2[a] -> Unit -> Salary2
+set_bonus: Manager2[a] -> Salary2 -> Unit
+get_salary: Manager2[a] -> Unit -> Salary2
+incrSalary: Manager2[a] -> (Float -> Float) -> Unit
+}
+class Department2 {
+employees: Department2[a] -> ref List Employee2
+manager: Department2[a] -> ref Manager2
+get_employees: Department2[a] -> Unit -> List Employee2
+set_employees: Department2[a] -> List Employee2[b] -> Unit
+get_manager: Department2[a] -> Unit -> Manager2
+set_manager: Department2[a] -> Manager2[b] -> Unit
+deptSalary: Department2[a] -> Unit -> Salary2
+}
+class Company2 {
+departments: Company2[a] -> ref List Department2
+get_departments: Company2[a] -> Unit -> List Department2
+set_departments: Company2[a] -> List Department2[b] -> Unit
+compSalary: Company2[a] -> Unit -> Salary2
+}
+e3: Employee2[]
+e3 = Name2 (Employee2 Un ...) ...
+it: Unit
+e4: Employee2[]
+e4 = Name2 (Employee2 Un ...) ...
+it: Unit
+m1: Manager2[]
+m1 = Name2 (Employee2 (Manager2 Un ...) ...) ...
+it: Manager2[]
+it = Name2 (Employee2 (Manager2 Un ...) ...) ...
+m2: Manager2[]
+m2 = Name2 (Employee2 (Manager2 Un ...) ...) ...
+it: Manager2[]
+it = Name2 (Employee2 (Manager2 Un ...) ...) ...
+dept1: Department2[]
+dept1 = Name2 (Department2 Un ((...,...))) ...
+it: Department2[]
+it = Name2 (Department2 Un ((...,...))) ...
+dept2: Department2[]
+dept2 = Name2 (Department2 Un ((...,...))) ...
+it: Department2[]
+it = Name2 (Department2 Un ((...,...))) ...
+mycorp: Company2[]
+mycorp = Name2 (Company2 Un ...) ...
+it: Company2[]
+it = Name2 (Company2 Un ...) ...
+it: Salary2
+it = Salary2 22.
+it: Unit
+it: Salary2
+it = Salary2 22.44
+it: Bool
+it = True
+AUSD: Currency
+EURO: Currency
+USD: Currency
+Salary3: Currency -> Float -> Salary3
+incrSalary3: (Float -> Float) -> Salary3 -> Salary3
+class Employee3 {
+salary: Employee3[a] -> ref Salary3
+get_salary: Employee3[a] -> Unit -> Salary3
+set_salary: Employee3[a] -> Salary3 -> Unit
+incrSalary: Employee3[a] -> (Float -> Float) -> Unit
+}
+incrAnyEmpSalary3: (Float -> Float) -> a -> Unit
+incrAllEmpSalary3: (Float -> Float) -> a -> Unit
+class Manager3 {
+bonus: Manager3[a] -> ref Salary3
+get_bonus: Manager3[a] -> Unit -> Salary3
+set_bonus: Manager3[a] -> Salary3 -> Unit
+incrSalary: Manager3[a] -> (Float -> Float) -> Unit
+}
+class Department3 {
+employees: Department3[a] -> ref List Employee3
+manager: Department3[a] -> ref Manager3
+get_employees: Department3[a] -> Unit -> List Employee3
+set_employees: Department3[a] -> List Employee3[b] -> Unit
+get_manager: Department3[a] -> Unit -> Manager3
+set_manager: Department3[a] -> Manager3[b] -> Unit
+deptSalary: Department3[a] -> Unit -> Salary3
+}
+class Company3 {
+departments: Company3[a] -> ref List Department3
+get_departments: Company3[a] -> Unit -> List Department3
+set_departments: Company3[a] -> List Department3[b] -> Unit
+compSalary: Company3[a] -> Unit -> Salary3
+}
+mycorp3: Company3[]
+mycorp3 = Name2 (Company3 Un ...) ...
+it: Salary3
+it = Salary3 EURO 18.
+it: Unit
+it: Salary3
+it = Salary3 EURO 18.36
+it: Bool
+it = True
+incr_salary: a -> (b -> b) -> c -> c
+it: Salary2
+it = Salary2 1.02
+it: Salary3
+it = Salary3 EURO 1.02
+incrAnyEmpSalary4: (Float -> Float) -> a -> Unit
+incrAllEmpSalary4: (Float -> Float) -> a -> Unit
+it: Salary2
+it = Salary2 22.8888
+it: Unit
+it: Salary2
+it = Salary2 23.346576
+it: Salary3
+it = Salary3 EURO 18.7272
+it: Unit
+it: Salary3
+it = Salary3 EURO 19.101744
+Worker: String * Float * Float -> Worker
+update_salary: lin (Float -> a) -> (Float -> Float) -> b -> Unit
+y1: ref Salary2
+y2: ref Salary2
+it: Unit
+it: List Salary2
+it = [Salary2 1.5,Salary2 4.5]
+(* Finished sourcing "./pc_book/pcb_motivating_example.bon" *)
+(* Finished sourcing "./pc_book/pc_book.bon" *)

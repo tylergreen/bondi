@@ -1,0 +1,363 @@
+(* This is a library of common functions that deal with lists (as a datatype) 
+ * Revision:  1.0.1 beta
+ * Date: 2009-01-16
+ * Author: Thomas Given-Wilson
+ * Comments:
+ * Currently sorting is slightly messy, the "ideal" version dos not pass inference
+ * however the functions are working currently.
+ *
+ * Haskell also supports: transpose, subsequences and permutations
+ * but they have not been implemented here.
+ *)
+
+(* Suppress output on load *)
+%hide echo;;
+
+(* Extracts the first element of a (non-empty) list *)
+let listHead =
+| Cons h t -> h
+;;
+
+(* Extracts the elements after the head of a (non-empty) list *)
+let listTail =
+| Cons h t -> t
+;;
+
+(* Returns the last element of a (non-empty) list *)
+let rec (listLast: List a -> a) =
+| Cons h Nil -> h
+| Cons h t -> listLast t
+;;
+
+(* Returns all but the last element of a (non-empty) list *)
+let rec listInit =
+| Cons h Nil -> Nil
+| Cons h t -> append [h] (listInit t)
+;;
+
+(* Returns true if the list is empty *)
+let (listNull: List a -> Bool) =
+| Nil -> True
+| _ -> False
+;;
+
+(* Returns True if any elements of the list match the predicate *)
+let rec (listAny: (a -> Bool) -> List a -> Bool) p =
+| Nil -> False
+| Cons h t -> (p h) || listAny p t
+;;
+
+(* Returns True if the predicate holds for all elements of the list *)
+let rec (listAll: (a -> Bool) -> List a -> Bool) p =
+| Nil -> True
+| Cons h t -> (p h) && listAll p t
+;;
+
+(* Returns the length of a list as an integer *)
+let rec listLength =
+| Nil -> 0
+| Cons _ t -> 1 + (listLength t)
+;;
+
+(* Reverses the order of the elements of a list *)
+let rec (listReverse: List a -> List a) =
+| Cons h t -> append (listReverse t) [h]
+| Nil -> Nil
+;;
+
+(* Intersperses the elements of the list with the supplied argument
+ * E.g. listIntersperse 0 [1,2,3] ==> [1,0,2,0,3] *)
+let rec (listIntersperse: a -> List a -> List a) x =
+| Cons h Nil -> Cons h Nil
+| Cons h t -> Cons h (Cons x (listIntersperse x t))
+| Nil -> Nil
+;;
+
+
+(* Intercalate: intersperses the first list betwen the elements of the second
+ * list and then appends them all to a single list *)
+let (listIntercalate: List a -> List (List a) -> List a) i l =
+foldleft (fun x y -> append x y) [] (listIntersperse i l)
+;;
+
+(* Flattens a list of lists to a single list *)
+let rec (listFlatten: List (List a) -> List a) =
+| Nil -> Nil
+| Cons h t -> append h (listFlatten t)
+;;
+
+(* Returns the first n elements of the list *)
+let rec (listTake: Int -> List a -> List a) =
+| 0 -> (fun x -> Nil)
+| n -> | Cons h t -> Cons h (listTake (n-1) t)
+       | Nil -> Nil
+;;
+
+(* Returns the elements of the list after the first n elements have been removed *)
+let rec (listDrop: Int -> List a -> List a) =
+| 0 -> (fun x -> x)
+| n -> | Cons h t -> listDrop (n-1) t
+       | Nil -> Nil
+;;
+
+(* Splits a list after the first n elements *)
+let rec (listSplitAt: Int -> List a -> List a * List a) =
+| 0 -> (fun x -> (Nil,x))
+| n -> | Cons h t -> (match (listSplitAt (n-1) t) with
+                  | (l,r) -> (Cons h l,r))
+       | Nil -> (Nil,Nil)
+;;
+
+(* Returns the sublist starting at i and going for n elements *)
+let listSubList i n l =
+(listTake n (listDrop i l))
+;;
+
+(* Returns the longest prefix of elements that satisfy the predicate *)
+let rec (listTakeWhile: (a -> Bool) -> List a -> List a) p =
+| Nil -> Nil
+| Cons h t -> if (p h)
+              then append [h] (listTakeWhile p t)
+              else Nil
+;;
+
+(* Returns the list after removing all prefix elements that satisfy the predicte *)
+let rec (listDropWhile: (a -> Bool) -> List a -> List a) p =
+| Nil -> Nil
+| Cons h t -> if (p h)
+              then listDropWhile p t
+              else Cons h t
+;;
+
+(* Returns a tuple of lists, the first containing the prefix of elements that satisfy the predicate *)
+let rec (listSpan: (a -> Bool) -> List a -> List a * List a) p =
+| Nil -> (Nil,Nil)
+| Cons h t -> if (p h)
+              then match (listSpan p t) with
+                    | (l,r) -> (Cons h l,r)
+              else (Nil, Cons h t)
+;;
+
+(* Returns the tuple of lists with the first being the prefix elements that do not satisfy the predicate *)
+let rec (listBreak: (a -> Bool) -> List a -> List a * List a) p =
+| Nil -> (Nil,Nil)
+| Cons h t -> if (p h)
+              then (Nil, Cons h t)
+              else match (listBreak p t) with
+                    | (l,r) -> (Cons h l,r)
+;;
+
+(* Returns true if the first argument is an element of the list *)
+let rec (listElem: a -> List b -> Bool) x =
+| Cons h t -> if equal(x,h)
+              then True
+              else listElem x t
+| Nil -> False
+;;
+
+(* Returns true if the first argument is not an element of the list *)
+let listNotElem x l = not (listElem x l)
+;;
+
+(* Returns the list of elements that satisfy a predictae *)
+let rec (listFilter: (a -> Bool) -> List a -> List a) p =
+| Cons h t -> if (p h)
+              then Cons h (listFilter p t)
+              else listFilter p t
+| Nil -> Nil
+;;
+
+(* Partitions a list according to a predicate, returning a tuple of the elements that do and do not satisfy the predicate *)
+let rec (listPartition: (a -> Bool) -> List a -> List a * List a) p =
+| Nil -> (Nil,Nil)
+| Cons h t -> match (listPartition p t) with
+                | (l,r) ->  if (p h)
+                            then (Cons h l,r)
+                            else (l,Cons h r)
+;;
+
+(* Returns the element at index n (starting from 0) in the list *)
+let rec (listElemAt: Int -> List a -> a) =
+| 0 -> (fun x -> listHead x)
+| n -> | Cons h t -> listElemAt (n-1) t
+;;
+
+(* Returns the Some n where n is the index at which x appears or None *)
+let listElemIndex x =
+let rec (innerListElemIndex: Int -> List a -> Maybe Int) accum =
+  | Nil -> None
+  | Cons h t ->(if (equal(x,h))
+                then Some accum
+                else innerListElemIndex (accum + 1) t)
+in
+innerListElemIndex 0 
+;;
+
+(* Returns a list of the indices (in ascending order) at which x occurs in the list *)
+let listElemIndices x =
+let rec (innerListElemIndices: Int -> List a -> List Int) accum =
+| Nil -> Nil
+| Cons h t -> if (equal(x,h))
+              then append [accum] (innerListElemIndices (accum+1) t)
+              else innerListElemIndices (accum+1) t
+in
+innerListElemIndices 0
+;;
+
+(* Returns the Some n where n is the index of the first element of a list to satisfy
+ * the predicate, None otherwise *)
+let (listFindIndex: (a -> Bool) -> List a -> Maybe Int) p =
+let rec (innerListFindIndex: Int -> List a -> Maybe Int) accum =
+| Nil -> None
+| Cons h t -> if (p h)
+              then Some accum
+              else innerListFindIndex (accum+1) t
+in
+innerListFindIndex 0
+;;
+
+(* Returns a list of the indices (in ascending order) at which the predicate is true *)
+let (listFindIndices: (a -> Bool) -> List a -> List Int) p =
+let rec (innerListFindIndices: Int -> List a -> List Int) accum =
+| Nil -> Nil
+| Cons h t -> if (p h)
+              then append [accum] (innerListFindIndices (accum+1) t)
+              else innerListFindIndices (accum+1) t
+in
+innerListFindIndices 0
+;;
+
+(* Inserts at a specified index in the list *)
+let (listInsertAt: Int -> a -> List a -> List a) n x =
+let rec (innerListInsertAt: Int -> List a -> List a) =
+| 0 -> fun y -> Cons x y
+| n -> | Cons h t -> Cons h (innerListInsertAt (n-1) t)
+in
+innerListInsertAt n
+;;
+
+(* Delete the first element that equals x from the list *)
+let rec (listDelete: a -> List b -> List b) x =
+| Nil -> Nil
+| Cons h t->  if(equal(h,x))
+              then t
+              else Cons h (listDelete x t)
+;;
+
+(* Deletes all elements of the list that equal x *)
+let rec (listDeleteAll: a -> List b -> List b) x =
+| Nil -> Nil
+| Cons h t -> if(equal(x,h))
+              then listDeleteAll x t
+              else Cons h (listDeleteAll x t)
+;;
+
+(* Deletes the element at the index supplied*)
+let rec (listDeleteAt: Int -> List a -> List a) =
+| 0 -> (| Cons h t -> t)
+| n -> (| Cons h t -> Cons h (listDeleteAt (n-1) t))
+;;
+
+(* Returns a list with all duplicate (determined by equal) elements removed *)
+let rec listUnique =
+| Nil -> Nil
+| Cons h t -> Cons h (listUnique (listDeleteAll h t))
+;;
+
+(* Returns the (unique) union of two lists *)
+let listUnion l1 l2 =
+listUnique (append l1 l2)
+;;
+
+(* Returns the intersection of two lists *)
+let listIntersect l1 l2 =
+foldleft (fun x y ->  if (listElem y l2)
+                      then append x [y]
+                      else x) [] (listUnique l1)
+;;
+
+(* Inserts x into list sorted by ascending order *)
+let rec (listInsertAsc: a -> List a -> List a) x =
+| Nil -> [x]
+| Cons h t -> if (x < h)
+              then Cons x (Cons h t)
+              else Cons h (listInsertAsc x t)
+;;
+
+(* Inserts x into a list sorted by descending order *)
+let rec (listInsertDesc: a -> List a -> List a) x =
+| Nil -> [x]
+| Cons h t -> if (x > h)
+              then Cons x (Cons h t)
+              else Cons h (listInsertDesc x t)
+;;
+
+(* ***** Does not type check... I blame inference!
+(* Sorts a list according to a comparison function f *)
+let rec (listSort: (a -> a -> Bool) -> List a -> List a) f l =
+let rec (merge: List a * List a -> List a) =
+  | (Nil,l2) -> l2
+  | (l1,Nil) -> l1
+  | (Cons h1 t1,Cons h2 t2) ->
+        if (f h1 h2)
+        then Cons h1 (merge (t1,(Cons h2 t2)))
+        else Cons h2 (merge ((Cons h1 t1),t2))
+in
+let len = listLength l in
+if len < 2
+then merge (listSplitAt 1 l)
+else match (listSplitAt (len/2) l) with
+       | (l1,l2) -> merge (listSort f l1,listSort f l2)
+;;
+*)
+
+(* ***** Here is a working one by seperating out the merge function *)
+let rec (listMergeBy: (a -> a -> Bool) -> List a * List a -> List a) f=
+  | (Nil,l2) -> l2
+  | (l1,Nil) -> l1
+  | (Cons h1 t1,Cons h2 t2) ->
+        if (f h1  h2)
+        then Cons h1 (listMergeBy f (t1,(Cons h2 t2)))
+        else Cons h2 (listMergeBy f ((Cons h1 t1),t2))
+;;
+
+let rec (listSort: (a -> a -> Bool) -> List a -> List a) f l =
+let len = listLength l in
+if len < 2
+then listMergeBy f (listSplitAt 1 l)
+else match (listSplitAt (len/2) l) with
+       | (l1,l2) -> listMergeBy f (listSort f l1,listSort f l2)
+;;
+
+(* Sorts a list into ascending order using mergesort algorithm *)
+let listSortAsc = listSort (fun x y -> x < y);;
+
+(* Sorts a list into descending order using mergesort algorithm *)
+let listSortDesc = listSort (fun x y -> x > y);;
+
+(* Returns the fittest element of the list with a supplied function used to
+ * determine fitness *)
+let (listFittest: (a -> a -> a) -> List a -> a) f =
+let rec (innerListFittest: a -> List a -> a) x =
+| Cons h Nil -> f x h
+| Cons h t -> innerListFittest (f x h) t
+in
+| Cons h Nil -> h
+| Cons h t -> innerListFittest h t
+;;
+
+(* Returns the maximum element of a list *)
+let listMaximum = listFittest (fun x y -> if (x > y) then x else y);;
+
+(* Returns the minimum element of a list *)
+let listMinimum = listFittest (fun x y -> if (x < y) then x else y);;
+
+(* Returns a list of n elements of x *)
+let rec (listReplicate: a -> Int -> List a) x =
+| 0 -> Nil
+| n -> append [x] (listReplicate x (n-1))
+;;
+
+(* Finished loading, stop suppressing output *)
+%show echo;;
+

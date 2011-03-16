@@ -1,0 +1,193 @@
+(* Begin sourcing "./prelude/standard_prelude.bon"... *)
+(* Begin sourcing "./prelude/printing.bon"... *)
+^: String -> String -> String
+toString: a -> String
+print: a -> Unit
+println: a -> Unit
+(* Finished sourcing "./prelude/printing.bon" *)
+(* Begin sourcing "./prelude/imperatives_core.bon"... *)
+forall: Int -> Int -> (Int -> a) -> Unit
+iter: (all a.a -> Unit) -> b -> Unit
+clone: a -> a
+(* Finished sourcing "./prelude/imperatives_core.bon" *)
+(* Begin sourcing "./prelude/structure_poly.bon"... *)
+Pair: a -> b -> a * b
+fromTuple: a -> String
+it: Unit
+fst: a * b -> a
+snd: a * b -> b
+Inl: a -> a + b
+Inr: b -> a + b
+Evr: a -> Konstant a b
+Ths: a -> Identity a
+ParamPair: a b -> c b -> ParamProduct a c b
+Ok: a b -> Okay a b
+Nest: a (b c) -> Nested a b c
+Tag: (a -> b) -> a c -> Represent a b c
+deconstruct: a b -> (all c.Represent c a b -> d) -> d
+reconstruct: Represent a b c -> b c
+map: (a -> b) -> c a -> c b
+Nil: List a
+Cons: a -> List a -> List a
+toString: b -> String
+toString: c -> String
+Some: a -> Maybe a
+None: Maybe a
+foldleft: (a -> b -> a) -> a -> c b -> a
+foldright: (a -> b -> b) -> c a -> b -> b
+zipwith: (a * b -> c) -> d a * e b -> d c
+(* Finished sourcing "./prelude/structure_poly.bon" *)
+(* Begin sourcing "./prelude/datum2generic.bon"... *)
+&&: Bool -> Bool -> Bool
+not: Bool -> Bool
+||: Bool -> Bool -> Bool
+equal: a * b -> Bool
+==: a -> a -> Bool
+!=: a -> a -> Bool
+plus: a * b -> a
++: a -> a -> a
+shortplus: a * b -> a
+minus: a * b -> a
+-: a -> a -> a
+times: a * b -> a
+*: a -> a -> a
+divide: a * b -> a
+/: a -> a -> a
+negate: a -> a
+lessthan: a * b -> Bool
+<: a -> a -> Bool
+lessthanorequal: a * b -> Bool
+<=: a -> a -> Bool
+greaterthan: a * b -> Bool
+>: a -> a -> Bool
+greaterthanorequal: a * b -> Bool
+>=: a -> a -> Bool
+(* Finished sourcing "./prelude/datum2generic.bon" *)
+(* Begin sourcing "./prelude/dynamic2static.bon"... *)
+dynamic_case_for_internal_use_only = ...
+(* Finished sourcing "./prelude/dynamic2static.bon" *)
+(* Begin sourcing "./prelude/queries.bon"... *)
+apply2all: (all a.a -> a) -> b -> b
+append: List a -> List a -> List a
+some_append: Maybe a -> List a -> List a
+select: (all a.a -> Maybe b) -> c -> List b
+is: lin a -> b -> Maybe a
+(* Finished sourcing "./prelude/queries.bon" *)
+(* Finished sourcing "./prelude/standard_prelude.bon" *)
+(* Begin sourcing "./pcb_adt.bon"... *)
+it: Int * Int
+it = (2,3)
+it: Int * Int
+it = (3,4)
+it: Bool
+it = True
+type Cmplex = Float * Float
+z: Float * Float
+z = (3.3,4.4)
+Cartesian: Float -> Float -> Complex
+z: Complex
+z = Cartesian 1.1 2.2
+it: List Int
+it = [1,2,3]
+Leaf: a -> Tree a
+Node: Tree a -> Tree a -> Tree a
+tr1: Tree Int
+tr1 = Node (Leaf 3) (Leaf 4)
+Inl: a -> Coproduct a b
+Inr: b -> Coproduct a b
+it: Coproduct Int a
+it = Inl 3
+fst: a * b -> a
+snd: a * b -> b
+it: Int
+it = 2
+safeDivideInt: Int -> Int -> Int
+it: Int
+it = 2
+it: Bool
+it = True
+isZero: a -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+f: a -> Bool
+isPair: a -> Bool
+it: Int
+it = _Int
+isInt: a -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+it: Bool
+it = True
+it: Int -> Int
+it: Int -> Int
+incrInt: a -> a
+coproduct_analysis: (a -> b) -> (c -> b) -> Coproduct a c -> b
+it: Int
+it = 4
+it: Int
+it = 0
+append: List a -> List a -> List a
+it: List Int
+it = [1,2,3,4,5]
+mapList: (a -> b) -> List a -> List b
+plusOne: Int -> Int
+it: List Int
+it = [2,3,4]
+mapTree: (a -> b) -> Tree a -> Tree b
+it: Tree Int
+it = Node (Leaf 4) (Leaf 5)
+foldleftList: (a -> b -> a) -> a -> List b -> a
+it: Unit
+Tag Nil_name (Evr Un)it: List a
+it = []
+it: Unit
+Tag Cons_name (ParamPair (Ths 2) (Ok []))it: List Int
+it = [2]
+it: Unit
+Tag Leaf_name (Ths 3)it: Unit
+Tag Node_name (ParamPair (Ok (Leaf 3)) (Ok (Leaf 4)))Cartesian: Float -> Float -> Complex
+isZero: a -> Bool
+it: a -> String
+print: a -> Unit
+it: Unit
+Cartesian 1.1 2.2z: Complex
+z = Cartesian 1.1 2.2
+it: Complex
+it = Cartesian 2.2 4.4
+it: Complex
+it = Cartesian 1.21 4.84
+Cartesian: Float -> Float -> Complex
+isZero: a -> Bool
+toString: b -> String
+Gotcha: a -> Gotcha a
+toString: b -> String
+apply2both: (all a.a -> Bool) -> b -> Bool
+it: Bool
+it = True
+it: Bool
+it = True
+self_apply: (all a.a -> a) -> b -> b
+it: Int
+it = 3
+it: List Int
+it = [2,3,4]
+it: Tree Int
+it = Node (Leaf 4) (Leaf 5)
+it: Represent a b c -> b c
+it: a b -> (all c.Represent c a b -> d) -> d
+foldleft: (a -> b -> a) -> a -> c b -> a
+it: Int
+it = 6
+foldright: (a -> b -> b) -> c a -> b -> b
+it: Int
+it = 6
+zipwith: (a * b -> c) -> d a * e b -> d c
+(* Finished sourcing "./pcb_adt.bon" *)

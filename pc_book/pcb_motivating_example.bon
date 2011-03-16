@@ -1,0 +1,361 @@
+(*
+%open "pcb_motivating_example.bon";;
+
+This file is to illustrate the motivating example in the introduction
+and conclusion to the book on pattern calculus.
+
+
+*)
+
+(* functional style *) 
+
+datatype Salary2 = Salary2 of Float ;;
+
+let incrSalary2 f = | Salary2 s -> Salary2 (f s);;
+
+datatype Employee1 = Employee1 of String and Salary2 ;;
+
+let incrEmpSalary2 f:Float -> Float = 
+| Employee1 n s -> Employee1 n (incrSalary2 f s) 
+;;
+
+let rec (mapList: (a -> b) -> List a -> List b) f = 
+| Nil -> Nil 
+| Cons x xs -> Cons (f x) (mapList f xs)
+;;
+
+let incrEmpSalaryList f es = mapList (incrEmpSalary2 f) es;;
+
+(* mapTree example not implemented  *) 
+
+map ;;
+
+let mapIncrEmpSalary2 f = map (incrEmpSalary2 f);;
+
+let rec (apply2all : (all a. (a -> a)) -> b -> b) f  z = (
+  | Ref x as y -> f y  
+  | x y -> f ((apply2all f x) (apply2all f y)) 
+  | x -> f x)
+z
+;;
+
+let (incrAnyEmpSalary2 : (Float -> Float) -> a -> a) f = 
+| Employee1 n s as x -> incrEmpSalary2 f x
+| x -> x
+;;
+
+let (incrAllEmpSalary2: (Float -> Float) -> a -> a) f = 
+  apply2all (incrAnyEmpSalary2 f)
+;;
+
+(* an example *) 
+
+datatype Department1 = Department1 of String and List Employee1 ;;
+datatype Company = Company of String and List Department1 ;;
+
+(* for example *) 
+
+
+let e1 = Employee1 "b1" (Salary2 2.00);;
+let e2 = Employee1 "b2" (Salary2 4.00);;
+let es = [e1,e2];;
+let dept1 = Department1 "dept1" es;;
+let dept2 = Department1 "dept2" [];;
+let mydepts = [dept1,dept2];;
+let mycorp = Company "mycorp"  mydepts;;
+
+(* here is the standard, functional approach *) 
+
+let incrDepSalary2 f = 
+| Department1 n ss -> Department1 n (map (incrEmpSalary2 f) ss) 
+;;
+let increaseCompSalary2 f = 
+| Company n ds -> Company n (map (incrDepSalary2 f) ds) 
+;;
+
+let twopercent x = x * 1.02 ;;
+
+increaseCompSalary2 twopercent mycorp;;
+
+(* here is the path polymorphic approach *) 
+
+incrAllEmpSalary2 twopercent mycorp;;
+
+(* just checking ... *) 
+
+incrAllEmpSalary2 twopercent mycorp == 
+increaseCompSalary2 twopercent mycorp;;
+
+
+
+(* object-oriented style *) 
+
+datatype Salary2 = Salary2 of Float ;;
+
+let incrSalary2 f = | Salary2 s -> Salary2 (f s);;
+
+class Name2 {
+name : String;
+get_name = { |() -> !this.name} 
+set_name = { fun n -> this.name = n} 
+}
+
+
+class Employee2  extends Name2 {
+salary : Salary2;
+get_salary = { | () -> !this.salary}
+set_salary = { fun s -> this.salary = s }
+incrSalary = { fun f -> 
+	this.salary = incrSalary2 f (!this.salary)}
+}
+
+let (incrAnyEmpSalary2 : (Float -> Float) -> a -> Unit) f = 
+| (x : Employee2) ->  x.incrSalary(f)
+| x -> ()
+;;
+
+iter;;
+let incrAllEmpSalary2 f = iter (incrAnyEmpSalary2 f);;
+
+
+class Manager2  extends Employee2 { 
+bonus : Salary2;
+get_bonus = { | () -> !this.bonus}
+set_bonus = { fun s -> this.bonus = s }
+get_salary = { | () -> super.get_salary() + this.get_bonus() }
+incrSalary = { fun f -> 
+	super.incrSalary(f);
+	this.bonus = incrSalary2 f (this.get_bonus())}
+}
+
+class Department2 extends Name2 { 
+employees : List (Employee2) ;
+manager : Manager2 ;
+get_employees = { | () -> !this.employees}
+set_employees = { fun es -> this.employees = es }
+get_manager = { | () -> !this.manager}
+set_manager = { fun s -> this.manager = s }
+deptSalary = { |() -> 
+	let add_sal x (y:Employee2) = x+ (y.get_salary()) in 
+        foldleft add_sal ((this.get_manager()).get_salary()) (this.get_employees())}
+}
+
+class Company2 extends Name2 {
+departments : List (Department2 ) ;
+get_departments = { | () -> !this.departments}
+set_departments = { fun ds -> this.departments = ds }
+compSalary = { |() -> 
+	let add_sal x (y: Department2) = x+ (y.deptSalary()) in 
+        foldleft add_sal (Salary2 0.0) (this.get_departments())}
+
+}
+
+(* the example *) 
+
+
+let e3 = new Employee2;;
+e3.set_name "b1";
+e3.set_salary(Salary2 2.00);;
+
+let e4 = new Employee2;;
+e4.set_name "b2";
+e4.set_salary (Salary2 4.00);;
+ 
+let m1 = new Manager2;;
+m1.set_name "m1";
+m1.set_salary (Salary2 6.00); 
+m1.set_bonus (Salary2 2.00);
+m1;;
+
+let m2 = new Manager2;;
+m2.set_name "m2";
+m2.set_salary (Salary2 6.00); 
+m2.set_bonus (Salary2 2.00);
+m2;;
+
+
+
+let dept1 = new Department2;; 
+dept1.set_name "dept1" ;
+dept1.set_employees [e3];  
+dept1.set_manager m1;
+dept1;;
+
+let dept2 = new Department2;;
+dept2.set_name "dept2" ;
+dept2.set_employees [e4]; 
+dept2.set_manager m2;
+dept2;;
+
+
+let mycorp = new Company2;; 
+mycorp.set_name "mycorp" ;
+mycorp.set_departments [dept1,dept2]; 
+mycorp;;
+
+mycorp.compSalary();;
+incrAllEmpSalary2 (fun x -> 1.02*x) mycorp;;
+mycorp.compSalary();;
+
+let old = mycorp.compSalary() in 
+incrAllEmpSalary2  (fun x -> 1.02*x) mycorp;
+Salary2 1.02 * old == mycorp.compSalary();;
+
+
+
+(* Now repeat, using a different company structure, and different
+ontology for salaries and employees. *) 
+
+
+(* functional style *) 
+
+datatype Currency =  AUSD | EURO | USD ;;
+datatype Salary3 = Salary3 of Currency and Float ;;
+
+let incrSalary3 f = | Salary3 c s -> Salary3 c (f s);;
+
+class Employee3  extends Name2 {
+salary : Salary3;
+get_salary = { | () -> !this.salary}
+set_salary = { fun s -> this.salary = s }
+incrSalary = { fun f -> 
+	this.salary = incrSalary3 f (this.get_salary())}
+}
+
+let (incrAnyEmpSalary3 : (Float -> Float) -> a -> Unit) f = 
+| (x : Employee3) ->  x.incrSalary(f)
+| x -> ()
+;;
+
+let incrAllEmpSalary3 f = iter (incrAnyEmpSalary3 f);;
+
+
+class Manager3  extends Employee3 { 
+bonus : Salary3;
+get_bonus = { | () -> !this.bonus}
+set_bonus = { fun s -> this.bonus = s }
+incrSalary = { fun f -> 
+	super.incrSalary(f);
+	this.bonus = incrSalary3 f (this.get_bonus())}
+}
+
+class Department3 extends Name2 { 
+employees : List (Employee3) ;
+manager : Manager3 ;
+get_employees = { | () -> !this.employees}
+set_employees = { fun es -> this.employees = es }
+get_manager = { | () -> !this.manager}
+set_manager = { fun s -> this.manager = s }
+deptSalary = { |() -> 
+	let add_sal x (y:Employee3[b]) = x+ (y.get_salary()) in 
+        foldleft add_sal ((this.get_manager()).get_salary()) (this.get_employees())}
+}
+
+class Company3 extends Name2 {
+departments : List (Department3 ) ;
+get_departments = { | () -> !this.departments}
+set_departments = { fun ds -> this.departments = ds }
+compSalary = { |() -> 
+	let add_sal x (y: Department3) = x+ (y.deptSalary()) in 
+        foldleft add_sal (Salary3 EURO 0.0) (this.get_departments())}
+
+}
+
+(* the example *) 
+
+let mycorp3 = 
+
+let e1 = new Employee3 in 
+e1.set_name "b1";
+e1.set_salary(Salary3 EURO 2.00); 
+let e2 = new Employee3 in 
+e2.set_name "b2";
+e2.set_salary (Salary3 EURO 4.00); 
+let m1 = new Manager3 in 
+m1.set_name "m1";
+m1.set_salary (Salary3 EURO 6.00); 
+m1.set_bonus (Salary3 EURO 2.00);
+let m2 = new Manager3 in 
+m2.set_name "m2";
+m2.set_salary (Salary3 EURO 6.00); 
+m2.set_bonus (Salary3 EURO 2.00);
+let dept1 = new Department3 in 
+dept1.set_name "dept1" ;
+dept1.set_employees [e1];  
+dept1.set_manager m1;
+let dept2 = new Department3 in 
+dept2.set_name "dept2" ;
+dept2.set_employees [e2]; 
+dept2.set_manager m2;
+let mycorp = new Company3 in 
+mycorp.set_name "mycorp" ;
+mycorp.set_departments [dept1,dept2]; 
+mycorp;;
+
+mycorp3.compSalary();;
+incrAllEmpSalary3 twopercent mycorp3;;
+mycorp3.compSalary();;
+
+let old = mycorp3.compSalary() in 
+incrAllEmpSalary3  twopercent mycorp3;
+Salary3 EURO 1.02 * old == mycorp3.compSalary();;
+
+
+(* putting it all together, functional style *) 
+
+let incr_salary salary f = | salary s -> salary (f s);;
+
+incr_salary Salary2 twopercent (Salary2 1.0);;
+incr_salary (Salary3 EURO) twopercent (Salary3 EURO 1.0);;
+
+(* object-oriented style *) 
+
+let (incrAnyEmpSalary4 : (Float -> Float) -> a -> Unit) f = 
+| (x : Employee2[b]) ->  x.incrSalary(f)
+| (x : Employee3[b]) ->  x.incrSalary(f)
+| x -> ()
+;;
+
+let incrAllEmpSalary4 f = iter (incrAnyEmpSalary4 f);;
+
+
+mycorp.compSalary();;
+incrAllEmpSalary4 twopercent mycorp;;
+mycorp.compSalary();;
+
+
+mycorp3.compSalary();;
+incrAllEmpSalary4 twopercent mycorp3;;
+mycorp3.compSalary();;
+
+
+(* now a different sort of employee *)
+
+
+datatype Worker = Worker of String * Float * Float ;;
+		(* name, employee number, salary *) 
+
+
+
+
+
+let  rec (update_salary:  lin (Float -> a) -> (Float -> Float) -> b -> Unit) = fun (salary:lin (Float -> a))  -> fun f -> fun x -> 
+
+(* the "as" pattern that used to follow has been expanded out 
+since such patterns are not currently  supported within dynamic patterns. *) 
+
+
+match x with 
+| {y} (Ref (salary y)) -> x = salary (f y)
+| y z -> update_salary salary f y; update_salary salary f z
+| y -> ()
+ ;;
+
+let y1 = Ref (Salary2 1.0) ;;
+let y2 = Ref (Salary2 3.0);;
+
+update_salary Salary2 (fun x -> x * 1.5) [y1,y2] ;;
+[!y1,!y2];;
+
+
+

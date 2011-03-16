@@ -1,0 +1,27 @@
+(*
+%open "pc_book/pcb_functional.bon";;
+*)
+
+(*** Chapter Functional style *) 
+
+
+1 + 2;;
+
+fun x -> x +1;;
+
+let plusOne x = x+1;;
+
+plusOne 2;;
+
+let twice f x = f ( f x);;
+twice plusOne 3;;
+
+let rec (factorial: Int -> Int) n = 
+if n <= 1 
+then 1 
+else n*(factorial (n-1));;
+
+factorial 5;;
+
+let identity x = x in identity identity 3;;
+

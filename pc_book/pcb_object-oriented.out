@@ -1,0 +1,384 @@
+(* Begin sourcing "./prelude/standard_prelude.bon"... *)
+(* Begin sourcing "./prelude/printing.bon"... *)
+^: String -> String -> String
+toString: a -> String
+print: a -> Unit
+println: a -> Unit
+(* Finished sourcing "./prelude/printing.bon" *)
+(* Begin sourcing "./prelude/imperatives_core.bon"... *)
+forall: Int -> Int -> (Int -> a) -> Unit
+iter: (all a.a -> Unit) -> b -> Unit
+clone: a -> a
+(* Finished sourcing "./prelude/imperatives_core.bon" *)
+(* Begin sourcing "./prelude/structure_poly.bon"... *)
+Pair: a -> b -> a * b
+fromTuple: a -> String
+it: Unit
+fst: a * b -> a
+snd: a * b -> b
+Inl: a -> a + b
+Inr: b -> a + b
+Evr: a -> Konstant a b
+Ths: a -> Identity a
+ParamPair: a b -> c b -> ParamProduct a c b
+Ok: a b -> Okay a b
+Nest: a (b c) -> Nested a b c
+Tag: (a -> b) -> a c -> Represent a b c
+deconstruct: a b -> (all c.Represent c a b -> d) -> d
+reconstruct: Represent a b c -> b c
+map: (a -> b) -> c a -> c b
+Nil: List a
+Cons: a -> List a -> List a
+toString: b -> String
+toString: c -> String
+Some: a -> Maybe a
+None: Maybe a
+foldleft: (a -> b -> a) -> a -> c b -> a
+foldright: (a -> b -> b) -> c a -> b -> b
+zipwith: (a * b -> c) -> d a * e b -> d c
+(* Finished sourcing "./prelude/structure_poly.bon" *)
+(* Begin sourcing "./prelude/datum2generic.bon"... *)
+&&: Bool -> Bool -> Bool
+not: Bool -> Bool
+||: Bool -> Bool -> Bool
+equal: a * b -> Bool
+==: a -> a -> Bool
+!=: a -> a -> Bool
+plus: a * b -> a
++: a -> a -> a
+shortplus: a * b -> a
+minus: a * b -> a
+-: a -> a -> a
+times: a * b -> a
+*: a -> a -> a
+divide: a * b -> a
+/: a -> a -> a
+negate: a -> a
+lessthan: a * b -> Bool
+<: a -> a -> Bool
+lessthanorequal: a * b -> Bool
+<=: a -> a -> Bool
+greaterthan: a * b -> Bool
+>: a -> a -> Bool
+greaterthanorequal: a * b -> Bool
+>=: a -> a -> Bool
+(* Finished sourcing "./prelude/datum2generic.bon" *)
+(* Begin sourcing "./prelude/dynamic2static.bon"... *)
+dynamic_case_for_internal_use_only = ...
+(* Finished sourcing "./prelude/dynamic2static.bon" *)
+(* Begin sourcing "./prelude/queries.bon"... *)
+apply2all: (all a.a -> a) -> b -> b
+append: List a -> List a -> List a
+some_append: Maybe a -> List a -> List a
+select: (all a.a -> Maybe b) -> c -> List b
+is: lin a -> b -> Maybe a
+(* Finished sourcing "./prelude/queries.bon" *)
+(* Finished sourcing "./prelude/standard_prelude.bon" *)
+(* Begin sourcing "./pc_book/pcb_object-oriented.bon"... *)
+class Name {
+name: Name[a] -> ref String
+get_name: Name[a] -> Unit -> String
+set_name: Name[a] -> String -> Unit
+toString: a -> String
+}
+it: a -> ref String -> Name[a]
+nameName: Name -> ref String
+nNameUnit: Name[] -> ref String
+nNaneTop: Name -> ref String
+fred: Name[]
+fred = Fred
+it: String
+it = "Fred"
+class Person {
+name: Person[a] -> ref String
+position: Person[a] -> ref Int
+friends: Person[a] -> ref List Person
+get_name: Person[a] -> Unit -> String
+set_name: Person[a] -> String -> Unit
+get_position: Person[a] -> Unit -> Int
+set_position: Person[a] -> Int -> Unit
+get_friends: Person[a] -> Unit -> List Person
+set_friends: Person[a] -> List Person[b] -> Unit
+move: Person[a] -> Int -> Unit
+moveClone: Person[a] -> Int -> Person[a]
+closer: Person[a] -> Person[b] -> Person
+toString: a -> String
+}
+personName: Person -> ref String
+nName: Name -> ref String
+homer: Person[]
+homer = ...
+it: Person[] * Int
+it = (Homer,8)
+class ProperPerson {
+proper: ProperPerson[a] -> ref String
+get_proper: ProperPerson[a] -> Unit -> String
+set_proper: ProperPerson[a] -> String -> Unit
+get_name: ProperPerson[a] -> Unit -> String
+}
+harry: ProperPerson[]
+harry = Harry Joy
+honey: Person[]
+honey = Honey
+it: String
+it = "Honey knows Homer, Harry Joy, "
+class Employee {
+salary: Employee[a] -> ref Float
+get_salary: Employee[a] -> Unit -> Float
+set_salary: Employee[a] -> Float -> Unit
+update_salary: Employee[a] -> Float -> Unit
+}
+it: Employee[a] -> Float
+busy: Employee[]
+busy = busy beaver
+class Manager {
+department: Manager[a] -> ref String
+bonus: Manager[a] -> ref Float
+get_department: Manager[a] -> Unit -> String
+set_department: Manager[a] -> String -> Unit
+get_bonus: Manager[a] -> Unit -> Float
+set_bonus: Manager[a] -> Float -> Unit
+update_salary: Manager[a] -> Float -> Unit
+}
+lazy: Manager[]
+lazy = Lazy B
+it: Manager[] * Float * Float
+it = (Lazy B,4.2,1.05)
+class Department {
+name: Department[a] -> ref String
+manager: Department[a] -> ref Manager
+employees: Department[a] -> ref List Employee
+get_name: Department[a] -> Unit -> String
+set_name: Department[a] -> String -> Unit
+get_manager: Department[a] -> Unit -> Manager
+set_manager: Department[a] -> Manager[b] -> Unit
+get_employees: Department[a] -> Unit -> List Employee
+set_employees: Department[a] -> List Employee[b] -> Unit
+toString: a -> String
+}
+dep1: Department[]
+dep1 = dep1
+update_any_salary: Float -> a -> Unit
+it: List (Employee * Float)
+it = [(busy beaver,2.)]
+it: Float
+it = 1.05
+it: List (Employee * Float)
+it = [(busy beaver,3.)]
+it: Float
+it = 1.575
+class Point {
+x_coord: Point[a] -> ref Float
+y_coord: Point[a] -> ref Float
+get_x_coord: Point[a] -> Unit -> Float
+set_x_coord: Point[a] -> Float -> Unit
+get_y_coord: Point[a] -> Unit -> Float
+set_y_coord: Point[a] -> Float -> Unit
+is_good: Point[a] -> Bool
+toString: a -> String
+}
+Colour: Int -> Colour
+toString: a -> String
+red: Colour
+red = red
+green: Colour
+green = green
+blue: Colour
+blue = blue
+class ColourPoint {
+colour: ColourPoint[a] -> ref Colour
+get_colour: ColourPoint[a] -> Unit -> Colour
+set_colour: ColourPoint[a] -> Colour -> Unit
+toString: a -> String
+}
+class Circle {
+centre: Circle[a] -> ref Point
+radius: Circle[a] -> ref Float
+get_centre: Circle[a] -> Unit -> Point
+set_centre: Circle[a] -> Point[b] -> Unit
+get_radius: Circle[a] -> Unit -> Float
+set_radius: Circle[a] -> Float -> Unit
+}
+class ColourCircle {
+col: ColourCircle[a] -> ref Colour
+get_col: ColourCircle[a] -> Unit -> Colour
+set_col: ColourCircle[a] -> Colour -> Unit
+get_centre: ColourCircle[a] -> Unit -> ColourPoint[]
+}
+it: Point * ColourPoint[]
+it = (Point(-1.1,2.2),CPoint(-1.1,2.2,blue))
+class NodeInt {
+value: NodeInt[a] -> ref Int
+next: NodeInt[a] -> ref NodeInt
+getValue: NodeInt[a] -> Unit -> Int
+setValue: NodeInt[a] -> Int -> Unit
+getNext: NodeInt[a] -> Unit -> NodeInt
+setNext: NodeInt[a] -> NodeInt -> Unit
+insert: NodeInt[a] -> NodeInt -> Unit
+toString: a -> String
+}
+class Node {
+value: Node<a>[b] -> ref a
+next: Node<a>[b] -> ref Node<a>
+getValue: Node<a>[b] -> Unit -> a
+setValue: Node<a>[b] -> a -> Unit
+getNext: Node<a>[b] -> Unit -> Node<a>
+setNext: Node<a>[b] -> Node<a> -> Unit
+insert: Node<a>[b] -> Node<a> -> Unit
+toString: a -> String
+}
+x0: Node<Int>[]
+x0 = [_void,]
+x1: Node<Int>[]
+x1 = [_void,]
+x2: Node<Int>[]
+x2 = [_void,]
+it: Node<Int>[]
+it = [0,2,]
+it: Node<Int>[]
+it = [0,1,2,]
+r4: Node<Float>[]
+r4 = [_void,]
+it: Node<Float>[]
+it = [4.4,]
+anyNode: a -> Unit
+it: Unit
+012it: Unit
+4.4class DNode {
+previous: DNode<a>[b] -> ref ref DNode<a>
+getPrev: DNode<a>[b] -> Unit -> DNode<a>
+setPrev: DNode<a>[b] -> DNode<a> -> Unit
+setNext: DNode<a>[b] -> Node<a> -> Unit
+}
+d0: DNode<Int>[]
+d0 = [_void,]
+d1: DNode<Int>[]
+d1 = [_void,]
+d2: DNode<Int>[]
+d2 = [_void,]
+it: DNode<Int>[]
+it = [0,2,]
+it: DNode<Int>
+it = [0,2,]
+it: DNode<Int>[]
+it = [0,1,2,]
+it: DNode<Int>
+it = [1,2,]
+it: DNode<Int>
+it = [0,1,2,]
+update: lin (ref a -> b) -> (a -> a) -> c -> Unit
+twopercent: Float -> Float
+Salary: ref Float -> Salary
+salary1: ref Float -> Salary
+s1: Salary
+s1 = Salary ...
+it: Unit
+Worker: ref String * ref Float -> Worker
+toString: a -> String
+salary2: ref Float -> Worker
+w1: Worker
+w1 = Fred
+it: Unit
+WorkUnit: List Worker -> WorkUnit
+w1: Worker
+w1 = Fred
+w2: Worker
+w2 = Mary
+ws: WorkUnit
+ws = WorkUnit ([Fred,Mary])
+it: List Float
+it = [2.,3.]
+it: Unit
+it: List Float
+it = [2.04,3.06]
+salary3: ref Float -> Employee[a]
+it: List (Employee * Float)
+it = [(busy beaver,3.)]
+it: Unit
+it: List (Employee * Float)
+it = [(busy beaver,3.06)]
+company: Department[] * WorkUnit
+company = (dep1,WorkUnit ([Fred,Mary]))
+update_sal: (Float -> Float) -> a -> Unit
+it: Unit
+None: Maybe a
+Some: a -> Maybe a
+findOne: (all a.a -> Maybe b) -> c -> Maybe b
+isNegFloat: a -> Maybe Float
+it: Maybe Float
+it = Some -3.
+class Customer {
+balance: Customer[a] -> ref Float
+get_balance: Customer[a] -> Unit -> Float
+set_balance: Customer[a] -> Float -> Unit
+}
+john: Customer[]
+john = John Smith
+it: Float
+it = 120.
+jane: Customer[]
+jane = Jane Doe
+it: Float
+it = -75.
+it: Maybe Float
+it = Some -75.
+isNegCustomer: a -> Maybe Customer
+it: Maybe Customer
+it = Some (Jane Doe)
+class Bank {
+name: Bank[a] -> ref String
+customers: Bank[a] -> ref List Customer
+get_name: Bank[a] -> Unit -> String
+set_name: Bank[a] -> String -> Unit
+get_customers: Bank[a] -> Unit -> List Customer
+set_customers: Bank[a] -> List Customer[b] -> Unit
+}
+abc: Bank[]
+abc = Bank Un ((...,...))
+it: Bank[]
+it = Bank Un ((...,...))
+it: Maybe Customer
+it = Some (Jane Doe)
+class Division {
+name: Division[a] -> ref String
+customers: Division[a] -> ref List Customer
+get_name: Division[a] -> Unit -> String
+set_name: Division[a] -> String -> Unit
+get_customers: Division[a] -> Unit -> List Customer
+set_customers: Division[a] -> List Customer[b] -> Unit
+}
+class Corporation {
+name: Corporation[a] -> ref String
+divisions: Corporation[a] -> ref List Division
+get_name: Corporation[a] -> Unit -> String
+set_name: Corporation[a] -> String -> Unit
+get_divisions: Corporation[a] -> Unit -> List Division
+set_divisions: Corporation[a] -> List Division[b] -> Unit
+}
+div1: Division[]
+div1 = Division Un ((...,...))
+it: List Customer
+it = [John Smith]
+div2: Division[]
+div2 = Division Un ((...,...))
+it: List Customer
+it = [Jane Doe]
+corp: Corporation[]
+corp = Corporation Un ((...,...))
+it: Unit
+it: Maybe Customer
+it = Some (Jane Doe)
+class Valued {
+high_interest: Valued[a] -> ref Float
+get_high_interest: Valued[a] -> Unit -> Float
+set_high_interest: Valued[a] -> Float -> Unit
+get_balance: Valued[a] -> Unit -> Float
+}
+alan: Valued[]
+alan = Alan Key
+it: Float
+it = 10.
+it: Unit
+it: Maybe Customer
+it = Some (Jane Doe)
+(* Finished sourcing "./pc_book/pcb_object-oriented.bon" *)

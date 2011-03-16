@@ -1,0 +1,97 @@
+(* Combinator Parsing functions
+@description Provides higher­order functions that allow grammar construction.
+@author Jose Vergara.
+@since 20 July 2008.
+@version 1.2
+*)
+
+let escDQ x = if (x== '"') then "\"" else (1 makestring x);;
+
+datatype Reply = Ok of (Top * List Char) | Error ;;
+datatype Consumed = WConsumed of Reply | Empty of Reply;;
+
+type Parser = List Char -> Consumed;;
+
+let (satisfy: (Char -> Bool) -> Parser) p =
+| Nil -> Empty Error
+| Cons x y -> if (p x) then WConsumed (Ok ((x:Top),y)) else Empty Error
+;;
+
+let ((<|>): Parser -> Parser -> Parser)  p q s = 
+match p s  with
+  | WConsumed (Ok (x,y)) -> WConsumed (Ok (x,y))
+  | Empty (Ok (x,y)) -> q y
+  | Empty (Error) -> q s
+;;
+
+let ((>>=): Parser -> (a-> Parser) -> Parser) p q s =
+match p s with
+  |Empty (Error) -> Empty (Error)
+  |WConsumed (Ok (x,y)) -> (q x) y
+  |Empty (Ok (x,y)) -> (q x) y
+;;
+
+let ((>>): Parser -> Parser -> Parser) p q s =
+match p s with
+  |Empty (Error) -> Empty (Error)
+  |WConsumed (Ok (x,y)) -> q y
+  |Empty (Ok (x,y)) -> q y
+;;
+
+let except c = satisfy ((!=) c);;
+let spchar c = satisfy ((==) c);;
+let any_char = satisfy (fun n->True);;
+let letter = satisfy (fun c ->(c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z' ));;
+let digit = satisfy  (fun c ->(c >= '0' && c <= '9'));;
+
+let (return: a -> Parser ) val s =
+WConsumed (Ok(val,s));;
+
+
+let (tokenize: String -> List char) p = 
+let rp = Ref p in
+let i = Ref (lengthstring p) in
+let rlength = Ref (lengthstring p) in
+let rlist = Ref (Cons '@' Nil) in
+while (!i  > 0) do (
+   i = !i-1;
+   if (((!rp getcharstring (!i)) != '\\') && ((!rp getcharstring (!i)) != '\013') && ((!rp getcharstring (!i)) != '\t') ) then
+   (
+   if (!i == !rlength-1)  then 
+            (rlist = (Cons (!rp getcharstring (!i)) Nil) )
+            else 
+            (rlist = (Cons (!rp getcharstring (!i)) !rlist))
+	) else ()
+);
+!rlist;;
+
+let makeStr x = (1 makestring x);;
+
+let rec (many: (List Char -> Consumed) -> List Char -> Consumed ) p  =
+( p  >>= (fun x -> ((many p) <|> return []) >>= (fun xs -> return (append (Cons x Nil)  xs)))) <|> return [];;
+
+let oneOrMany p = p >>= (fun x ->  (many p) >>= (fun y -> return (Cons x y)));;
+
+let maybe p = (p <|> return []);;
+
+let returnStr parser = parser >>= (fun x -> return (foldright (^) (map escDQ x ) ""));;
+
+let rec (get_ValueParser: (List Parser) -> Parser) =
+| Cons x Nil -> (x >>= (fun x -> return (Cons x Nil)))
+| Cons x y -> (x >>= (fun p -> (get_ValueParser y) >>= (fun q -> (return (append (Cons p Nil) q)))))
+;;
+
+let rec (get_Parser: (List Parser) -> Parser) =
+| Cons x Nil -> x
+| Cons x y -> x >> (get_Parser y)
+;;
+
+let rec (get_choiceParser: (List Parser) -> Parser) =
+| Cons x Nil -> x
+| Cons x y -> (x <|> (get_choiceParser y))
+;;
+
+let getParserVreturnStr_str text=  returnStr (get_ValueParser(map spchar (tokenize text)));;
+let getParser_str text=   get_Parser(map spchar (tokenize text));;
+
+let getChoiceParser_str text=   get_choiceParser(map spchar (tokenize text));;

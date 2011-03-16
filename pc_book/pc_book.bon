@@ -1,0 +1,14 @@
+(*
+%open "pc_book.bon";;
+*)
+
+
+(* selecting *) 
+
+%open "pc_book/pcb_functional.bon";;
+%open "pc_book/pcb_adt.bon";;
+%open "pc_book/pcb_query.bon" ;;
+%open "pc_book/pcb_dynamic.bon";;
+%open "pc_book/pcb_imperative.bon";;
+%open "pc_book/pcb_object-oriented.bon";;
+%open "pc_book/pcb_motivating_example.bon";;

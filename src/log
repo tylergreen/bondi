@@ -1,0 +1,2355 @@
+------------------------------------------------------------------------
+r1504 | javergar | 2011-02-22 16:37:59 +1100 (Tue, 22 Feb 2011) | 1 line
+
+added any as wilcard
+------------------------------------------------------------------------
+r1503 | javergar | 2011-02-22 16:25:30 +1100 (Tue, 22 Feb 2011) | 1 line
+
+removed bug in parser.mly
+------------------------------------------------------------------------
+r1502 | javergar | 2011-02-22 16:04:25 +1100 (Tue, 22 Feb 2011) | 1 line
+
+indroduction of maker function
+------------------------------------------------------------------------
+r1481 | bjay | 2011-02-17 09:25:42 +1100 (Thu, 17 Feb 2011) | 1 line
+
+improved typing of added cases and views
+------------------------------------------------------------------------
+r1476 | bjay | 2011-02-16 14:05:39 +1100 (Wed, 16 Feb 2011) | 1 line
+
+removed the last clones
+------------------------------------------------------------------------
+r1472 | bjay | 2011-02-16 08:35:46 +1100 (Wed, 16 Feb 2011) | 1 line
+
+added clone.bon to the standard prelude
+------------------------------------------------------------------------
+r1471 | bjay | 2011-02-16 08:35:13 +1100 (Wed, 16 Feb 2011) | 1 line
+
+added clone.bon to the standard prelude
+------------------------------------------------------------------------
+r1466 | javergar | 2011-02-14 17:22:47 +1100 (Mon, 14 Feb 2011) | 1 line
+
+
+------------------------------------------------------------------------
+r1463 | bjay | 2011-02-14 11:28:09 +1100 (Mon, 14 Feb 2011) | 1 line
+
+
+------------------------------------------------------------------------
+r1451 | bjay | 2011-02-09 18:18:37 +1100 (Wed, 09 Feb 2011) | 1 line
+
+fixed a bug in declare_class
+------------------------------------------------------------------------
+r1450 | javergar | 2011-02-09 15:35:46 +1100 (Wed, 09 Feb 2011) | 1 line
+
+fixed recursion of static methods
+------------------------------------------------------------------------
+r1447 | bjay | 2011-02-08 17:49:42 +1100 (Tue, 08 Feb 2011) | 1 line
+
+
+------------------------------------------------------------------------
+r1443 | javergar | 2011-02-08 11:30:19 +1100 (Tue, 08 Feb 2011) | 1 line
+
+corrected syntax error
+------------------------------------------------------------------------
+r1442 | javergar | 2011-02-08 11:22:22 +1100 (Tue, 08 Feb 2011) | 1 line
+
+static methods
+------------------------------------------------------------------------
+r1440 | javergar | 2011-02-08 09:12:30 +1100 (Tue, 08 Feb 2011) | 1 line
+
+parsing code for static methods
+------------------------------------------------------------------------
+r1438 | bjay | 2011-02-07 11:05:42 +1100 (Mon, 07 Feb 2011) | 1 line
+
+added discontinuous declarations
+------------------------------------------------------------------------
+r1426 | javergar | 2011-02-01 14:57:13 +1100 (Tue, 01 Feb 2011) | 1 line
+
+removed comments from the view code in infer.ml
+------------------------------------------------------------------------
+r1423 | javergar | 2011-01-27 11:19:02 +1100 (Thu, 27 Jan 2011) | 1 line
+
+removed peek_type statments for debuggin of where clauses
+------------------------------------------------------------------------
+r1421 | javergar | 2011-01-27 10:58:41 +1100 (Thu, 27 Jan 2011) | 1 line
+
+added where clauses
+------------------------------------------------------------------------
+r1419 | bjay | 2011-01-24 19:02:28 +1100 (Mon, 24 Jan 2011) | 1 line
+
+added where clauses
+------------------------------------------------------------------------
+r1403 | tpgivenw | 2011-01-13 13:10:38 +1100 (Thu, 13 Jan 2011) | 5 lines
+
+Fixed a tiny typo in the paper/code for Places 2011.
+
+Augmented the unification algorithm in CPC evaluation to now support some
+computation in patterns and to correctly handle results.
+
+------------------------------------------------------------------------
+r1401 | tpgivenw | 2011-01-12 19:22:04 +1100 (Wed, 12 Jan 2011) | 1 line
+
+Fixed a little issue with parenthesise in CPC patterns.
+------------------------------------------------------------------------
+r1371 | bjay | 2011-01-04 11:44:07 +1100 (Tue, 04 Jan 2011) | 1 line
+
+unwound the dynamic2static changes so that we can use views again, but did not delete any substantial code
+------------------------------------------------------------------------
+r1370 | javergar | 2010-12-31 13:03:19 +1100 (Fri, 31 Dec 2010) | 2 lines
+
+Added string2bool,string2int, string2float opers
+
+------------------------------------------------------------------------
+r1369 | tgwilson | 2010-12-16 11:53:15 +1100 (Thu, 16 Dec 2010) | 2 lines
+
+Added new "println" that is the same as "print" but adds a newline at the end. Had to make minor changes in datum.ml, eval.ml, infer.ml. Also updating all the output files for testing so the tests pass.
+
+------------------------------------------------------------------------
+r1363 | tgwilson | 2010-09-14 14:53:30 +1000 (Tue, 14 Sep 2010) | 1 line
+
+Ensuring linearity of CPC patterns.
+------------------------------------------------------------------------
+r1362 | tgwilson | 2010-08-27 11:33:29 +1000 (Fri, 27 Aug 2010) | 1 line
+
+Making CPC executions even less deterministic
+------------------------------------------------------------------------
+r1361 | tgwilson | 2010-08-16 12:07:42 +1000 (Mon, 16 Aug 2010) | 6 lines
+
+Updated inference code for CPC to be stricter (unify not subunify) for 
+parallel composition, replication and restriction. CPC cases remain
+with subunify (otherwise things break).
+
+Updated evaluation to do more per pass of the process environment.
+
+------------------------------------------------------------------------
+r1360 | cbj | 2010-08-06 09:40:39 +1000 (Fri, 06 Aug 2010) | 1 line
+
+added Tnextvar to i_terms, as  a better means of handling unknowns
+------------------------------------------------------------------------
+r1359 | tgwilson | 2010-07-30 10:54:51 +1000 (Fri, 30 Jul 2010) | 1 line
+
+Fixed a minor bug in the self_interaction function of the CPC evaluation.
+------------------------------------------------------------------------
+r1358 | tgwilson | 2010-07-26 17:02:29 +1000 (Mon, 26 Jul 2010) | 1 line
+
+Better comments, clearer code.
+------------------------------------------------------------------------
+r1357 | tgwilson | 2010-07-26 11:58:43 +1000 (Mon, 26 Jul 2010) | 1 line
+
+Making the code clearer, adding more comments.
+------------------------------------------------------------------------
+r1356 | cbj | 2010-07-22 14:48:32 +1000 (Thu, 22 Jul 2010) | 1 line
+
+removed dynamic cases from i_terms etc
+------------------------------------------------------------------------
+r1352 | cbj | 2010-07-22 13:45:32 +1000 (Thu, 22 Jul 2010) | 1 line
+
+
+------------------------------------------------------------------------
+r1339 | tgwilson | 2010-07-03 15:33:01 +1000 (Sat, 03 Jul 2010) | 1 line
+
+Fixing type inference for processes/CPC.
+------------------------------------------------------------------------
+r1338 | tgwilson | 2010-07-01 22:58:06 +1000 (Thu, 01 Jul 2010) | 1 line
+
+Fixed a bug in scoping for names declared at top level: added index to names (same as variables). (Duplicated from cpc-bondi.)
+------------------------------------------------------------------------
+r1335 | tgwilson | 2010-06-27 16:55:10 +1000 (Sun, 27 Jun 2010) | 30 lines
+
+Merged CPC into development bondi. Also fixed "spawn" and added "sleep".
+
+CPC is now supported with CPC patterns given by:
+variable names  == x
+protected names == ~x
+binding names   == \x
+compounds       == p q
+
+Note that compounds use application in normal pattern calculus style and this may cause oddities depending on how they are used in the body.
+
+CPC processes are as follows:
+P | Q      == (P) | (Q)			Brackets are important!
+!P         == !P
+(v x) P    == rest x in P
+p -> P     == cpc p -> P
+
+Here the keywords "rest" binds restrictions, and "cpc" denotes a CPC case (as distinct from a nomal pattern calculus case). Also the body of a CPC case may be any bondi term, so may do arbitrary execution. The null process is thus any bondi program that has no CPC interaction.
+Some comments:
+1 - All process forms have type unit, any result in the body of a case is ignored (but may do imperative effects like printing).
+2 - Restrictions can be declared at once: i.e. (v x)(v y)(v z)P == rest x y z in P
+3 - As patterns in CPC are only defined for names, values must be introduced in another way. To declare a value locally use:
+        let x = "a value" in cpc x -> ()
+4 - As processes have type unit and are handled by another mechanism, P | Q is equivalent to P;Q (sequence).
+
+The "spawn" operator is working again and uses CPC code to work.
+
+The "sleep" operator is new as sleeps the top level thread (allowing spawned/CPC threads more freedom). Usage is:
+   sleep 3.0
+which will sleep the thread for 3.0 seconds (any positive float value is accepted).
+
+------------------------------------------------------------------------
+r1334 | tgwilson | 2010-06-25 11:07:51 +1000 (Fri, 25 Jun 2010) | 1 line
+
+Fixing a copying error
+------------------------------------------------------------------------
+r1333 | tgwilson | 2010-06-25 10:55:49 +1000 (Fri, 25 Jun 2010) | 1 line
+
+Removing old values, updating mvalues to values.
+------------------------------------------------------------------------
+r1297 | cbj | 2010-05-19 11:19:12 +1000 (Wed, 19 May 2010) | 15 lines
+
+THe changes begun at Avoca are now stable. 
+All test pass except for some in xml. Perhaps Jose will fix these. 
+
+
+The main developments were to fix up code where Ref x is treated as a compound, as the corresponding value is now an MVref. 
+
+I have added a new value form, MVext for extensible functions adn methods. This better reflects the dynamic nature, without messing up the type system. 
+
+Future work will be to shift mvalues to values. 
+
+Barry
+
+
+
+
+------------------------------------------------------------------------
+r1294 | cbj | 2010-05-18 11:39:11 +1000 (Tue, 18 May 2010) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r1293 | cbj | 2010-05-18 11:33:10 +1000 (Tue, 18 May 2010) | 4 lines
+
+Added a new value form, MVext, to represent extensible funcitons and methods. Its argument is an ocaml ref which is only dereferenced to either: add a new case, or when applied to an argument. Now all basic tests pass and the first four tests from pcbook.
+
+
+
+------------------------------------------------------------------------
+r1291 | cbj | 2010-05-18 09:23:21 +1000 (Tue, 18 May 2010) | 1 line
+
+avoca changes are still working through, but all basic tests are passed now
+------------------------------------------------------------------------
+r1288 | tgwilson | 2010-05-17 20:51:58 +1000 (Mon, 17 May 2010) | 1 line
+
+Repairing...
+------------------------------------------------------------------------
+r1287 | tgwilson | 2010-05-17 20:45:12 +1000 (Mon, 17 May 2010) | 1 line
+
+More testing.
+------------------------------------------------------------------------
+r1286 | tgwilson | 2010-05-17 20:41:40 +1000 (Mon, 17 May 2010) | 1 line
+
+Testing something odd
+------------------------------------------------------------------------
+r1285 | tgwilson | 2010-05-17 19:44:17 +1000 (Mon, 17 May 2010) | 1 line
+
+Some concurrency.ml now workable.
+------------------------------------------------------------------------
+r1284 | tgwilson | 2010-05-17 19:09:16 +1000 (Mon, 17 May 2010) | 1 line
+
+Hacked through inference, committing to save some commented out stuff before going on.
+------------------------------------------------------------------------
+r1283 | tgwilson | 2010-05-17 14:51:27 +1000 (Mon, 17 May 2010) | 1 line
+
+Added cpc cases as a first run.
+------------------------------------------------------------------------
+r1282 | tgwilson | 2010-05-17 13:59:15 +1000 (Mon, 17 May 2010) | 1 line
+
+Adding
+------------------------------------------------------------------------
+r1278 | tgwilson | 2010-05-15 10:56:12 +1000 (Sat, 15 May 2010) | 1 line
+
+Updating to latest eval.ml
+------------------------------------------------------------------------
+r1274 | cbj | 2010-05-14 15:18:48 +1000 (Fri, 14 May 2010) | 2 lines
+
+ using -r 1186 versions of environments.ml eval.ml declare.ml environments.mli p_data.mli parse.mly infer.ml p_data.ml shell.ml temp
+
+------------------------------------------------------------------------
+r1273 | cbj | 2010-05-14 15:16:39 +1000 (Fri, 14 May 2010) | 1 line
+
+stabilising
+------------------------------------------------------------------------
+r1269 | tgwilson | 2010-05-14 10:56:52 +1000 (Fri, 14 May 2010) | 1 line
+
+Modified 'install-sh', now you can run 'install-sh jocaml' to build bondi using jocaml.
+------------------------------------------------------------------------
+r1187 | cbj | 2010-04-27 10:15:01 +1000 (Tue, 27 Apr 2010) | 19 lines
+
+I've removed all references to linearity (gulp).  Now free variables in patterns need not be linear. The evaluation is rescued by checking that no bound symbols are lost or duplicated after evaluating the  pattern. The bondi typing rulesdo not require modificiation, but the theory for typing extension calculus must be modified as follows. When typing a pattern 
+
+Gamma; Beta |- p:P
+
+it is usual that Beta contain exactly the binding symbols of p, using the axiom 
+Gamma; x:X |- x:X
+
+Now, however, this will be changed to 
+
+Gamma; Beta,x:X |- x:X
+
+where Beta may contain "dead" variables. It is not yet clear how to handle duplication, however, so this change may have to be unwound. 
+
+
+
+and added a check that dynamic patterns have kept all of their bound symbols, in the belief that I can modify the type derivation rules to keep up. 
+
+
+
+------------------------------------------------------------------------
+r1185 | tgwilson | 2010-04-27 09:42:02 +1000 (Tue, 27 Apr 2010) | 2 lines
+
+Back to end of Avoca
+
+------------------------------------------------------------------------
+r1184 | tgwilson | 2010-04-23 23:24:40 +1000 (Fri, 23 Apr 2010) | 2 lines
+
+Updating before coming home.
+
+------------------------------------------------------------------------
+r1183 | tgwilson | 2010-04-06 09:43:10 +1000 (Tue, 06 Apr 2010) | 11 lines
+
+Modified to use standard/official OCaml syntax:
+- changed "or" to "||"
+- changed "&" to "&&"
+
+Note that now you can build with jocaml with the following steps:
+1 - run "configure" in the /src directory
+2 - run "sed -i 's/ocaml/jocaml/g' Makefile" in the /src directory
+3 - edit the Makefile in the /src directory and remove "$(unix_o)" and "$(l_unix)" from line 190
+4 - "make depend" as normal
+5 - "make all" as normal
+
+------------------------------------------------------------------------
+r1142 | cbj | 2010-02-24 09:35:22 +1100 (Wed, 24 Feb 2010) | 1 line
+
+trying to stabilise
+------------------------------------------------------------------------
+r1138 | tgwilson | 2009-11-16 16:19:06 +1100 (Mon, 16 Nov 2009) | 12 lines
+
+Added system calls operator:
+sysexec: String -> Int
+
+For example:
+sysexec "ls";;
+
+Will run the command provided in the first argument (string) using "/bin/sh" on the local unix style system. 
+The result is the exit stats of the process.
+
+NOTE: You should manage output from any commands run through "sysexec" manually, otherwise it will appear 
+inline in bondi although bondi will have no direct access to it.
+
+------------------------------------------------------------------------
+r1137 | tgwilson | 2009-11-10 10:52:21 +1100 (Tue, 10 Nov 2009) | 1 line
+
+Renamed charcode to char2int
+------------------------------------------------------------------------
+r1136 | tgwilson | 2009-11-10 08:36:56 +1100 (Tue, 10 Nov 2009) | 1 line
+
+Added oper 'charcode' to convert characters to ints
+------------------------------------------------------------------------
+r1125 | cbj | 2009-09-25 09:15:51 +1000 (Fri, 25 Sep 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r1122 | tgwilson | 2009-09-24 14:37:17 +1000 (Thu, 24 Sep 2009) | 3 lines
+
+Removed duplicate printing of syntax error messages.
+
+
+------------------------------------------------------------------------
+r1121 | cbj | 2009-09-23 16:17:34 +1000 (Wed, 23 Sep 2009) | 1 line
+
+removed long arrow, so now use explicit linear types
+------------------------------------------------------------------------
+r1120 | cbj | 2009-09-23 12:10:32 +1000 (Wed, 23 Sep 2009) | 1 line
+
+reduced all direcives to a single form of shell action in p_data.ml
+------------------------------------------------------------------------
+r1117 | cbj | 2009-09-19 10:38:48 +1000 (Sat, 19 Sep 2009) | 16 lines
+
+Made some changes to get the tests all working now.
+
+The main point is that f+= is now a term, not a shell action, so the output changed. This has required manual checks of all tests, by diffing th enew output against the old, and then replacing the old. 
+
+Testing also discovered a bug in the OO code. This has been fixed by making choice types insert quantifiers under the choices, as in 
+
+(all a. D[a] -> Unit ) & ...
+
+Everything seems to be okay now in bondi-private, but the public one
+has yet to be modified.
+
+Barry
+
+
+
+
+------------------------------------------------------------------------
+r1116 | cbj | 2009-09-17 09:54:09 +1000 (Thu, 17 Sep 2009) | 1 line
+
+added aspects, and code for Jose's XML stuff, that seems to work, but tests currently failing
+------------------------------------------------------------------------
+r1113 | tgwilson | 2009-08-21 15:36:55 +1000 (Fri, 21 Aug 2009) | 2 lines
+
+Changed "openfile" to default to append mode.
+
+------------------------------------------------------------------------
+r907 | cbj | 2009-06-12 15:46:08 +1000 (Fri, 12 Jun 2009) | 1 line
+
+split off formatting to separate files
+------------------------------------------------------------------------
+r891 | cbj | 2009-06-11 16:33:23 +1000 (Thu, 11 Jun 2009) | 1 line
+
+shell is stable now
+------------------------------------------------------------------------
+r890 | cbj | 2009-06-11 16:22:49 +1000 (Thu, 11 Jun 2009) | 1 line
+
+undoing some changes to the shell that were wrong, and also making some changes to the parser concerning interaction of application and invocation; not quite stable
+------------------------------------------------------------------------
+r888 | cbj | 2009-06-11 14:10:53 +1000 (Thu, 11 Jun 2009) | 1 line
+
+(re-)moved some oper_table operations form the lexer to datum module
+------------------------------------------------------------------------
+r886 | cbj | 2009-06-11 12:05:50 +1000 (Thu, 11 Jun 2009) | 1 line
+
+replaced evaluateAp by eval_print
+------------------------------------------------------------------------
+r885 | cbj | 2009-06-11 11:45:12 +1000 (Thu, 11 Jun 2009) | 1 line
+
+finished tidying shell module
+------------------------------------------------------------------------
+r884 | cbj | 2009-06-11 11:06:23 +1000 (Thu, 11 Jun 2009) | 1 line
+
+more tidying
+------------------------------------------------------------------------
+r883 | cbj | 2009-06-11 11:02:00 +1000 (Thu, 11 Jun 2009) | 1 line
+
+inlined many function calls in shell module
+------------------------------------------------------------------------
+r882 | cbj | 2009-06-11 09:30:31 +1000 (Thu, 11 Jun 2009) | 12 lines
+
+The Use_directive has been replaced by Open_directive.
+
+This reflects the source syntax, but also the require directive has
+been expunged. Require will open if it is not already opened, and do
+nothing if it is. Although useful, the supportign code ahs been
+corrupted and so it has been dropped altogether for now.
+
+Barry
+
+
+
+
+------------------------------------------------------------------------
+r881 | cbj | 2009-06-11 09:24:22 +1000 (Thu, 11 Jun 2009) | 1 line
+
+once again, removed console.ml
+------------------------------------------------------------------------
+r880 | cbj | 2009-06-10 17:58:44 +1000 (Wed, 10 Jun 2009) | 1 line
+
+split console module between p_data and shell
+------------------------------------------------------------------------
+r879 | cbj | 2009-06-10 17:42:49 +1000 (Wed, 10 Jun 2009) | 1 line
+
+more tidying
+------------------------------------------------------------------------
+r878 | cbj | 2009-06-10 17:15:16 +1000 (Wed, 10 Jun 2009) | 1 line
+
+deleting dead code
+------------------------------------------------------------------------
+r877 | cbj | 2009-06-10 17:08:36 +1000 (Wed, 10 Jun 2009) | 1 line
+
+deleted some dead code from infer.ml
+------------------------------------------------------------------------
+r876 | cbj | 2009-06-10 16:43:17 +1000 (Wed, 10 Jun 2009) | 1 line
+
+removed the represent module
+------------------------------------------------------------------------
+r875 | cbj | 2009-06-10 16:39:57 +1000 (Wed, 10 Jun 2009) | 1 line
+
+removed the dump module, with minor changes to console and shell modules
+------------------------------------------------------------------------
+r873 | cbj | 2009-06-09 17:52:04 +1000 (Tue, 09 Jun 2009) | 1 line
+
+re-instated constructors that hide type arguments, as in datatype D = D of a, but such constructors cannot be declared as linear terms, as in lin d = D, even though D can be used in patterns
+------------------------------------------------------------------------
+r871 | cbj | 2009-06-09 16:44:54 +1000 (Tue, 09 Jun 2009) | 1 line
+
+added an auxiliary function inf_linear_or_var that allows dynamic equality to have type a -> a -> Bool, using |x -> |{}x -> True | _ -> False
+------------------------------------------------------------------------
+r870 | cbj | 2009-06-09 10:52:38 +1000 (Tue, 09 Jun 2009) | 1 line
+
+fixed bug in lex.mll
+------------------------------------------------------------------------
+r869 | arun | 2009-06-05 20:03:22 +1000 (Fri, 05 Jun 2009) | 1 line
+
+now make clean now removed parse.mli
+------------------------------------------------------------------------
+r868 | cbj | 2009-06-05 16:36:19 +1000 (Fri, 05 Jun 2009) | 1 line
+
+finished the clean-up of keywords: deleted add_case, add_method, at, div, mod, wedge. Added Ref, could not fix the symbol >>
+------------------------------------------------------------------------
+r867 | cbj | 2009-06-05 15:58:48 +1000 (Fri, 05 Jun 2009) | 1 line
+
+removed at from parser, and some xml stuff
+------------------------------------------------------------------------
+r862 | arun | 2009-06-05 15:25:51 +1000 (Fri, 05 Jun 2009) | 1 line
+
+make clean - removes parse.ml & lex.ml. Syntax error now sent to standard error
+------------------------------------------------------------------------
+r859 | cbj | 2009-06-05 14:54:30 +1000 (Fri, 05 Jun 2009) | 1 line
+
+removed add_case and add_method from parser
+------------------------------------------------------------------------
+r857 | tgwilson | 2009-06-05 14:36:36 +1000 (Fri, 05 Jun 2009) | 2 lines
+
+Updated the datum.ml for new sockets operations names and updated the "net" examples
+
+------------------------------------------------------------------------
+r835 | cbj | 2009-05-29 08:44:08 +1000 (Fri, 29 May 2009) | 1 line
+
+fixed warning on p_data.ml
+------------------------------------------------------------------------
+r821 | cbj | 2009-05-25 13:29:15 +1000 (Mon, 25 May 2009) | 1 line
+
+restricted the types of declared constructors to avoid existential type variables
+------------------------------------------------------------------------
+r816 | cbj | 2009-05-25 10:40:45 +1000 (Mon, 25 May 2009) | 1 line
+
+all pc_book tests passed
+------------------------------------------------------------------------
+r808 | arun | 2009-05-22 23:02:29 +1000 (Fri, 22 May 2009) | 1 line
+
+All Makefile.in files include test targets
+------------------------------------------------------------------------
+r792 | cbj | 2009-05-19 12:21:25 +1000 (Tue, 19 May 2009) | 1 line
+
+added global methods, such as make, in NOT.../GlobalMethods/global_methods.bon. All tests pass, but removed local extensions fo functions, so that these must be top-level now.
+------------------------------------------------------------------------
+r791 | cbj | 2009-05-19 09:37:55 +1000 (Tue, 19 May 2009) | 1 line
+
+modified evaluation of methods to use 'as patterns' for the variable 'this'. Some general tidying too
+------------------------------------------------------------------------
+r789 | cbj | 2009-05-18 16:50:42 +1000 (Mon, 18 May 2009) | 1 line
+
+passing all tests in directories tests and pc_book, except for a dud test (fishacci.bon) and setPrev.bon. Most changes are in the type inference, which has been hacked about a bit.
+------------------------------------------------------------------------
+r782 | arun | 2009-05-15 09:57:25 +1000 (Fri, 15 May 2009) | 1 line
+
+run-tests.sh will generate and run tests
+------------------------------------------------------------------------
+r771 | cbj | 2009-04-23 17:30:52 +1000 (Thu, 23 Apr 2009) | 1 line
+
+fixed a (harmless?) bug in freeTyVars
+------------------------------------------------------------------------
+r770 | cbj | 2009-04-23 15:55:42 +1000 (Thu, 23 Apr 2009) | 1 line
+
+modified the fixed variables in infer_case to strip out some unnecessary fixings, and add some more, for the function case
+------------------------------------------------------------------------
+r769 | cbj | 2009-04-23 15:40:39 +1000 (Thu, 23 Apr 2009) | 1 line
+
+deleted parameter is_default from type inference
+------------------------------------------------------------------------
+r768 | cbj | 2009-04-23 12:37:30 +1000 (Thu, 23 Apr 2009) | 1 line
+
+finished tidying for now
+------------------------------------------------------------------------
+r767 | cbj | 2009-04-23 12:21:00 +1000 (Thu, 23 Apr 2009) | 1 line
+
+tidied up unification, and the type problem has vanished.
+------------------------------------------------------------------------
+r766 | cbj | 2009-04-23 10:26:22 +1000 (Thu, 23 Apr 2009) | 1 line
+
+removed some dead code from infer.ml, including the parameter constraints. Begun adding comments, before fixing th ebug in typing of cases. 
+------------------------------------------------------------------------
+r754 | cbj | 2009-04-15 12:42:24 +1000 (Wed, 15 Apr 2009) | 1 line
+
+modified the quantification of the types of constructors to bind local type symbols, as in Coalgebra
+------------------------------------------------------------------------
+r745 | arun | 2009-03-21 09:43:39 +1100 (Sat, 21 Mar 2009) | 1 line
+
+caml/alloc.h included in gnu_readline.c to prevent segmentation faults in 64 bit systems
+------------------------------------------------------------------------
+r743 | tgwilson | 2009-03-15 21:29:23 +1100 (Sun, 15 Mar 2009) | 2 lines
+
+Fixed int2string and float2string
+
+------------------------------------------------------------------------
+r730 | cbj | 2009-03-06 14:14:17 +1100 (Fri, 06 Mar 2009) | 1 line
+
+stabilising
+------------------------------------------------------------------------
+r715 | arun | 2009-02-13 11:12:52 +1100 (Fri, 13 Feb 2009) | 1 line
+
+Install will display a message, to inform about existing bondi installations
+------------------------------------------------------------------------
+r713 | arun | 2009-02-10 13:05:03 +1100 (Tue, 10 Feb 2009) | 1 line
+
+install target is modified to run from the current directory, PATH variables may or may not export current directory
+------------------------------------------------------------------------
+r712 | arun | 2009-02-10 11:56:04 +1100 (Tue, 10 Feb 2009) | 1 line
+
+Makefile variables were ommitted
+------------------------------------------------------------------------
+r711 | arun | 2009-02-10 10:28:32 +1100 (Tue, 10 Feb 2009) | 1 line
+
+Post build message displayed
+------------------------------------------------------------------------
+r710 | arun | 2009-02-10 09:52:51 +1100 (Tue, 10 Feb 2009) | 1 line
+
+Fixed warning on linux - exit 1 applied after flush
+------------------------------------------------------------------------
+r709 | arun | 2009-02-10 08:47:15 +1100 (Tue, 10 Feb 2009) | 1 line
+
+tidy up - system target called before 'make depend
+------------------------------------------------------------------------
+r707 | arun | 2009-02-09 20:48:21 +1100 (Mon, 09 Feb 2009) | 1 line
+
+system.ml file contains version, standard library paths etc, this is created during the build process. This is the most reliable way best practice. I checked the Ocaml Source code, they also follow the same approach
+------------------------------------------------------------------------
+r704 | arun | 2009-02-07 21:35:21 +1100 (Sat, 07 Feb 2009) | 1 line
+
+DESTDIR does not have a default value
+------------------------------------------------------------------------
+r703 | arun | 2009-02-07 21:12:50 +1100 (Sat, 07 Feb 2009) | 1 line
+
+As per SBG instructions PREFIX variable must be appended to DESTDIR variable
+------------------------------------------------------------------------
+r702 | arun | 2009-02-07 21:10:34 +1100 (Sat, 07 Feb 2009) | 1 line
+
+As per SBG instructions PREFIX variable must be appended to DESTDIR variable
+------------------------------------------------------------------------
+r701 | arun | 2009-02-07 20:44:42 +1100 (Sat, 07 Feb 2009) | 1 line
+
+install and uninstall targets added for cygwin
+------------------------------------------------------------------------
+r699 | arun | 2009-02-06 16:21:17 +1100 (Fri, 06 Feb 2009) | 1 line
+
+Included DESTDIR and --prefix options for SBG
+------------------------------------------------------------------------
+r698 | arun | 2009-02-06 11:36:58 +1100 (Fri, 06 Feb 2009) | 1 line
+
+bon file errors processed via batch are now caught by bondi. Bondi will return exit status 1
+------------------------------------------------------------------------
+r696 | arun | 2009-02-03 09:40:30 +1100 (Tue, 03 Feb 2009) | 1 line
+
+Linux Make under BSD now
+------------------------------------------------------------------------
+r695 | arun | 2009-02-03 09:40:14 +1100 (Tue, 03 Feb 2009) | 1 line
+
+Cygwin Make under BSD now
+------------------------------------------------------------------------
+r694 | arun | 2009-02-03 09:39:52 +1100 (Tue, 03 Feb 2009) | 1 line
+
+Macos Make under BSD now
+------------------------------------------------------------------------
+r693 | arun | 2009-02-03 09:39:26 +1100 (Tue, 03 Feb 2009) | 1 line
+
+Solaris Make under BSD now
+------------------------------------------------------------------------
+r691 | tgwilson | 2009-01-30 15:07:17 +1100 (Fri, 30 Jan 2009) | 3 lines
+
+Fix a compiler warning.
+
+
+------------------------------------------------------------------------
+r690 | cbj | 2009-01-30 15:06:47 +1100 (Fri, 30 Jan 2009) | 9 lines
+
+After reviewing the syntax for linearity,
+
+ - the type syntax S --> T is no longer supported, but replaced by  lin S -> T 
+ - th term syntax fun x --> s is still supported
+ - the syntax fun (x: U) --> s is replaced by fun (x: lin U) --> s 
+
+I trust that this makes things clearer.
+
+
+------------------------------------------------------------------------
+r686 | tgwilson | 2009-01-30 12:29:23 +1100 (Fri, 30 Jan 2009) | 8 lines
+
+Added in threading, you can now spawn a seperate thread to handle bondi code with the following detail:
+
+"spawn" is an operation that takes one argument of type unit and runs that in a seperate thread.
+
+Note: threading is single processor and handled with unix style threads (NOT TESTED ON ANYTHING EXCEPT 
+LINUX YET!!!!), this will not take advantage of multi-processor systems.
+
+
+------------------------------------------------------------------------
+r684 | cbj | 2009-01-30 12:21:16 +1100 (Fri, 30 Jan 2009) | 1 line
+
+added .out files
+------------------------------------------------------------------------
+r682 | tgwilson | 2009-01-30 11:12:38 +1100 (Fri, 30 Jan 2009) | 4 lines
+
+Fixed the errors in the sockets code, they are now safe to use. Details on the sockets is in the datum.ml 
+file.
+
+
+------------------------------------------------------------------------
+r680 | tgwilson | 2009-01-23 15:53:29 +1100 (Fri, 23 Jan 2009) | 4 lines
+
+Updated the datum.ml file so that reading and writing to a listening server socket doesn't do anything 
+horrible. Reads will always return the empty string and writes will always "succeed" returning unit.
+
+
+------------------------------------------------------------------------
+r679 | tgwilson | 2009-01-23 15:22:47 +1100 (Fri, 23 Jan 2009) | 8 lines
+
+Updated datem.ml to simplify the sockets code a little and to ensure I knew how it all worked now.
+
+NOTE: A server socket may do odd things if written to or read from, the client sockets are what the 
+connected people/machines will communicate with!
+
+Updated the demo file, now we have a working server that communicates with connected people.
+
+
+------------------------------------------------------------------------
+r677 | arun | 2009-01-23 14:14:16 +1100 (Fri, 23 Jan 2009) | 1 line
+
+Support for Sockets - TCP server
+------------------------------------------------------------------------
+r676 | tgwilson | 2009-01-22 12:02:17 +1100 (Thu, 22 Jan 2009) | 6 lines
+
+Updates the sockets code to carry around a string in the Socket datum type that describes the socket, now when a 
+socket is printed the display is:
+File socket: 	"Socket:<file>"
+TCP socket:	"Socket:<address>:<port>"
+
+
+------------------------------------------------------------------------
+r675 | arun | 2009-01-22 08:50:23 +1100 (Thu, 22 Jan 2009) | 1 line
+
+Removed gmail references
+------------------------------------------------------------------------
+r674 | cbj | 2009-01-19 10:04:30 +1100 (Mon, 19 Jan 2009) | 2 lines
+
+updated version number to 1.9
+
+------------------------------------------------------------------------
+r664 | cbj | 2009-01-12 12:28:10 +1100 (Mon, 12 Jan 2009) | 11 lines
+
+REverted to having views take juust two arguments rather than three,
+but th etyping is tighter than on Friday, A tpical view now requires
+an accompanying as-patern to set the typing of the pattern.  The
+exampels for the Tech Talk are now working.
+
+Barry
+
+
+
+
+
+------------------------------------------------------------------------
+r663 | cbj | 2009-01-12 10:34:25 +1100 (Mon, 12 Jan 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r660 | cbj | 2009-01-10 12:37:41 +1100 (Sat, 10 Jan 2009) | 1 line
+
+views now take three arguments, a dummy pattern, to control the types, a funcion and a pattern
+------------------------------------------------------------------------
+r649 | cbj | 2009-01-08 16:04:59 +1100 (Thu, 08 Jan 2009) | 1 line
+
+some new datum ops
+------------------------------------------------------------------------
+r645 | cbj | 2009-01-08 09:55:33 +1100 (Thu, 08 Jan 2009) | 1 line
+
+Jose has added some ops necessary for xml parsing
+------------------------------------------------------------------------
+r644 | arun | 2009-01-08 08:01:54 +1100 (Thu, 08 Jan 2009) | 1 line
+
+Removed rm -f  before bondi.exe build, it has no purpose
+------------------------------------------------------------------------
+r643 | arun | 2009-01-08 08:01:10 +1100 (Thu, 08 Jan 2009) | 1 line
+
+Removed rm -f  before bondi.exe build, it has no purpose
+------------------------------------------------------------------------
+r642 | arun | 2009-01-08 07:53:49 +1100 (Thu, 08 Jan 2009) | 1 line
+
+Removed rm -f  before bondi.exe build, it has no purpose
+------------------------------------------------------------------------
+r641 | arun | 2009-01-08 07:49:42 +1100 (Thu, 08 Jan 2009) | 1 line
+
+Removed statement rm bondi before the ocaml native build. This statement has no purpose
+------------------------------------------------------------------------
+r640 | arun | 2009-01-08 07:49:27 +1100 (Thu, 08 Jan 2009) | 1 line
+
+Removed statement rm bondi before the ocaml native build. This statement has no purpose
+------------------------------------------------------------------------
+r639 | cbj | 2009-01-06 13:04:24 +1100 (Tue, 06 Jan 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r634 | cbj | 2009-01-06 10:00:06 +1100 (Tue, 06 Jan 2009) | 1 line
+
+anything else?
+------------------------------------------------------------------------
+r632 | cbj | 2009-01-05 17:01:50 +1100 (Mon, 05 Jan 2009) | 1 line
+
+modified add_case in datatype declarations, but not all example files are changed
+------------------------------------------------------------------------
+r631 | cbj | 2009-01-05 16:28:51 +1100 (Mon, 05 Jan 2009) | 19 lines
+
+Two changes committed here. One is to add views, as described in NOT_FOR_DISTRIBUTION/TechTalk/calendar.bon.
+
+The other is to make adding a case a term form, a command. 
+
+let ext f = | 1 -> 2;;
+
+f += | 3 -> 5;;
+
+f 3;;
+
+evaluates to 5. At present it does not work within datatypes, but I am
+about to fix that. Then add_case will be deprecated. 
+
+Barry
+
+
+
+
+
+------------------------------------------------------------------------
+r626 | cbj | 2008-12-22 11:47:10 +1100 (Mon, 22 Dec 2008) | 1 line
+
+fixed the conflict between functions and methods 
+------------------------------------------------------------------------
+r625 | cbj | 2008-12-22 11:43:24 +1100 (Mon, 22 Dec 2008) | 15 lines
+
+Modified thetype inference for special cases. When extending a
+function then unify, don't simplify. This triggered some minor changes
+to OO examples of binary methods. In turn, this exposed an existing
+error in the environments. 
+
+When an existing function name is to be used for a method, declare.ml
+throws an error. I think that this can be easily fixed, but will not
+do it in this commit.
+
+Barry
+
+
+
+
+
+------------------------------------------------------------------------
+r623 | tgwilson | 2008-12-21 14:47:24 +1100 (Sun, 21 Dec 2008) | 11 lines
+
+Added file IO (fairly primitive version), details are:
+
+open_file_socket: creates a new socket pointing to a file, if the file does not exist then create it
+
+All the socket read and write commands work the same as for network sockets (socket_read_allstr reads to EOF 
+instead of broken connection).
+
+TODO:
+- seek in a file (can't do in a TCP socket...)
+
+
+------------------------------------------------------------------------
+r622 | tgwilson | 2008-12-21 14:09:32 +1100 (Sun, 21 Dec 2008) | 6 lines
+
+Fixed the tension between the socket_read_allstr and socket_read_lnstr, now both use the input channel and are
+compatible.
+
+
+
+
+------------------------------------------------------------------------
+r621 | tgwilson | 2008-12-19 17:09:33 +1100 (Fri, 19 Dec 2008) | 15 lines
+
+Modified the sockets code some more, key points:
+- A socket now creates input and output channels by default, these are all part of a socket datum datatype
+- Read and write now have line (ln) and all (al) versions as follows:
+	+ socket_write_allstr -> writes the entire string
+	+ socket_write_lnstr -> writes one line and appends a newline
+	+ socket_read_lnstr -> reads one line as a string
+	+ socket_read_allstr -> reads till the socket is closed by the remote host
+Comments:
+Writing is not much cleaner and more precise.
+Reading is a bit hit and miss, currently reading lines and reading the whole communication do not always mix 
+well, stick to one or the other!
+
+Finishing up for the day at this point, the demo code still works, but no new examples yet.
+
+
+------------------------------------------------------------------------
+r620 | tgwilson | 2008-12-19 16:08:07 +1100 (Fri, 19 Dec 2008) | 9 lines
+
+Changed the syntax slightly for sockets a little, removed the channels stuff (commented out) for now to figure 
+out just how to handle it properly (how do you apply a datum to something, if you can't then is an in/out 
+channel a datum or an operation?)
+
+Updated demo code for sockets to use new syntax.
+
+Updated printing.bon to use "ext" prefix for extensibility (was crashing on my system).
+
+
+------------------------------------------------------------------------
+r619 | arun | 2008-12-19 13:14:27 +1100 (Fri, 19 Dec 2008) | 1 line
+
+Simple socket support for bondi
+------------------------------------------------------------------------
+r617 | cbj | 2008-12-19 09:27:49 +1100 (Fri, 19 Dec 2008) | 1 line
+
+removed lex.ml and parse.ml form the repository
+------------------------------------------------------------------------
+r616 | cbj | 2008-12-19 09:27:16 +1100 (Fri, 19 Dec 2008) | 1 line
+
+now add_method just like add_case. Also lin Int is a type in the parser
+------------------------------------------------------------------------
+r615 | arun | 2008-12-18 10:46:56 +1100 (Thu, 18 Dec 2008) | 1 line
+
+Modifield lexer to all for shebang hash bang on the first line of .bon files. We get ruby and python scripting ability. This change allows bon files to be executable scripts
+------------------------------------------------------------------------
+r614 | cbj | 2008-12-15 15:06:40 +1100 (Mon, 15 Dec 2008) | 1 line
+
+restored parse for the backslash character
+------------------------------------------------------------------------
+r613 | arun | 2008-12-12 15:40:53 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Lexer changes from Jose
+------------------------------------------------------------------------
+r611 | tgwilson | 2008-12-12 15:03:14 +1100 (Fri, 12 Dec 2008) | 2 lines
+
+Cleaned up a bit more, reverted change in r 597
+
+------------------------------------------------------------------------
+r597 | tgwilson | 2008-12-12 14:07:28 +1100 (Fri, 12 Dec 2008) | 5 lines
+
+Trimmed out some unnecessary functions from dump.ml and dump.mli, tidied up what was left, fixed 
+compiler warning.
+IMPORTANT: minor change to how code works, now using xs3 in dump.ml line 295
+
+
+------------------------------------------------------------------------
+r596 | arun | 2008-12-12 14:02:13 +1100 (Fri, 12 Dec 2008) | 1 line
+
+cygwin Makefile.in in line with linux Makefile.in
+------------------------------------------------------------------------
+r595 | arun | 2008-12-12 13:59:29 +1100 (Fri, 12 Dec 2008) | 1 line
+
+solaris makefile updated to clean *.log *.status. *.cmx *.cmi will now be clean from config/native directory
+------------------------------------------------------------------------
+r594 | tgwilson | 2008-12-12 13:49:22 +1100 (Fri, 12 Dec 2008) | 4 lines
+
+Initial stripping of Freeze and Thaw directives from bondi. Removed them as directives, removed from 
+lexer, removed from shell...  
+
+
+------------------------------------------------------------------------
+r590 | arun | 2008-12-12 13:42:18 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Linux Makefile.in and Mac Makefile.in are in sync
+------------------------------------------------------------------------
+r589 | arun | 2008-12-12 13:37:40 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Renamed compiler directory to src
+------------------------------------------------------------------------
+r586 | arun | 2008-12-12 13:02:56 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Macos Makefile.in changed to reflect changes in linux/Makefile.in
+------------------------------------------------------------------------
+r585 | arun | 2008-12-12 12:52:45 +1100 (Fri, 12 Dec 2008) | 1 line
+
+General cleanup - moved files up from compiler directory
+------------------------------------------------------------------------
+r584 | arun | 2008-12-12 12:50:46 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Removed *.interface generation in the Makefile
+------------------------------------------------------------------------
+r583 | arun | 2008-12-12 12:31:12 +1100 (Fri, 12 Dec 2008) | 1 line
+
+removed sys files
+------------------------------------------------------------------------
+r582 | tgwilson | 2008-12-12 12:08:01 +1100 (Fri, 12 Dec 2008) | 2 lines
+
+Resotring the dump.ml
+
+------------------------------------------------------------------------
+r580 | arun | 2008-12-12 11:49:00 +1100 (Fri, 12 Dec 2008) | 1 line
+
+README contains BSD licence preamble. README has been removed from bondi/compiler directory. README file has been renamed LICENCE and moved to the bondi directory
+------------------------------------------------------------------------
+r578 | tgwilson | 2008-12-12 11:41:09 +1100 (Fri, 12 Dec 2008) | 2 lines
+
+Commented out the "freshen_env" function as it appeared unused and was generating a compiler warning
+
+------------------------------------------------------------------------
+r577 | tgwilson | 2008-12-12 11:31:56 +1100 (Fri, 12 Dec 2008) | 4 lines
+
+Commented the inoperability of the freeze and thaw directives. Currently a user attempting to run 
+them will receive a message that they are not available. Original code left in comments as before. 
+This change motivated to remove compiler warnings.
+
+------------------------------------------------------------------------
+r576 | arun | 2008-12-12 11:25:31 +1100 (Fri, 12 Dec 2008) | 1 line
+
+bondi executable now moved up a level
+------------------------------------------------------------------------
+r575 | arun | 2008-12-12 11:20:30 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Makefile.in modified to *.cmx and *.cmi files in config/native
+------------------------------------------------------------------------
+r574 | arun | 2008-12-12 11:08:50 +1100 (Fri, 12 Dec 2008) | 1 line
+
+gnu_readline.c modified to remove free(), which was used in the wrong context
+------------------------------------------------------------------------
+r573 | arun | 2008-12-12 10:57:22 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Support for Bondi with out Readline library
+------------------------------------------------------------------------
+r571 | cbj | 2008-12-12 10:48:47 +1100 (Fri, 12 Dec 2008) | 1 line
+
+added BONDI_LIB_DIR
+------------------------------------------------------------------------
+r570 | arun | 2008-12-12 08:30:30 +1100 (Fri, 12 Dec 2008) | 1 line
+
+socket types included in datum.ml and datum.mli to enable socket support in Bondi 
+------------------------------------------------------------------------
+r568 | arun | 2008-12-12 08:04:52 +1100 (Fri, 12 Dec 2008) | 1 line
+
+Unified make commands for all Platforms- previously Solaris instructions ommitted make depend
+------------------------------------------------------------------------
+r567 | arun | 2008-12-08 15:36:13 +1100 (Mon, 08 Dec 2008) | 1 line
+
+Removed Makefile
+------------------------------------------------------------------------
+r566 | arun | 2008-12-08 15:35:38 +1100 (Mon, 08 Dec 2008) | 1 line
+
+Removed GNUmakefile
+------------------------------------------------------------------------
+r565 | arun | 2008-12-08 15:07:31 +1100 (Mon, 08 Dec 2008) | 1 line
+
+Cross Platform Make files
+------------------------------------------------------------------------
+r564 | cbj | 2008-11-28 09:53:18 +1100 (Fri, 28 Nov 2008) | 17 lines
+
+After getting everything sort of working yesterday, 
+I have done some tifdying up today.
+
+ - modified type inference to remove the second use of simplification when extending. This means that all of the additional type information added to examples yesterday can be remved again. Hooray!
+
+ - compared output with all_tests.out and pc_book.out
+
+	Found that specialises mode was giving unhelpful information about the result type, so modified this to show only the argument type of the specialisation.
+
+ - improved the printing of linear, reference and array types, These three have identical code except for the keyword. Perhaps theswe, and any future developments, couldhave a single type form. 
+
+ - inspected the new output files by hand, and saw that they were good. Moved them to be the new .out files.
+
+Barry
+
+
+
+------------------------------------------------------------------------
+r563 | cbj | 2008-11-27 17:44:42 +1100 (Thu, 27 Nov 2008) | 4 lines
+
+See the latest comments in todo.
+
+
+
+------------------------------------------------------------------------
+r562 | cbj | 2008-11-27 17:39:28 +1100 (Thu, 27 Nov 2008) | 7 lines
+
+After a major revision of the book, and of the type inference, the compiler is once again stable. That is, all of the tests run, and pc_book.bon runs, but I've not yet checked the output against the previous versions (sigh) 
+
+Barry
+
+
+
+
+------------------------------------------------------------------------
+r561 | cbj | 2008-11-25 13:50:51 +1100 (Tue, 25 Nov 2008) | 1 line
+
+simplificaiton of type inequalitiues appears to be working
+------------------------------------------------------------------------
+r560 | cbj | 2008-11-20 12:35:32 +1100 (Thu, 20 Nov 2008) | 1 line
+
+reworked linearity so that linear types takea  single argument, ie Linty (ty1,ty2) is now Funty(Linty ty1, ty2)
+------------------------------------------------------------------------
+r559 | cbj | 2008-11-19 14:02:13 +1100 (Wed, 19 Nov 2008) | 1 line
+
+stabilising
+------------------------------------------------------------------------
+r557 | cbj | 2008-11-01 09:39:31 +1100 (Sat, 01 Nov 2008) | 1 line
+
+stabilising
+------------------------------------------------------------------------
+r556 | cbj | 2008-10-28 12:07:04 +1100 (Tue, 28 Oct 2008) | 1 line
+
+added a parameter for the term consturctor of a class bu tcurrently set to be the same as the class name.
+------------------------------------------------------------------------
+r555 | cbj | 2008-10-28 11:48:24 +1100 (Tue, 28 Oct 2008) | 1 line
+
+debugged some decdlaration index stuff, added a corresponding mode.
+------------------------------------------------------------------------
+r554 | cbj | 2008-10-23 16:46:24 +1100 (Thu, 23 Oct 2008) | 1 line
+
+looking good
+------------------------------------------------------------------------
+r552 | cbj | 2008-10-23 16:42:37 +1100 (Thu, 23 Oct 2008) | 1 line
+
+looking good
+------------------------------------------------------------------------
+r550 | cbj | 2008-10-23 16:27:49 +1100 (Thu, 23 Oct 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r549 | cbj | 2008-10-23 15:14:03 +1100 (Thu, 23 Oct 2008) | 1 line
+
+various things, up to all_tests.bon
+------------------------------------------------------------------------
+r546 | cbj | 2008-10-22 17:08:16 +1100 (Wed, 22 Oct 2008) | 1 line
+
+various improvements as documented in todo
+------------------------------------------------------------------------
+r545 | cbj | 2008-10-22 14:45:32 +1100 (Wed, 22 Oct 2008) | 1 line
+
+moved adt_tests.bon to declaration_tests.bon
+------------------------------------------------------------------------
+r544 | cbj | 2008-10-22 14:40:18 +1100 (Wed, 22 Oct 2008) | 1 line
+
+fixing indexsing
+------------------------------------------------------------------------
+r542 | cbj | 2008-10-20 14:28:25 +1100 (Mon, 20 Oct 2008) | 1 line
+
+the weekend's work
+------------------------------------------------------------------------
+r541 | cbj | 2008-10-18 11:30:14 +1100 (Sat, 18 Oct 2008) | 1 line
+
+imperative_tests.bon complete, as are arrays
+------------------------------------------------------------------------
+r540 | cbj | 2008-10-17 10:14:39 +1100 (Fri, 17 Oct 2008) | 1 line
+
+corrected eval of eqcons
+------------------------------------------------------------------------
+r539 | cbj | 2008-10-17 09:17:32 +1100 (Fri, 17 Oct 2008) | 1 line
+
+clarified problems with escaped characters in strings, and printing issues.
+------------------------------------------------------------------------
+r538 | cbj | 2008-10-17 08:40:46 +1100 (Fri, 17 Oct 2008) | 1 line
+
+lifted printString from eal recursion
+------------------------------------------------------------------------
+r537 | cbj | 2008-10-16 16:43:49 +1100 (Thu, 16 Oct 2008) | 1 line
+
+added mode nomatch to control errors, especially good for testing
+------------------------------------------------------------------------
+r536 | cbj | 2008-10-16 15:42:02 +1100 (Thu, 16 Oct 2008) | 1 line
+
+added datum_tests.bon
+------------------------------------------------------------------------
+r535 | cbj | 2008-10-16 15:34:17 +1100 (Thu, 16 Oct 2008) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r534 | cbj | 2008-10-16 15:19:56 +1100 (Thu, 16 Oct 2008) | 1 line
+
+moved unit and printing out of datum.ml
+------------------------------------------------------------------------
+r533 | cbj | 2008-10-16 14:42:20 +1100 (Thu, 16 Oct 2008) | 1 line
+
+about to move printstring out of datum.ml, to facilitate printing of void references, etc.
+------------------------------------------------------------------------
+r532 | cbj | 2008-10-15 14:13:08 +1100 (Wed, 15 Oct 2008) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r531 | cbj | 2008-10-15 13:05:15 +1100 (Wed, 15 Oct 2008) | 1 line
+
+improvements, as documented in compiler/todo
+------------------------------------------------------------------------
+r530 | cbj | 2008-10-15 12:09:45 +1100 (Wed, 15 Oct 2008) | 1 line
+
+added some comments
+------------------------------------------------------------------------
+r529 | cbj | 2008-10-15 11:27:51 +1100 (Wed, 15 Oct 2008) | 1 line
+
+introduced Related as a precision, removed most Top from .bon files
+------------------------------------------------------------------------
+r527 | cbj | 2008-10-14 13:59:42 +1100 (Tue, 14 Oct 2008) | 1 line
+
+updated sub-typing to reflect lack of minimality in method argument types
+------------------------------------------------------------------------
+r526 | cbj | 2008-10-13 15:41:02 +1100 (Mon, 13 Oct 2008) | 16 lines
+
+A major conceptual change in lin ewith changes to the theory.
+Argument types of method types need not be minimal any longer. When
+type specialisation is performed then the most general relator is
+required, not the most general unifier. This required adding a third
+sort of precision to unification. 
+
+This change triggered some errors in pcb_object.... .bon which have
+been fixed by, in part, loosening the tratment of unassigned fields.
+
+The next step is to define the type Point to be Point [Top] not Point
+[a] for a mystery type a.
+
+
+
+
+
+------------------------------------------------------------------------
+r525 | cbj | 2008-10-10 09:13:54 +1100 (Fri, 10 Oct 2008) | 1 line
+
+renaming fixed to fixed1 in inf_letrec
+------------------------------------------------------------------------
+r524 | cbj | 2008-09-29 11:34:17 +1000 (Mon, 29 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r523 | tgwilson | 2008-09-27 13:29:13 +1000 (Sat, 27 Sep 2008) | 3 lines
+
+Simplified the lexer by removing the check for operators when tokens begin with a capital letter.
+Note: This is enforcing an unwritten rule that all operations/operators begin with lower case letters!
+
+------------------------------------------------------------------------
+r522 | tgwilson | 2008-09-27 13:24:27 +1000 (Sat, 27 Sep 2008) | 3 lines
+
+Added N-ary string operations with some minor optimisations and added comments. Only required changes to the 
+lexing, parsing and datum. 
+
+------------------------------------------------------------------------
+r519 | cbj | 2008-09-15 19:17:20 +1000 (Mon, 15 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r518 | cbj | 2008-09-15 10:44:58 +1000 (Mon, 15 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r517 | cbj | 2008-09-15 08:20:13 +1000 (Mon, 15 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r516 | cbj | 2008-09-12 14:09:49 +1000 (Fri, 12 Sep 2008) | 1 line
+
+reworking classes
+------------------------------------------------------------------------
+r515 | cbj | 2008-09-12 06:49:46 +1000 (Fri, 12 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r514 | tgwilson | 2008-09-11 23:08:56 +1000 (Thu, 11 Sep 2008) | 5 lines
+
+Added random number generation for ints and floats. New comments take an argument of either int or float and 
+return a positive random number in the range of 0 to the argument. Commands are:
+randomint: int -> int
+randomfloat: float -> float
+
+------------------------------------------------------------------------
+r513 | cbj | 2008-09-11 16:39:34 +1000 (Thu, 11 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r512 | cbj | 2008-09-11 08:27:51 +1000 (Thu, 11 Sep 2008) | 1 line
+
+fixed some details
+------------------------------------------------------------------------
+r511 | cbj | 2008-09-10 14:13:25 +1000 (Wed, 10 Sep 2008) | 1 line
+
+modified toString to produce type String * Bool where the boolean indicates the need for brackets.
+------------------------------------------------------------------------
+r510 | cbj | 2008-09-08 16:01:41 +1000 (Mon, 08 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r509 | cbj | 2008-09-08 15:53:20 +1000 (Mon, 08 Sep 2008) | 1 line
+
+most things working now, but DNode class is having problems with type paramters
+------------------------------------------------------------------------
+r508 | cbj | 2008-09-08 10:52:22 +1000 (Mon, 08 Sep 2008) | 1 line
+
+removed extra wildcards
+------------------------------------------------------------------------
+r507 | cbj | 2008-09-08 09:30:31 +1000 (Mon, 08 Sep 2008) | 1 line
+
+limited support for types in patterns, namely datum types and class types that do not have any generics
+------------------------------------------------------------------------
+r505 | cbj | 2008-09-08 08:54:34 +1000 (Mon, 08 Sep 2008) | 21 lines
+
+The representation of the types of classes has changed. Se pc_book/pcb_object-orientation for examples. (I have yet to commit this file.) 
+
+IN an OO setting, ColourPoint = ColourPoint[] = ColourPoint [a] for a fresh type variable a. 
+
+The local type constant, previously denoted ColourPoint, still exists internally, but cannot be printed, as it comes out as <a type constant> .
+
+When objects appear as function arguments then the correct syntax is 
+
+f (x: ColourPoint[]) not f (x: ColourPoint). With some effort, the former syntax can be supported, but this enforced reminder may be a good thing when mixing styles. 
+
+The next step will be to replace the "as" syntax by typing in source syntax for patterns, e.g. 
+
+| x: Int -> ...
+| x : ColourPoint[] -> ...
+
+which will be translated to _Int as x and the pattern for a colourpoint as x.
+So no need for special wildcards anymore., at least in surface syntax.  
+
+
+
+
+------------------------------------------------------------------------
+r504 | cbj | 2008-09-08 07:36:45 +1000 (Mon, 08 Sep 2008) | 1 line
+
+objects now stable, but more improvements on the way
+------------------------------------------------------------------------
+r503 | cbj | 2008-09-06 15:29:32 +1000 (Sat, 06 Sep 2008) | 1 line
+
+still working
+------------------------------------------------------------------------
+r501 | cbj | 2008-09-04 16:02:51 +1000 (Thu, 04 Sep 2008) | 16 lines
+
+I have modified the account of the types of classes, as in 
+
+
+class Name { 
+name : String;
+get_name = { | () -> !this.name }
+set_name = { fun n -> this.name = n }
+with
+add_case toString (Name x y) = fun b -> !y
+}
+
+
+Now Name [] is sugar for Name [a] where a is a fresh variable, not Name [Unit]. This is closer to the standard OO usage, since each Name object will have its own variable. 
+
+
+
+------------------------------------------------------------------------
+r500 | cbj | 2008-09-04 15:26:34 +1000 (Thu, 04 Sep 2008) | 1 line
+
+stablising
+------------------------------------------------------------------------
+r499 | cbj | 2008-09-04 07:21:15 +1000 (Thu, 04 Sep 2008) | 31 lines
+
+
+
+More or less stable now. The main changes are:
+
+ - no explicit types in evaluation at all. Rather, linear types and
+ abstractions get the job done. Linear abstraction may be later
+ generalised to linear patterns. Actually, this will be easy, since if
+ a data structure is linear then so are its components.
+
+
+ - reworking of inference to reflect the better understanding in the
+ book. More things type check now.
+
+ - reworking of evaluation to improve the representation of
+ values. These now include wildcards, choices, and cases, instead of
+ Iterms. getval and storeval have been eliminated (these produced
+ i_terms from values, going backwards).
+
+ - eliminated the constructors Int : PrimInt -> Int in favour of a
+ direct repressntation, using datum wildcards such as _Int to force
+ the typing. So the pattern
+
+x:Int in the typed pattern calculus used to be 
+Int x in bondi but is now 
+_Int as x 
+
+Barry
+
+
+
+
+------------------------------------------------------------------------
+r498 | cbj | 2008-09-01 15:07:49 +1000 (Mon, 01 Sep 2008) | 1 line
+
+still very unstable
+------------------------------------------------------------------------
+r497 | cbj | 2008-09-01 08:13:47 +1000 (Mon, 01 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r496 | cbj | 2008-08-30 15:50:09 +1000 (Sat, 30 Aug 2008) | 1 line
+
+tidied up tymatch etc and about to consider linear terms
+------------------------------------------------------------------------
+r495 | cbj | 2008-08-17 11:33:13 +1000 (Sun, 17 Aug 2008) | 1 line
+
+removed explicit types
+------------------------------------------------------------------------
+r493 | cbj | 2008-08-16 09:26:05 +1000 (Sat, 16 Aug 2008) | 1 line
+
+removed type subs from Iterms, eval, etc.
+------------------------------------------------------------------------
+r492 | cbj | 2008-08-16 09:13:49 +1000 (Sat, 16 Aug 2008) | 1 line
+
+removed Vtyped
+------------------------------------------------------------------------
+r491 | cbj | 2008-08-16 09:11:35 +1000 (Sat, 16 Aug 2008) | 1 line
+
+removed Dtyped
+------------------------------------------------------------------------
+r490 | cbj | 2008-08-16 09:07:57 +1000 (Sat, 16 Aug 2008) | 1 line
+
+removed Dlam
+------------------------------------------------------------------------
+r489 | cbj | 2008-08-16 09:05:16 +1000 (Sat, 16 Aug 2008) | 1 line
+
+removed Etyped and dlam
+------------------------------------------------------------------------
+r488 | cbj | 2008-08-16 09:02:04 +1000 (Sat, 16 Aug 2008) | 1 line
+
+removed QF
+------------------------------------------------------------------------
+r487 | cbj | 2008-08-16 08:55:55 +1000 (Sat, 16 Aug 2008) | 1 line
+
+removed PQF from p_data.ml
+------------------------------------------------------------------------
+r477 | cbj | 2008-05-27 18:33:20 +1000 (Tue, 27 May 2008) | 1 line
+
+removed eqcons, since dynamic equality will achieve this now
+------------------------------------------------------------------------
+r474 | cbj | 2008-05-13 10:14:26 +1000 (Tue, 13 May 2008) | 1 line
+
+added initial_output
+------------------------------------------------------------------------
+r473 | cbj | 2008-04-23 16:23:32 +1000 (Wed, 23 Apr 2008) | 1 line
+
+added a BSD license to README
+------------------------------------------------------------------------
+r472 | cbj | 2008-04-22 12:11:18 +1000 (Tue, 22 Apr 2008) | 20 lines
+
+Dynamic patterns ahve been reworked.
+
+Free variables in patterns are bound by Dlam which produces a
+quantified funciton type. These are applied to terms with explicit
+types. The corresponding term variables (and the terms they are bound
+to) are identified by ::, as in the examples below
+
+
+let elim (x::) = | {y} x y -> y;;
+
+
+elim (Cons::) ;;
+
+
+Theory is being developed. 
+
+Barry
+
+
+
+------------------------------------------------------------------------
+r471 | cbj | 2008-04-20 13:11:14 +1000 (Sun, 20 Apr 2008) | 1 line
+
+stabilising after trying to restore parametrised classes
+------------------------------------------------------------------------
+r470 | cbj | 2008-04-19 16:00:43 +1000 (Sat, 19 Apr 2008) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r469 | cbj | 2008-04-19 15:13:21 +1000 (Sat, 19 Apr 2008) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r468 | cbj | 2008-04-19 12:56:04 +1000 (Sat, 19 Apr 2008) | 1 line
+
+i_context is just theta now
+------------------------------------------------------------------------
+r467 | cbj | 2008-04-19 12:52:45 +1000 (Sat, 19 Apr 2008) | 1 line
+
+working but unclean. I'm going to emove the type of the pattern from the i_context
+------------------------------------------------------------------------
+r466 | cbj | 2008-04-19 12:52:03 +1000 (Sat, 19 Apr 2008) | 1 line
+
+working but unclean. I'm going to emove the type of the pattern from the i_context
+------------------------------------------------------------------------
+r465 | cbj | 2008-04-18 12:48:57 +1000 (Fri, 18 Apr 2008) | 1 line
+
+find_paths is now in dynamic
+------------------------------------------------------------------------
+r463 | cbj | 2008-04-18 09:40:24 +1000 (Fri, 18 Apr 2008) | 1 line
+
+restored printing of class types
+------------------------------------------------------------------------
+r462 | cbj | 2008-04-18 09:29:46 +1000 (Fri, 18 Apr 2008) | 19 lines
+
+Generalised from unify Exact to unify_or_sub_match throughout type
+inference.  It tries exact unification first but if that fails then it
+tries sub-matching. At present, the sub-matching has delta empty but
+this can be improved when examples ar available to guide the
+development. For now, everything works.
+
+Also, the means of typing terms is now either 
+
+(t:T) or (t::T) but no longer (t<:T) since unify_or_sub_match seems to
+take care of it. p_data.ml still has three forms of typed term,
+though.
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+r461 | cbj | 2008-04-17 19:49:36 +1000 (Thu, 17 Apr 2008) | 1 line
+
+now version 1.7
+------------------------------------------------------------------------
+r460 | cbj | 2008-04-17 19:48:24 +1000 (Thu, 17 Apr 2008) | 1 line
+
+dynamics working now -- it seems -- check out dynamic.bon
+------------------------------------------------------------------------
+r459 | cbj | 2008-04-14 17:04:33 +1000 (Mon, 14 Apr 2008) | 1 line
+
+added dynamics
+------------------------------------------------------------------------
+r457 | cbj | 2008-04-14 07:49:40 +1000 (Mon, 14 Apr 2008) | 1 line
+
+checking
+------------------------------------------------------------------------
+r456 | cbj | 2008-04-10 14:26:03 +1000 (Thu, 10 Apr 2008) | 1 line
+
+tidying infer.ml
+------------------------------------------------------------------------
+r455 | cbj | 2008-04-10 14:12:04 +1000 (Thu, 10 Apr 2008) | 1 line
+
+tidying infer.ml
+------------------------------------------------------------------------
+r454 | cbj | 2008-04-10 14:11:53 +1000 (Thu, 10 Apr 2008) | 1 line
+
+tidying infer.ml
+------------------------------------------------------------------------
+r453 | cbj | 2008-04-10 14:01:35 +1000 (Thu, 10 Apr 2008) | 1 line
+
+tidying infer.ml
+------------------------------------------------------------------------
+r452 | cbj | 2008-04-10 13:55:43 +1000 (Thu, 10 Apr 2008) | 1 line
+
+tidying infer.ml
+------------------------------------------------------------------------
+r451 | cbj | 2008-04-10 10:18:58 +1000 (Thu, 10 Apr 2008) | 1 line
+
+committing the other files again
+------------------------------------------------------------------------
+r449 | cbj | 2008-04-10 09:55:53 +1000 (Thu, 10 Apr 2008) | 1 line
+
+added more checks to infer_ap
+------------------------------------------------------------------------
+r448 | cbj | 2008-04-10 08:38:54 +1000 (Thu, 10 Apr 2008) | 1 line
+
+added variables to be avoided, as well as fixed, to handle poly-types in arguments
+------------------------------------------------------------------------
+r447 | cbj | 2008-04-09 17:00:13 +1000 (Wed, 09 Apr 2008) | 1 line
+
+looking good, but going back to the book now
+------------------------------------------------------------------------
+r446 | cbj | 2008-04-09 16:03:00 +1000 (Wed, 09 Apr 2008) | 1 line
+
+structure_poly.bon is typed but not executing yet
+------------------------------------------------------------------------
+r445 | cbj | 2008-04-09 13:04:02 +1000 (Wed, 09 Apr 2008) | 1 line
+
+pc_book.bon is executing
+------------------------------------------------------------------------
+r444 | cbj | 2008-04-08 13:22:16 +1000 (Tue, 08 Apr 2008) | 1 line
+
+stripped out some bVars from infer_full , and started restoring structur_poly
+------------------------------------------------------------------------
+r443 | tgwilson | 2008-03-03 17:13:22 +1100 (Mon, 03 Mar 2008) | 1 line
+
+Fixing makefile
+------------------------------------------------------------------------
+r442 | tgwilson | 2008-03-03 16:08:27 +1100 (Mon, 03 Mar 2008) | 1 line
+
+Removing a stray peek
+------------------------------------------------------------------------
+r437 | tgwilson | 2008-02-29 13:19:21 +1100 (Fri, 29 Feb 2008) | 1 line
+
+cleaninig...
+------------------------------------------------------------------------
+r422 | cbj | 2008-01-29 12:07:49 +1100 (Tue, 29 Jan 2008) | 1 line
+
+going to separate out the polytypes
+------------------------------------------------------------------------
+r421 | cbj | 2008-01-29 09:34:58 +1100 (Tue, 29 Jan 2008) | 1 line
+
+stabilising
+------------------------------------------------------------------------
+r420 | cbj | 2007-12-20 09:29:39 +1100 (Thu, 20 Dec 2007) | 1 line
+
+backtracking on Obj
+------------------------------------------------------------------------
+r419 | cbj | 2007-12-18 09:16:08 +1100 (Tue, 18 Dec 2007) | 1 line
+
+added arrays but they are rather slow, taking 2-3 seconds for 1000 accesses
+------------------------------------------------------------------------
+r418 | cbj | 2007-12-17 12:03:09 +1100 (Mon, 17 Dec 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r417 | cbj | 2007-11-13 14:18:41 +1100 (Tue, 13 Nov 2007) | 1 line
+
+merged i_data with environments, begun added dynamic cases as well as static cases. The implementation is stable but the changes are not complete
+------------------------------------------------------------------------
+r416 | cbj | 2007-11-11 11:31:02 +1100 (Sun, 11 Nov 2007) | 1 line
+
+commenting out sql stuff
+------------------------------------------------------------------------
+r415 | cbj | 2007-11-11 11:24:35 +1100 (Sun, 11 Nov 2007) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r412 | cbj | 2007-11-07 13:47:38 +1100 (Wed, 07 Nov 2007) | 1 line
+
+deleting CVS
+------------------------------------------------------------------------
+r411 | cbj | 2007-11-07 13:47:22 +1100 (Wed, 07 Nov 2007) | 1 line
+
+deleting CVS
+------------------------------------------------------------------------
+r410 | cbj | 2007-11-07 13:40:39 +1100 (Wed, 07 Nov 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r408 | cbj | 2007-11-07 09:11:26 +1100 (Wed, 07 Nov 2007) | 1 line
+
+moved bronte_static to bondi
+------------------------------------------------------------------------
+r406 | cbj | 2007-11-05 11:18:01 +1100 (Mon, 05 Nov 2007) | 1 line
+
+tidy
+------------------------------------------------------------------------
+r405 | cbj | 2007-11-05 11:13:27 +1100 (Mon, 05 Nov 2007) | 1 line
+
+tidy
+------------------------------------------------------------------------
+r404 | cbj | 2007-11-05 11:12:25 +1100 (Mon, 05 Nov 2007) | 1 line
+
+removed CVS
+------------------------------------------------------------------------
+r398 | cbj | 2007-11-05 09:22:10 +1100 (Mon, 05 Nov 2007) | 1 line
+
+moved prelude files to their own directory
+------------------------------------------------------------------------
+r395 | cbj | 2007-11-05 09:05:14 +1100 (Mon, 05 Nov 2007) | 1 line
+
+this, and the lat commit, are tidying up the compiler directory
+------------------------------------------------------------------------
+r394 | cbj | 2007-11-05 09:03:04 +1100 (Mon, 05 Nov 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r390 | cbj | 2007-10-21 11:59:08 +1000 (Sun, 21 Oct 2007) | 1 line
+
+completed pc_book.bon
+------------------------------------------------------------------------
+r388 | cbj | 2007-10-21 08:33:26 +1000 (Sun, 21 Oct 2007) | 1 line
+
+pc_book.bon motivated things, such as typed variables as patterns for objects and improvements to add_case
+------------------------------------------------------------------------
+r387 | cbj | 2007-10-19 15:28:53 +1000 (Fri, 19 Oct 2007) | 1 line
+
+add_case for classes now, too
+------------------------------------------------------------------------
+r386 | cbj | 2007-10-19 12:12:02 +1000 (Fri, 19 Oct 2007) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r384 | cbj | 2007-10-19 10:01:41 +1000 (Fri, 19 Oct 2007) | 7 lines
+
+The syntax for adding cases has been changed.  Now it is only allowed
+as part of a type declaration, rather similar to the way that methods
+are specialised. See demo/core_types.bon for examples. 
+
+
+
+
+------------------------------------------------------------------------
+r383 | cbj | 2007-10-19 07:13:20 +1000 (Fri, 19 Oct 2007) | 1 line
+
+tidied up lexer, maybe made a mess with the global environments
+------------------------------------------------------------------------
+r381 | cbj | 2007-10-18 14:56:39 +1000 (Thu, 18 Oct 2007) | 13 lines
+
+introduced syntax for naming patterns 
+
+| p as x -> s(x) 
+
+in patterns, so that Refs can be handled directly, as in 
+
+~~ let x = Ref 3 in (| Ref (Int _) as z -> z = !z +1)x; !x;;
+_: Int
+_ = 4
+
+
+
+
+------------------------------------------------------------------------
+r380 | cbj | 2007-10-18 12:05:52 +1000 (Thu, 18 Oct 2007) | 1 line
+
+added for-loops by adding forall to the standard prelude - not very stable
+------------------------------------------------------------------------
+r379 | cbj | 2007-10-18 11:48:23 +1000 (Thu, 18 Oct 2007) | 1 line
+
+added while-loops
+------------------------------------------------------------------------
+r378 | cbj | 2007-10-18 11:28:40 +1000 (Thu, 18 Oct 2007) | 1 line
+
+stripped redundant tokens from lexer/parser
+------------------------------------------------------------------------
+r377 | cbj | 2007-10-17 10:08:03 +1000 (Wed, 17 Oct 2007) | 1 line
+
+fiddling with specialise mode
+------------------------------------------------------------------------
+r376 | cbj | 2007-10-17 08:02:37 +1000 (Wed, 17 Oct 2007) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r375 | cbj | 2007-10-16 11:53:02 +1000 (Tue, 16 Oct 2007) | 1 line
+
+changed from bronte to bondi 1.5
+------------------------------------------------------------------------
+r342 | tgwilson | 2007-10-11 17:33:18 +1000 (Thu, 11 Oct 2007) | 1 line
+
+Updating version numbers
+------------------------------------------------------------------------
+r334 | tgwilson | 2007-10-11 13:59:10 +1000 (Thu, 11 Oct 2007) | 1 line
+
+Suppressed printing of testing detail
+------------------------------------------------------------------------
+r332 | cbj | 2007-10-11 11:55:31 +1000 (Thu, 11 Oct 2007) | 1 line
+
+introduced closty to type specialisation so that implicitly quantified type variables can be identified. Also, has to add a case to lessThan.
+------------------------------------------------------------------------
+r298 | cbj | 2007-10-08 16:27:12 +1000 (Mon, 08 Oct 2007) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r297 | cbj | 2007-10-08 15:38:32 +1000 (Mon, 08 Oct 2007) | 1 line
+
+added another representation, motivated by rose trees
+------------------------------------------------------------------------
+r289 | cbj | 2007-10-04 10:11:26 +1000 (Thu, 04 Oct 2007) | 29 lines
+
+
+
+The treatment of representations has been corrected. In particular 
+deconstruct has a new type 
+
+deconstruct : b c -> exists a. Represent a b c 
+
+to reflect the fact that the structure of the representation is not
+known in advance. The type of reconstruct is unchanged at 
+
+reconstruct : Represent a b c  -> b c 
+
+This has led me to add syntactic sugar for existential types (though
+these become universals during conversion from p_types to i_types).
+
+The code for mapping etc requires slight modification. For example, the final line of program for map is changed from 
+
+fun f x -> reconstruct  (map0 f (deconstruct x))
+
+to 
+
+fun f x -> reconstruct  (deconstruct x (map0 f))
+
+The most complex change is to zipwith, but still is confined to one line. 
+
+Barry
+
+
+
+------------------------------------------------------------------------
+r286 | cbj | 2007-10-03 09:44:25 +1000 (Wed, 03 Oct 2007) | 1 line
+
+changed type of Tag, pushed it and the representing functions into core_types.bon
+------------------------------------------------------------------------
+r283 | cbj | 2007-10-02 19:04:21 +1000 (Tue, 02 Oct 2007) | 1 line
+
+dead code deleted. Note new primitive constructor Ok
+------------------------------------------------------------------------
+r282 | cbj | 2007-10-02 19:03:33 +1000 (Tue, 02 Oct 2007) | 1 line
+
+new account of structure polymorphism, using deconstruct and reconstruct. Some dead code in declare.ml being committed for posterity, to be delted in a minute. 
+------------------------------------------------------------------------
+r241 | cbj | 2007-09-21 13:33:37 +1000 (Fri, 21 Sep 2007) | 1 line
+
+main example working in pc_book.bon. Hooraycd ..
+------------------------------------------------------------------------
+r238 | cbj | 2007-09-14 12:04:14 +1000 (Fri, 14 Sep 2007) | 1 line
+
+doubly-linked lists are now working
+------------------------------------------------------------------------
+r236 | cbj | 2007-09-11 16:56:43 +1000 (Tue, 11 Sep 2007) | 1 line
+
+removing executables
+------------------------------------------------------------------------
+r235 | cbj | 2007-09-11 15:33:08 +1000 (Tue, 11 Sep 2007) | 1 line
+
+fixed bug in type inference
+------------------------------------------------------------------------
+r234 | cbj | 2007-09-09 17:20:50 +1000 (Sun, 09 Sep 2007) | 1 line
+
+it compiles! Also, PM has been replaced by Case and Choice, so that one can add cases more easily within apply2all. 
+------------------------------------------------------------------------
+r233 | cbj | 2007-09-09 11:30:13 +1000 (Sun, 09 Sep 2007) | 1 line
+
+new branch with static patterns and apply2all as dominant
+------------------------------------------------------------------------
+r231 | cbj | 2007-08-31 14:00:53 +1000 (Fri, 31 Aug 2007) | 1 line
+
+latest fiddling
+------------------------------------------------------------------------
+r224 | cbj | 2007-08-21 15:36:21 +1000 (Tue, 21 Aug 2007) | 1 line
+
+tildes on arrows now
+------------------------------------------------------------------------
+r223 | cbj | 2007-08-20 14:57:35 +1000 (Mon, 20 Aug 2007) | 1 line
+
+aligned the type inference with the book,. The concept of avoids delta sub has become important.
+------------------------------------------------------------------------
+r217 | cbj | 2007-08-16 19:45:44 +1000 (Thu, 16 Aug 2007) | 16 lines
+
+I've been playing around, but the standard prelude is working again.
+
+Pattern types have been replaced by pattern function types a ->> b .
+Term variables now include pattern variables ~x as well as the usual
+variables x. The former are not bound by cases, but only be
+lambda's. The correponding abstractiosn have pattern function
+types. and can be applied to patterns without binding variables only.
+Now all that is required is some theory :)
+
+Barry
+
+
+
+
+
+
+------------------------------------------------------------------------
+r216 | cbj | 2007-08-15 15:44:12 +1000 (Wed, 15 Aug 2007) | 1 line
+
+unstable version, but about to make pattern variable abstraction a distinct term form
+------------------------------------------------------------------------
+r208 | cbj | 2007-08-10 09:48:00 +1000 (Fri, 10 Aug 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r207 | cbj | 2007-08-09 08:53:55 +1000 (Thu, 09 Aug 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r204 | cbj | 2007-08-08 12:23:25 +1000 (Wed, 08 Aug 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r203 | cbj | 2007-08-08 12:22:57 +1000 (Wed, 08 Aug 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r202 | cbj | 2007-08-08 12:21:53 +1000 (Wed, 08 Aug 2007) | 1 line
+
+major revision; looking good
+------------------------------------------------------------------------
+r194 | murdaca | 2007-08-03 20:39:51 +1000 (Fri, 03 Aug 2007) | 1 line
+
+creating a db branch of bronte
+------------------------------------------------------------------------
+r193 | cbj | 2007-08-03 12:04:06 +1000 (Fri, 03 Aug 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r190 | cbj | 2007-08-01 15:34:03 +1000 (Wed, 01 Aug 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r189 | cbj | 2007-08-01 13:13:36 +1000 (Wed, 01 Aug 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r182 | cbj | 2007-07-26 14:30:11 +1000 (Thu, 26 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r181 | cbj | 2007-07-26 14:06:19 +1000 (Thu, 26 Jul 2007) | 1 line
+
+various changes
+------------------------------------------------------------------------
+r168 | cbj | 2007-07-20 15:16:23 +1000 (Fri, 20 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r167 | cbj | 2007-07-20 09:58:27 +1000 (Fri, 20 Jul 2007) | 1 line
+
+fingers crossed
+------------------------------------------------------------------------
+r166 | cbj | 2007-07-20 09:03:05 +1000 (Fri, 20 Jul 2007) | 1 line
+
+with fixed variables
+------------------------------------------------------------------------
+r165 | cbj | 2007-07-19 10:44:19 +1000 (Thu, 19 Jul 2007) | 1 line
+
+about to change fixed variables
+------------------------------------------------------------------------
+r162 | cbj | 2007-07-17 16:27:25 +1000 (Tue, 17 Jul 2007) | 1 line
+
+main tests working, with pat limited to dynamic patterns
+------------------------------------------------------------------------
+r160 | cbj | 2007-07-16 08:54:38 +1000 (Mon, 16 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r158 | cbj | 2007-07-13 11:34:42 +1000 (Fri, 13 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r157 | cbj | 2007-07-13 10:42:26 +1000 (Fri, 13 Jul 2007) | 1 line
+
+redfined types mode to show or hide all type info
+------------------------------------------------------------------------
+r156 | cbj | 2007-07-13 09:25:11 +1000 (Fri, 13 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r155 | cbj | 2007-07-12 10:13:20 +1000 (Thu, 12 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r154 | cbj | 2007-07-12 09:32:59 +1000 (Thu, 12 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r153 | cbj | 2007-07-11 11:10:39 +1000 (Wed, 11 Jul 2007) | 1 line
+
+tidying
+------------------------------------------------------------------------
+r151 | cbj | 2007-07-09 19:56:36 +1000 (Mon, 09 Jul 2007) | 1 line
+
+wildcards are back in static fashion
+------------------------------------------------------------------------
+r150 | cbj | 2007-07-09 16:22:00 +1000 (Mon, 09 Jul 2007) | 1 line
+
+class_demo.bonis working now, except that the parser is not handling o.m.n properly
+------------------------------------------------------------------------
+r147 | cbj | 2007-07-06 13:00:18 +1000 (Fri, 06 Jul 2007) | 1 line
+
+more sub-typing working, but still no wedges
+------------------------------------------------------------------------
+r144 | cbj | 2007-07-05 16:46:18 +1000 (Thu, 05 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r143 | cbj | 2007-07-05 13:04:31 +1000 (Thu, 05 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r142 | cbj | 2007-07-05 13:04:12 +1000 (Thu, 05 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r141 | cbj | 2007-07-05 12:24:13 +1000 (Thu, 05 Jul 2007) | 1 line
+
+finished tidying infer.ml
+------------------------------------------------------------------------
+r140 | cbj | 2007-07-05 10:55:49 +1000 (Thu, 05 Jul 2007) | 1 line
+
+about to clean up infer.ml
+------------------------------------------------------------------------
+r139 | cbj | 2007-07-05 10:40:06 +1000 (Thu, 05 Jul 2007) | 1 line
+
+finished tidying up for now
+------------------------------------------------------------------------
+r138 | cbj | 2007-07-05 10:26:01 +1000 (Thu, 05 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r137 | cbj | 2007-07-05 10:02:16 +1000 (Thu, 05 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r136 | cbj | 2007-07-04 18:47:13 +1000 (Wed, 04 Jul 2007) | 1 line
+
+a major tidying of the code, with many redundant functions stripped out 
+------------------------------------------------------------------------
+r134 | cbj | 2007-07-03 19:11:22 +1000 (Tue, 03 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r133 | cbj | 2007-07-03 13:27:54 +1000 (Tue, 03 Jul 2007) | 1 line
+
+basic sub-classes working now
+------------------------------------------------------------------------
+r132 | cbj | 2007-07-03 13:09:46 +1000 (Tue, 03 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r131 | cbj | 2007-07-03 13:08:33 +1000 (Tue, 03 Jul 2007) | 1 line
+
+moved eqcons to the standard prelude 
+------------------------------------------------------------------------
+r130 | cbj | 2007-07-03 12:27:49 +1000 (Tue, 03 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r129 | cbj | 2007-07-03 10:15:14 +1000 (Tue, 03 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r128 | cbj | 2007-07-02 20:55:17 +1000 (Mon, 02 Jul 2007) | 1 line
+
+added file datum.ml to collect all the datum operations
+------------------------------------------------------------------------
+r127 | cbj | 2007-07-02 20:46:35 +1000 (Mon, 02 Jul 2007) | 1 line
+
+added file datum.ml to collect all the datum operations
+------------------------------------------------------------------------
+r126 | cbj | 2007-07-02 17:06:36 +1000 (Mon, 02 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r125 | cbj | 2007-07-02 15:27:45 +1000 (Mon, 02 Jul 2007) | 1 line
+
+add_decl is working now
+------------------------------------------------------------------------
+r124 | cbj | 2007-07-02 12:10:57 +1000 (Mon, 02 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r123 | cbj | 2007-07-02 12:10:16 +1000 (Mon, 02 Jul 2007) | 1 line
+
+better standard prelude now
+------------------------------------------------------------------------
+r122 | cbj | 2007-07-02 09:54:38 +1000 (Mon, 02 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r121 | cbj | 2007-07-02 08:31:55 +1000 (Mon, 02 Jul 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r116 | cbj | 2007-06-30 17:08:31 +1000 (Sat, 30 Jun 2007) | 1 line
+
+basic tests for generic queries are working, including the checks on fixed type variables
+------------------------------------------------------------------------
+r115 | cbj | 2007-06-29 09:59:55 +1000 (Fri, 29 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r113 | cbj | 2007-06-28 08:50:28 +1000 (Thu, 28 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r112 | cbj | 2007-06-27 17:03:16 +1000 (Wed, 27 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r111 | cbj | 2007-06-27 08:50:20 +1000 (Wed, 27 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r110 | cbj | 2007-06-26 17:37:09 +1000 (Tue, 26 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r109 | cbj | 2007-06-26 11:59:25 +1000 (Tue, 26 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r108 | cbj | 2007-06-26 09:17:19 +1000 (Tue, 26 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r107 | cbj | 2007-06-25 09:11:29 +1000 (Mon, 25 Jun 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r41 | tgwilson | 2007-03-23 09:48:16 +1100 (Fri, 23 Mar 2007) | 1 line
+
+Branching and problems?
+------------------------------------------------------------------------
+r32 | cbj | 2007-02-28 17:12:00 +1100 (Wed, 28 Feb 2007) | 8 lines
+
+I'm not sure where this is up to but have deleted some old peek
+commands from various places, and am about to re-introduce the
+interpretation of let terms as big lambdas. This is because the
+interpretation as methods is a little too cute.
+
+cbj
+
+
+------------------------------------------------------------------------
+r31 | cbj | 2007-02-24 17:56:06 +1100 (Sat, 24 Feb 2007) | 25 lines
+
+A rather substantial reworking. All terms now get types while terms in
+contexts get type schemes.
+
+Surface syntax 
+
+T ::= X | 'X | C | T T | T-> T 
+t ::= x | 'x | t t | t -> t|t 
+
+Intermediate code 
+
+T ::= X | C | T T | [D] T -> T | \/ X. T 
+t ::= x | t t | t T | [D;th] t -> t|t 
+
+Note that the implicit binding of qf types and quantified types uses
+the same notation, so that 
+
+[X] X -> X and \/X.X-> X are both represented as 'X -> 'X 
+
+Hopefully this causes no problems since type applications are handled
+internally anyway. 
+
+
+
+
+
+------------------------------------------------------------------------
+r30 | cbj | 2007-02-19 12:13:47 +1100 (Mon, 19 Feb 2007) | 21 lines
+
+
+The drama continues. 
+
+The intermediate language now has application of terms to types but no
+abstraction. Let-terms are given using cases, which abstract on type
+variables. Contructors are typed in the Hindley-Milner style. For example, 
+
+ cons : \/a . a -> list a -> list a 
+
+The source language does not have explicit type applications, as these
+can be modeled by explicit typing.
+
+Matching of type applications is defined as expected. 
+
+It is a bit sad to have explicit type applicaitons in the intermeidate
+langauge, especially after all the work on QF, but the latter will
+still be used to model classes (not yet tested.)
+
+
+
+
+------------------------------------------------------------------------
+r29 | cbj | 2007-02-18 13:09:15 +1100 (Sun, 18 Feb 2007) | 1 line
+
+fiddling with unifyall LessThan
+------------------------------------------------------------------------
+r28 | cbj | 2007-02-18 11:15:54 +1100 (Sun, 18 Feb 2007) | 1 line
+
+most basic_tests now working
+------------------------------------------------------------------------
+r27 | cbj | 2007-02-18 10:49:39 +1100 (Sun, 18 Feb 2007) | 12 lines
+
+After discovering the problems of mathcing application in the presence
+of implicit type instantiation, I have modified the sub-typing
+relation to allow unification of the argument types. This recovers all
+of the examples in the standard prelude and some (all?) in the
+basic_tests but is simple rather than robust. I plan to develop the
+theory now, and return to the implementation anon.
+
+cbj
+
+
+
+
+------------------------------------------------------------------------
+r26 | cbj | 2007-02-14 17:36:53 +1100 (Wed, 14 Feb 2007) | 9 lines
+
+Added a directory demo, taken form old bronte.
+
+More or less finished with the inference.  Added declarations for exn
+and the wildcard with dummy parameters.  This doesn't work with the
+evaluator, which is triggering a re-working of the binding
+variables/construcvtors/free variables stuff.
+cbj
+
+
+------------------------------------------------------------------------
+r25 | cbj | 2007-02-14 09:33:19 +1100 (Wed, 14 Feb 2007) | 6 lines
+
+The structure polymorphic examples, such as map, are not
+type-checking, though the evaluation is not right yet. 
+
+
+
+
+------------------------------------------------------------------------
+r24 | cbj | 2007-02-13 18:18:13 +1100 (Tue, 13 Feb 2007) | 14 lines
+
+The revised account infer_case appears to be working.  The idea is
+that in a functional setting all cases should have instantiations of
+the same type. This used to be hard but now that all bidning variables
+must appear free in the argument type (if at all) it is easier. All
+the standard prelude is okay, but no account yet of method
+specialisation using sub-types and choice types. 
+
+Barry
+
+
+
+
+
+
+------------------------------------------------------------------------
+r23 | tgwilson | 2007-02-13 08:02:35 +1100 (Tue, 13 Feb 2007) | 1 line
+
+Fixed printing of binding variables in environments.ml and i_data.ml to be properly formatted and match p_data.ml
+------------------------------------------------------------------------
+r22 | tgwilson | 2007-02-12 22:04:08 +1100 (Mon, 12 Feb 2007) | 3 lines
+
+Worked on the printing functions. P_data prints properly and is list based, environments and (presumably) i_data do not print properly and are set based. It appears that references do not behave the same inside List.iter as they do inside List.fold_left. I will look at this further tomorrow.
+
+-TGW
+------------------------------------------------------------------------
+r21 | tgwilson | 2007-02-12 18:35:25 +1100 (Mon, 12 Feb 2007) | 1 line
+
+Edited standard prelude which now loads without errors. Removed List functions: append, flatten, fromList and toString (cons \x \xs), otherwise all loads (but not tested).
+------------------------------------------------------------------------
+r20 | cbj | 2007-02-12 10:13:11 +1100 (Mon, 12 Feb 2007) | 15 lines
+
+Some of the changes from yesterday have been disabled by commenting
+out Ptyapp in the parser and changing the declarations of lists and
+coproducts to make the dummy paramedters explicit. Also, the
+definition of l_nil in p_data.ml now has a dummy argument. 
+
+The next issue is how to handle type variable quantification in
+fixpoints and let terms.  The plan is to make quantificaiton as
+explicit as possible, relying on qf types to remove the pain of
+application.
+
+cbj
+
+
+
+
+------------------------------------------------------------------------
+r19 | cbj | 2007-02-11 13:51:11 +1100 (Sun, 11 Feb 2007) | 50 lines
+
+
+I've added quantified types to get 
+
+T ::= ... | [Delta] P -> S ... | \/ X. T 
+
+so that nil and inl and inr can be typed easily. 
+Here is a run of the standard prelude 
+
+Welcome to bronte v. 0.4 -- formerly fish2
+(C) Copyright 2005 Barry Jay
+No warranty expressed or implied
+See README for details
+type `%quit;;' to exit
+~~ datatype list a = nil  | cons of a and list a ;;
+~~
+nil ;;
+J: \/a.list a
+J = using default printer--
+nil
+~~ nil @ int;;
+J: list int
+J = using default printer--
+nil @ int
+~~ datatype bincoprod (x,y) = inl of x | inr of y ;;
+~~ inl 3 @ int;;
+J: int + int
+J = using default printer--
+inl(3) @ int
+~~ inr 4 @ int;;
+J: int + int
+J = using default printer--
+inr(4) @ int
+~~~~~
+
+
+Note the syntax   nil @ int to introduce the type application.  There is
+no explicit mechanism for type abstraction. This is only done for
+constructors when data types are declared.
+
+Of course, many such type applications can be made implicit, and then
+inferred, but if nil @ int is to be passed as a parameter to some
+other function then it is not clear that the type int can be inferred.
+For now, let us see what happens when all such applications are made
+explicit.
+
+cbj
+
+
+
+
+------------------------------------------------------------------------
+r18 | cbj | 2007-02-09 13:30:46 +1100 (Fri, 09 Feb 2007) | 19 lines
+
+A major re-design of type syntax in the parser and pretty-printer, as in 
+
+
+letrec (update:  [a,b] (a->b) -> (a -> a) -> [c] c -> c) x f =
+| x \y -> x (f y)
+| \z \y -> (update x f z) (update x f y)
+| \z -> z
+;;
+a -> a    specialises    b -> b
+c -> c    specialises    b -> b
+type error: (ty_43 -> ty_40) -> (ty_43 -> ty_43) -> ty_13 -> ty_13 and [a,b,] (a -> b) -> (a -> a) -> [c,] c -> c have differnt numbers of binding variables in unification
+
+
+Still some errors to fix in unification and datatype declarations to
+do with binding of type variables, since we are shifting to a System
+QF style fo handling types.
+
+
+
+------------------------------------------------------------------------
+r17 | tgwilson | 2007-02-09 12:15:38 +1100 (Fri, 09 Feb 2007) | 1 line
+
+Fixed assign in the standard prelude
+------------------------------------------------------------------------
+r16 | tgwilson | 2007-02-09 12:11:30 +1100 (Fri, 09 Feb 2007) | 1 line
+
+Adding old standard prelude (standard_prelude.bon.old)
+------------------------------------------------------------------------
+r15 | tgwilson | 2007-02-09 12:10:23 +1100 (Fri, 09 Feb 2007) | 1 line
+
+Standard prelude now loads but ommits the functions update, assign, updata (relies on assign) and flatten (for lists).
+------------------------------------------------------------------------
+r14 | cbj | 2007-02-08 17:59:49 +1100 (Thu, 08 Feb 2007) | 1 line
+
+unification works on quantified types now
+------------------------------------------------------------------------
+r13 | cbj | 2007-02-08 12:21:01 +1100 (Thu, 08 Feb 2007) | 1 line
+
+have modified convert_type to produce quantified functions. This is the beginning of a larger design change in which QF types are first-class.
+------------------------------------------------------------------------
+r12 | cbj | 2007-02-07 16:20:29 +1100 (Wed, 07 Feb 2007) | 1 line
+
+it compiles - but is not right
+------------------------------------------------------------------------
+r11 | tgwilson | 2007-02-07 14:02:49 +1100 (Wed, 07 Feb 2007) | 1 line
+
+Broken while removing TyApp and TyAbs terms. Up to infer.ml like 89
+------------------------------------------------------------------------
+r10 | cbj | 2007-02-07 12:36:28 +1100 (Wed, 07 Feb 2007) | 1 line
+
+
+------------------------------------------------------------------------
+r9 | cbj | 2007-02-07 12:14:55 +1100 (Wed, 07 Feb 2007) | 1 line
+
+environments changed to QFunty
+------------------------------------------------------------------------
+r8 | tgwilson | 2007-02-07 11:51:06 +1100 (Wed, 07 Feb 2007) | 1 line
+
+Enviroments.ml file in progress
+------------------------------------------------------------------------
+r7 | tgwilson | 2007-02-07 10:15:54 +1100 (Wed, 07 Feb 2007) | 1 line
+
+Commented i_data.ml and i_data.mli files
+------------------------------------------------------------------------
+r6 | cbj | 2007-02-07 10:01:59 +1100 (Wed, 07 Feb 2007) | 1 line
+
+changed i_type
+------------------------------------------------------------------------
+r5 | cbj | 2007-02-07 09:44:04 +1100 (Wed, 07 Feb 2007) | 1 line
+
+moved bronte.stable to bronte
+------------------------------------------------------------------------
+r2 | tgwilson | 2007-01-24 11:59:33 +1100 (Wed, 24 Jan 2007) | 3 lines
+
+Original stable code from 01/01/2006
+
+
+------------------------------------------------------------------------

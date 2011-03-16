@@ -41,6 +41,12 @@ let (listNull: List a -> Bool) =
 | _ -> False
 ;;
 
+(* Added by Tyler: map fn over a list *)
+let rec (listMap: (a -> b) -> List a -> b) f =
+| Nil -> Nil; ; empty list
+| Cons h t -> (f h) || listMap f t
+;;
+
 (* Returns True if any elements of the list match the predicate *)
 let rec (listAny: (a -> Bool) -> List a -> Bool) p =
 | Nil -> False
